@@ -26,5 +26,4 @@ public class ValidacionCliente {
     return compara.matches();
   }
   
-  
 }
