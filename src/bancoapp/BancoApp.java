@@ -1,7 +1,5 @@
 package bancoapp;
 
-import logicadenegocios.Encriptacion;
-
 /**
  *
  * @author Gustavo
