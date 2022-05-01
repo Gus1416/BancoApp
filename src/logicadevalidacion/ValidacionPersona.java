@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
  * @author Alejandra Merino
  */
 public class ValidacionPersona {
+  
   //Valida los caracteres de un apellido. No recibe la letra ñ.
   public boolean validarApellido (String pCadena) {
     Pattern patron = Pattern.compile ("^([a-zA-Z][a-zA-Z\\-$]*)$");
