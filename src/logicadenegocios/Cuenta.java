@@ -4,6 +4,7 @@
  */
 package logicadenegocios;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,11 +17,13 @@ public class Cuenta implements IComisiones, Comparable{
   private double saldo;
   private String estatus = "activa";
   private String pin;
+  private ArrayList<Operacion> operaciones;
 
   public Cuenta(String pPin, double pMontoInicial) {
     pin = pPin;
     saldo = pMontoInicial;
     fechaCreacion = obtenerFechaSistema ();
+    operaciones = new ArrayList<> ();
   }
   
   private Date obtenerFechaSistema () {
@@ -32,6 +35,7 @@ public class Cuenta implements IComisiones, Comparable{
    return 1; 
   }
   
+  //Dentro de deposito, retiro, transferencia se crea una nueva operacion?
   public void depositar (double pMontoDeposito) {
   }
   
