@@ -2,8 +2,6 @@ package logicadenegocios;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import logicadevalidacion.FondosInsuficientesExcepcion;
 import serviciosexternos.TipoCambio;
 
@@ -19,8 +17,9 @@ public class Cuenta implements IComisiones, Comparable {
 	private String estatus = "activa";
 	private String pin;
 	private ArrayList<Operacion> operaciones;
+	private int cantidadDepositosOperaciones = 0;
 
-	public Cuenta(String pPin, double pMontoInicial, Date fechaCreacion) {
+	public Cuenta(String pPin, double pMontoInicial) {
 		pin = pPin;
 		saldo = pMontoInicial;
 		fechaCreacion = obtenerFechaSistema();
@@ -32,90 +31,116 @@ public class Cuenta implements IComisiones, Comparable {
 		return fecha;
 	}
 
-	private int contarDepositosRetiro() {
-		return 1;
+	public void depositarColones(double pMontoDeposito){
+		boolean seCobraComision = determinarCobroComision();
+		double comision = 0.00;
+		
+		if (seCobraComision){
+			comision = pMontoDeposito * 0.02;
+		}	
+			
+		this.saldo += (pMontoDeposito + comision);	
+		registrarOperacion("Depósito", pMontoDeposito, seCobraComision, comision, "Colones");
+	}
+	
+	public void depositarDolares(double pMontoDepositoDolares) {
+		TipoCambio tc = new TipoCambio();
+		double depositoEnColones = tc.convertirAColones(pMontoDepositoDolares);
+		boolean seCobraComision = determinarCobroComision();
+		double comision = 0.00;
+		
+		if (seCobraComision){
+			comision = depositoEnColones * 0.02;
+		} 
+		
+		this.saldo += (depositoEnColones + comision);
+		registrarOperacion("Depósito", pMontoDepositoDolares, seCobraComision, comision, "Dólares");
 	}
 
-	public void determinarCobroComisionRetiro(double pMontoRetiro) {
-		if (contarDepositosRetiro() > 3) {
-			double comision = pMontoRetiro * 0.2;
-			try {
-				retirar(pMontoRetiro, true, comision);
-			} catch (FondosInsuficientesExcepcion ex) {
-				Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
-			}
+	public void retirarColones(double pMontoRetiro) throws FondosInsuficientesExcepcion {
+		boolean seCobraComision = determinarCobroComision();
+		double comision = 0.00;
+		double montoTotalRetiro = pMontoRetiro;
+		
+		if (seCobraComision){
+			comision = pMontoRetiro * 0.02;
+			montoTotalRetiro += comision;
+		}
+		
+		if (validarRetiro(montoTotalRetiro)){
+			this.saldo -= (montoTotalRetiro);
+			registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Colones");
 		} else {
-			try {
-				retirar(pMontoRetiro, false, 0);
-			} catch (FondosInsuficientesExcepcion ex) {
-				Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
-			}
+			double saldoFaltante = montoTotalRetiro - this.saldo;
+			throw new FondosInsuficientesExcepcion(saldoFaltante);
 		}
 	}
 
-	public void depositar(double pMontoDeposito) {
-	}
-
-	private void retirar(double pMontoRetiro, boolean pSeCobraComision, double pMontoComision) throws FondosInsuficientesExcepcion {
-		double retiroTotal = pMontoRetiro + pMontoComision;
-		if (retiroTotal <= saldo) {
-			saldo -= retiroTotal;
-			registrarOperacion("Retiro", pMontoRetiro, pSeCobraComision, pMontoComision, "Colones");
-		} else {
-			double requiere = retiroTotal - saldo;
-			throw new FondosInsuficientesExcepcion(requiere);
+	private void retirarDolares(double pMontoRetiro) throws FondosInsuficientesExcepcion {
+		boolean seCobraComision = determinarCobroComision();
+		double comision = 0.00;
+		
+		TipoCambio tc = new TipoCambio();
+		double montoTotalRetiro = tc.convertirAColones(pMontoRetiro);
+		
+		if (seCobraComision){
+			comision = pMontoRetiro * 0.02;
+			montoTotalRetiro += comision;
 		}
-	}
-
-	private void retirarDolares(double pMontoRetiro, boolean pSeCobraComision, double pMontoComision) throws FondosInsuficientesExcepcion {
-		double retiroTotal = pMontoRetiro + pMontoComision;
-		if (retiroTotal <= saldo) {
-			saldo -= retiroTotal;
-			registrarOperacion("Retiro", pMontoRetiro, pSeCobraComision, pMontoComision, "Dólares");
+		
+		if (validarRetiro(montoTotalRetiro)){
+			this.saldo -= montoTotalRetiro;
+			registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Dólares");
 		} else {
-			double requiere = retiroTotal - saldo;
-			throw new FondosInsuficientesExcepcion(requiere);
+			double saldoFaltante = montoTotalRetiro - this.saldo;
+			throw new FondosInsuficientesExcepcion(saldoFaltante);
 		}
 	}
 	
-	public void determinarCobroComisionRetiroDolares(double pMontoRetiro) {
-		double montoColones;
-		TipoCambio tc = new TipoCambio();
-		montoColones = tc.convertirAColones(pMontoRetiro);
-		if (contarDepositosRetiro() > 3) {
-			double comision = montoColones * 0.2;
-			try {
-				retirarDolares(montoColones, true, comision);
-			} catch (FondosInsuficientesExcepcion ex) {
-				Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		} else {
-			try {
-				retirarDolares(montoColones, false, 0);
-			} catch (FondosInsuficientesExcepcion ex) {
-				Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		}
+	private boolean validarRetiro(double pMontoTotalRetiro) {
+		return pMontoTotalRetiro + (pMontoTotalRetiro * 0.02) <= this.saldo;
+	}
+	
+	private boolean determinarCobroComision(){
+		return this.cantidadDepositosOperaciones > 3;
 	}
 	
 	private void registrarOperacion(String pTipoOperacion, double pMontoOperacion, boolean pSeCobraComision, double pMontoComision, String pMoneda) {
 		Operacion operacion = new Operacion(obtenerFechaSistema(), pTipoOperacion, pMontoOperacion, pSeCobraComision, pMontoComision, pMoneda);
 		operaciones.add(operacion);
+		this.cantidadDepositosOperaciones++;
 	}
 
 	@Override
 	public double calcularTotalComisionesDepositos() {
-		return 0;
+		ArrayList<Operacion> depositos = obtenerListaDepositos();
+		double totalComisionesDepositos = 0.0;
+		for (Operacion deposito : depositos) {
+			totalComisionesDepositos += deposito.getMontoComision();
+		}
+		return totalComisionesDepositos;
 	}
 
 	@Override
 	public double calcularTotalComisionesRetiros() {
-		return 0;
+		ArrayList<Operacion> retiros = obtenerListaRetiros();
+		double totalComisionesRetiros = 0.0;
+
+		for (Operacion retiro : retiros) {
+			totalComisionesRetiros += retiro.getMontoComision();
+		}
+
+		return totalComisionesRetiros;
 	}
 
 	@Override
 	public double calcularTotalComisiones() {
-		return 0;
+		double totalComisiones = 0.0;
+
+		for (Operacion operacion : this.operaciones) {
+			totalComisiones += operacion.getMontoComision();
+		}
+		return totalComisiones;
 	}
 
 	private ArrayList obtenerListaDepositos() {
@@ -145,6 +170,15 @@ public class Cuenta implements IComisiones, Comparable {
 
 	public String getNumeroCuenta() {
 		return numeroCuenta;
+	}
+	
+	public double getSaldo(){
+		return this.saldo;
+	}
+	
+	public double getSaldoDolares(){
+		TipoCambio tc = new TipoCambio();
+		return tc.convertirADolares(this.saldo);
 	}
 
 	@Override

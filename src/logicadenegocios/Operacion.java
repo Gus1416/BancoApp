@@ -7,48 +7,41 @@ import java.util.Date;
  * @author SebCor
  */
 public class Operacion {
-    //a
-    private Date fechaOperacion;
-    private String tipoOperacion;
-    private boolean seCobraComision;
-    private double montoOperacion;
-    private double montoComision;
-    private String moneda;
-    private double porcentajeComision = 0.2;
+	//a
 
-    public Operacion(Date fechaOperacion, String tipoOperacion, double montoOperacion, boolean seCobraComision, double montoComision, String moneda) {
-        this.fechaOperacion = fechaOperacion;
-        this.tipoOperacion = tipoOperacion;
-        this.seCobraComision = seCobraComision;
-        this.montoOperacion = montoOperacion;
-        this.montoComision = montoComision;
-        this.moneda = moneda;
-    }
+	private Date fechaOperacion;
+	private String tipoOperacion;
+	private boolean seCobraComision;
+	private double montoOperacion;
+	private double montoComision;
+	private String moneda;
+	private double porcentajeComision = 0.2;
 
-    public Operacion(Date fechaOperacion, String tipoOperacion, boolean seCobraComision) {
-        this.fechaOperacion = fechaOperacion;
-        this.tipoOperacion = tipoOperacion;
-        this.seCobraComision = seCobraComision;
-    }
-		
-		public double getMontoComision(){
-			return this.montoComision;
-		}
-		
-		public String getTipoOperacion(){
-			return this.tipoOperacion;
-		}
+	public Operacion(Date pFechaOperacion, String pTipoOperacion, double pMontoOperacion, boolean pSeCobraComision, double pMontoComision, String pMoneda) {
+		this.fechaOperacion = pFechaOperacion;
+		this.tipoOperacion = pTipoOperacion;
+		this.seCobraComision = pSeCobraComision;
+		this.montoOperacion = pMontoOperacion;
+		this.montoComision = pMontoComision;
+		this.moneda = pMoneda;
+	}
 
-    public Operacion(String tipoOperacion, double montoOperacion, String moneda) {
-        this.tipoOperacion = tipoOperacion;
-        this.montoOperacion = montoOperacion;
-        this.moneda = moneda;
-    }
-    
-    
+	public Operacion(Date fechaOperacion, String tipoOperacion, boolean seCobraComision) {
+		this.fechaOperacion = fechaOperacion;
+		this.tipoOperacion = tipoOperacion;
+		this.seCobraComision = seCobraComision;
+	}
 
-    @Override
-    public String toString() {
-        return "Operacion{" + "fechaOperacion=" + fechaOperacion + ", tipoOperacion=" + tipoOperacion + ", seCobraComision=" + seCobraComision + ", montoOperacion=" + montoOperacion + ", montoComision=" + montoComision + ", moneda=" + moneda + ", porcentajeComision=" + porcentajeComision + '}';
-    }
+	public double getMontoComision() {
+		return this.montoComision;
+	}
+
+	public String getTipoOperacion() {
+		return this.tipoOperacion;
+	}
+
+	@Override
+	public String toString() {
+		return "Operacion{" + "fechaOperacion=" + fechaOperacion + ", tipoOperacion=" + tipoOperacion + ", seCobraComision=" + seCobraComision + ", montoOperacion=" + montoOperacion + ", montoComision=" + montoComision + ", moneda=" + moneda + ", porcentajeComision=" + porcentajeComision + '}';
+	}
 }
