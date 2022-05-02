@@ -1,5 +1,6 @@
 package logicadenegocios;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -12,12 +13,14 @@ public class Cliente extends Persona{
 	private String correoElectronico;
 	private String codigoCliente;
 	private static int cantidadClientes = 0;
+	private ArrayList<Cuenta> cuentas;
 	
 	Cliente (String pPrimerApellido, String pSegundoApellido, String pNombre, String pIdentificacion, Date pFechaNacimiento, String pNumeroTelefono, String pCorreoElectronico){
 		super(pPrimerApellido, pSegundoApellido, pNombre, pIdentificacion, pFechaNacimiento);
 		numeroTelefono = pNumeroTelefono;
 		correoElectronico = pCorreoElectronico;
 		codigoCliente = "CIF_" + ++cantidadClientes;
+		cuentas = new ArrayList<>();
 	}
 	
 	@Override

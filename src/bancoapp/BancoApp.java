@@ -18,5 +18,4 @@ public class BancoApp {
           ValidacionPersona valida = new ValidacionPersona ();
           System.out.println("Is this an ID?: " + valida.validarIdentificacion(id) + "\n");
 	}
-	
 }
