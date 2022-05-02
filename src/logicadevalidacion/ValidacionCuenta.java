@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
  * @author Alejandra Merino
  */
 public class ValidacionCuenta {
+  
+  
   public boolean validarPIN (String pPIN ) {
     Pattern patron = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
                        + "(?=.*[@#$%^&-+=])(?=\\S+$).{6,6}$");
@@ -19,3 +21,4 @@ public class ValidacionCuenta {
     return compara.matches();
   }
 }
+  

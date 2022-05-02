@@ -16,7 +16,7 @@ public class Operacion {
     private String moneda;
     private double porcentajeComision = 0.2;
 
-    public Operacion(Date fechaOperacion, String tipoOperacion, boolean seCobraComision, double montoOperacion, double montoComision, String moneda) {
+    public Operacion(Date fechaOperacion, String tipoOperacion, double montoOperacion, boolean seCobraComision, double montoComision, String moneda) {
         this.fechaOperacion = fechaOperacion;
         this.tipoOperacion = tipoOperacion;
         this.seCobraComision = seCobraComision;
