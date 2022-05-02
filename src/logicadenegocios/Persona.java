@@ -4,6 +4,7 @@
  */
 package logicadenegocios;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,6 +17,7 @@ public class Persona implements Comparable {
   protected String nombre;
   protected String identificacion;
   protected Date fechaNacimiento;
+  private ArrayList<Cuenta> cuentas;
 
   public Persona(String pPrimerApellido, String pSegundoApellido, String pNombre, String pIdentificacion, Date pFechaNacimiento) {
     primerApellido = pPrimerApellido;
@@ -25,8 +27,9 @@ public class Persona implements Comparable {
     fechaNacimiento = pFechaNacimiento;
   }
   
-  public void crearCuenta (String pPin, String pMontoInicial) {
-    
+  public void crearCuenta (String pPin, double pMontoInicial, Date fechaCreacion) {
+    Cuenta nuevaCuenta = new Cuenta(pPin,pMontoInicial,fechaCreacion);
+    cuentas.add(nuevaCuenta);
   }
 
   @Override
