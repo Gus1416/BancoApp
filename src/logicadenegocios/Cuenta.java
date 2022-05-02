@@ -2,7 +2,10 @@ package logicadenegocios;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import logicadevalidacion.FondosInsuficientesExcepcion;
+import serviciosexternos.TipoCambio;
 
 /**
  *
@@ -32,20 +35,75 @@ public class Cuenta implements IComisiones, Comparable {
 	private int contarDepositosRetiro() {
 		return 1;
 	}
-
+        
+        public void determinarCobroComisionRetiro (double pMontoRetiro) {
+          if(contarDepositosRetiro()>3) {
+            double comision = pMontoRetiro*0.2;
+            try {
+              retirar (pMontoRetiro, true, comision);
+            } catch (FondosInsuficientesExcepcion ex) {
+              Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          } else {
+            try {
+              retirar (pMontoRetiro, false, 0);
+            } catch (FondosInsuficientesExcepcion ex) {
+              Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          }
+        }
+        
 	//Dentro de deposito, retiro, transferencia se crea una nueva operacion?
 	public void depositar(double pMontoDeposito) {
 	}
         
-        public void retirar (double pMontoRetiro) throws FondosInsuficientesExcepcion {
-          
-          if (pMontoRetiro <= saldo) {
-            saldo -=pMontoRetiro;
+        private void retirar (double pMontoRetiro, boolean seCobraComision, 
+                double montoComision) 
+                throws FondosInsuficientesExcepcion {
+          double retiroTotal = pMontoRetiro+montoComision;
+          if ( retiroTotal <= saldo) {
+            saldo -=retiroTotal;
+            Date fechaO = obtenerFechaSistema() ;
+            agregarOperacion(fechaO,"Retiro", seCobraComision, pMontoRetiro, montoComision,"CRC");
           } else {
-            double requiere = pMontoRetiro - saldo;
+            double requiere = retiroTotal - saldo;
             throw new FondosInsuficientesExcepcion(requiere);
           }
         }
+        
+        public void determinarCobroComisionRetiroDolares (double pMontoRetiro) {
+          double montoColones;
+          TipoCambio tc = new TipoCambio();
+          montoColones = tc.convertirAColones(pMontoRetiro);
+          if(contarDepositosRetiro()>3) {
+            double comision = montoColones*0.2;
+            try {
+              retirarDolares (montoColones, true, comision);
+            } catch (FondosInsuficientesExcepcion ex) {
+              Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          } else {
+            try {
+              retirarDolares (montoColones, false, 0);
+            } catch (FondosInsuficientesExcepcion ex) {
+              Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          }
+        }
+        private void retirarDolares (double pMontoRetiro, boolean seCobraComision, 
+                double montoComision) 
+                throws FondosInsuficientesExcepcion {
+          double retiroTotal = pMontoRetiro+montoComision;
+          if ( retiroTotal <= saldo) {
+            saldo-=retiroTotal;
+            Date fechaO = obtenerFechaSistema() ;
+            agregarOperacion(fechaO,"Retiro", seCobraComision, pMontoRetiro, montoComision,"USD");
+          } else {
+            double requiere = retiroTotal - saldo;
+            throw new FondosInsuficientesExcepcion(requiere);
+          }
+        }
+        
 
 	@Override
 	public double calcularTotalComisionesDepositos() {
