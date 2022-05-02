@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 
 public class Busqueda {
+    // a
     
     public Cuenta buscarCuenta(String pNumCuenta,ArrayList<Cuenta>pListaCuentas){
         for (int i = 0; i < pListaCuentas.size(); i++) {

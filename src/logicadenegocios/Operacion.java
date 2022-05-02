@@ -11,7 +11,7 @@ import java.util.Date;
  * @author SebCor
  */
 public class Operacion {
-    
+    //a
     private Date fechaOperacion;
     private String tipoOperacion;
     private boolean seCobraComision;
