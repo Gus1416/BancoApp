@@ -2,6 +2,7 @@ package logicadenegocios;
 
 import java.util.ArrayList;
 import java.util.Date;
+import logicadevalidacion.FondosInsuficientesExcepcion;
 
 /**
  *
@@ -14,6 +15,7 @@ public class Cuenta implements IComisiones, Comparable {
 	private String estatus = "activa";
 	private String pin;
 	private ArrayList<Operacion> operaciones;
+        
 
 	public Cuenta(String pPin, double pMontoInicial) {
 		pin = pPin;
@@ -34,6 +36,16 @@ public class Cuenta implements IComisiones, Comparable {
 	//Dentro de deposito, retiro, transferencia se crea una nueva operacion?
 	public void depositar(double pMontoDeposito) {
 	}
+        
+        public void retirar (double pMontoRetiro) throws FondosInsuficientesExcepcion {
+          
+          if (pMontoRetiro <= saldo) {
+            saldo -=pMontoRetiro;
+          } else {
+            double requiere = pMontoRetiro - saldo;
+            throw new FondosInsuficientesExcepcion(requiere);
+          }
+        }
 
 	@Override
 	public double calcularTotalComisionesDepositos() {
