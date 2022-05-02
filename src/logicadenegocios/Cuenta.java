@@ -15,7 +15,7 @@ public class Cuenta implements IComisiones, Comparable {
 	private String pin;
 	private ArrayList<Operacion> operaciones;
 
-	public Cuenta(String pPin, double pMontoInicial) {
+	public Cuenta(String pPin, double pMontoInicial, Date fechaCreacion) {
 		pin = pPin;
 		saldo = pMontoInicial;
 		fechaCreacion = obtenerFechaSistema();
@@ -32,8 +32,20 @@ public class Cuenta implements IComisiones, Comparable {
 	}
 
 	//Dentro de deposito, retiro, transferencia se crea una nueva operacion?
-	public void depositar(double pMontoDeposito) {
-	}
+        // la lista de cuentas debe ser un atributo estatico 
+        
+	//public void depositar(String pNumCuenta,double pMontoDeposito) {
+     //   Busqueda search = new Busqueda();
+      //  search.buscarCuenta(pNumCuenta, operaciones);
+            
+            
+      //  registrarOperacion("Deposito Colones",pMontoDeposito,"CRC");
+        
+            
+            
+	//}
+        
+        
 
 	@Override
 	public double calcularTotalComisionesDepositos() {
@@ -59,8 +71,18 @@ public class Cuenta implements IComisiones, Comparable {
 		return numeroCuenta;
 	}
 
-	public void agregarOperacion(Date fechaOperacion, String tipoOperacion, boolean seCobraComision, double montoOperacion, double montoComision, String moneda) {
-		Operacion ope = new Operacion(fechaOperacion, tipoOperacion, seCobraComision, montoOperacion, montoComision, moneda);
+	public void registrarOperacion(String tipoOperacion, double montoOperacion, String moneda) {
+		Operacion ope = new Operacion(tipoOperacion, montoOperacion,moneda);
 		operaciones.add(ope);
 	}
+
+    @Override
+    public String toString() {
+        return "Cuenta{" + "numeroCuenta=" + numeroCuenta + ", fechaCreacion=" + fechaCreacion + ", saldo=" + saldo + ", estatus=" + estatus + ", pin=" + pin + ", operaciones=" + operaciones + '}';
+    }
+        
+  
+        
+        
+        
 }
