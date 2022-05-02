@@ -49,6 +49,26 @@ public class Cuenta implements IComisiones, Comparable {
 	public double calcularTotalComisiones() {
 		return 0;
 	}
+	
+	private ArrayList obtenerListaDepositos(){
+		ArrayList depositos = new ArrayList<Operacion>();
+		for (Operacion operacion : this.operaciones){
+			if (operacion.getTipoOperacion().equals("Depósito")){
+				depositos.add(operacion);
+			}
+		}
+		return depositos;
+	}
+	
+	private ArrayList obtenerListaRetiros() {
+		ArrayList retiros = new ArrayList<Operacion>();
+		for (Operacion operacion : this.operaciones) {
+			if (operacion.getTipoOperacion().equals("Retiros")) {
+				retiros.add(operacion);
+			}
+		}
+		return retiros;
+	}
 
 	@Override
 	public boolean comparar(Comparable b) {

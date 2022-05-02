@@ -30,10 +30,17 @@ public class Operacion {
         this.tipoOperacion = tipoOperacion;
         this.seCobraComision = seCobraComision;
     }
+		
+		public double getMontoComision(){
+			return this.montoComision;
+		}
+		
+		public String getTipoOperacion(){
+			return this.tipoOperacion;
+		}
 
     @Override
     public String toString() {
         return "Operacion{" + "fechaOperacion=" + fechaOperacion + ", tipoOperacion=" + tipoOperacion + ", seCobraComision=" + seCobraComision + ", montoOperacion=" + montoOperacion + ", montoComision=" + montoComision + ", moneda=" + moneda + ", porcentajeComision=" + porcentajeComision + '}';
     }
- 
 }
