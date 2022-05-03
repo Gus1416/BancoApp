@@ -73,7 +73,7 @@ public class Cuenta implements IComisiones, Comparable {
 			this.saldo -= (montoTotalRetiro);
 			registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Colones");
 		} else {
-			double saldoFaltante = montoTotalRetiro - this.saldo;
+			double saldoFaltante = montoTotalRetiro - this.getSaldo();
 			throw new FondosInsuficientesExcepcion(saldoFaltante);
 		}
 	}
@@ -94,7 +94,7 @@ public class Cuenta implements IComisiones, Comparable {
 			this.saldo -= montoTotalRetiro;
 			registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Dólares");
 		} else {
-			double saldoFaltante = montoTotalRetiro - this.saldo;
+			double saldoFaltante = montoTotalRetiro - this.getSaldo();
 			throw new FondosInsuficientesExcepcion(saldoFaltante);
 		}
 	}
@@ -105,7 +105,7 @@ public class Cuenta implements IComisiones, Comparable {
 	}
 	
 	private boolean validarRetiro(double pMontoTotalRetiro) {
-		return pMontoTotalRetiro + (pMontoTotalRetiro * 0.02) <= this.saldo;
+		return pMontoTotalRetiro + (pMontoTotalRetiro * 0.02) <= this.getSaldo();
 	}
 	
 	private boolean determinarCobroComision(){
@@ -183,12 +183,12 @@ public class Cuenta implements IComisiones, Comparable {
 	}
 
 	public String consultarEstatus() {
-		String mensaje = "La cuenta número XXXXXX tiene estatus de: " + estatus;
+		String mensaje = "La cuenta número XXXXXX tiene estatus de: " + getEstatus();
 		return mensaje;
 	}
 	
 	public void inactivarCuenta() {
-		this.estatus = "inactiva";
+		this.setEstatus("inactiva");
 	}
 
 	public void cambiarPin(String pNuevoPin) {
@@ -214,12 +214,12 @@ public class Cuenta implements IComisiones, Comparable {
 	
 	public double getSaldoDolares(){
 		TipoCambio tc = new TipoCambio();
-		return tc.convertirADolares(this.saldo);
+		return tc.convertirADolares(this.getSaldo());
 	}
 
 	@Override
 	public String toString() {
-		return "Cuenta{" + "numeroCuenta=" + numeroCuenta + ", fechaCreacion=" + fechaCreacion + ", saldo=" + saldo + ", estatus=" + estatus + ", pin=" + getPin() + ", operaciones=" + operaciones + '}';
+		return "Cuenta{" + "numeroCuenta=" + getNumeroCuenta() + ", fechaCreacion=" + getFechaCreacion() + ", saldo=" + getSaldo() + ", estatus=" + getEstatus() + ", pin=" + getPin() + ", operaciones=" + operaciones + '}';
 	}
 
 	/**
@@ -228,5 +228,39 @@ public class Cuenta implements IComisiones, Comparable {
 	public String getPin() {
 		return pin;
 	}
-}
 
+	/**
+	 * @return the fechaCreacion
+	 */
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	/**
+	 * @return the estatus
+	 */
+	public String getEstatus() {
+		return estatus;
+	}
+
+	/**
+	 * @param numeroCuenta the numeroCuenta to set
+	 */
+	public void setNumeroCuenta(String numeroCuenta) {
+		this.numeroCuenta = numeroCuenta;
+	}
+
+	/**
+	 * @param fechaCreacion the fechaCreacion to set
+	 */
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	/**
+	 * @param estatus the estatus to set
+	 */
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+}

@@ -72,4 +72,33 @@ public class ClienteCRUD extends Conexion{
 			return clientes;
 		}
 	}
+	
+	public Cliente consultarCliente(String pIdentificacion) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConexion();
+
+		String sql = "CALL consultar_cliente(?)";
+
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, pIdentificacion);
+			rs = ps.executeQuery();
+
+			String codigoCliente = rs.getString("codigo_cliente");
+			String identificacion = rs.getString("identificacion");
+			String primerApellido = rs.getString("primer_apellido");
+			String segundoApellido = rs.getString("segundo_apellido");
+			String nombre = rs.getString("nombre");
+			java.util.Date fechaNacimiento = rs.getDate("fecha_nacimiento");
+			String telefono = rs.getString("numero_telefono");
+			String correo = rs.getString("correo_electronico");
+
+			return new Cliente(identificacion, primerApellido, segundoApellido, nombre, fechaNacimiento, telefono, correo);
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return null;
+		}
+	}
 }
