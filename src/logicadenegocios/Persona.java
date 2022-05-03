@@ -1,56 +1,94 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package logicadenegocios;
 
+import java.util.ArrayList;
 import java.util.Date;
+import logicadevalidacion.FondosInsuficientesExcepcion;
 
 /**
  *
  * @author Gustavo
  */
 public class Persona implements Comparable {
-  protected String primerApellido;
-  protected String segundoApellido;
-  protected String nombre;
-  protected String identificacion;
-  protected Date fechaNacimiento;
 
-  public Persona(String pPrimerApellido, String pSegundoApellido, String pNombre, String pIdentificacion, Date pFechaNacimiento) {
-    primerApellido = pPrimerApellido;
-    segundoApellido = pSegundoApellido;
-    nombre = pNombre;
-    identificacion = pIdentificacion;
-    fechaNacimiento = pFechaNacimiento;
-  }
-  
-  public void crearCuenta (String pPin, String pMontoInicial) {
-    
-  }
+	private String primerApellido;
+	private String segundoApellido;
+	private String nombre;
+	private String identificacion;
+	private Date fechaNacimiento;
+	private ArrayList<Cuenta> cuentas;
 
-  @Override
-  public boolean comparar(Comparable b) {
-    return nombre.compareTo(((Persona) b).getNombre()) <= 0;
-  }
+	public Persona(String pIdentificacion, String pPrimerApellido, String pSegundoApellido, String pNombre,  Date pFechaNacimiento) {
+		primerApellido = pPrimerApellido;
+		segundoApellido = pSegundoApellido;
+		nombre = pNombre;
+		identificacion = pIdentificacion;
+		fechaNacimiento = pFechaNacimiento;
+		cuentas = new ArrayList<>();
+	}
 
-  private String getNombre() {
-    return nombre;
-  }
-
-  @Override
-  public String toString() {
-    String mensaje;
-    mensaje = "Primer apellido: "+primerApellido + "\nSegundo apellido: "+ 
-             segundoApellido+ "Nombre: "+nombre +"Identificacion: "+
-            identificacion +"Fecha de nacimiento: "+fechaNacimiento;
-    return mensaje;
-  }
-  
-  
-  
-  
-  
-  
+	public void crearCuenta(String pPin, double pMontoInicial) {
+		Cuenta nuevaCuenta = new Cuenta(pPin, pMontoInicial);
+		getCuentas().add(nuevaCuenta);
+	}
 	
+	public void transferirSaldoEntreCuentasPropias(String pNumeroCuentaOrigen, String pNumeroCuentaDestino, double pMontoTransferencia) throws FondosInsuficientesExcepcion {
+		Busqueda.buscarCuenta(pNumeroCuentaDestino, cuentas).retirarColones(pMontoTransferencia);
+		Busqueda.buscarCuenta(pNumeroCuentaOrigen, cuentas).recibirTransferencia(pMontoTransferencia);
+	}
+
+	@Override
+	public boolean comparar(Comparable b) {
+		return getNombre().compareTo(((Persona) b).getNombre()) <= 0;
+	}
+
+	@Override
+	public String toString() {
+		String mensaje;
+		mensaje = "Primer apellido: " + getPrimerApellido() + "\nSegundo apellido: "
+						+ getSegundoApellido() + "Nombre: " + getNombre() + "Identificacion: "
+						+ getIdentificacion() + "Fecha de nacimiento: " + getFechaNacimiento();
+		return mensaje;
+	}
+
+	/**
+	 * @return the primerApellido
+	 */
+	public String getPrimerApellido() {
+		return primerApellido;
+	}
+
+	/**
+	 * @return the segundoApellido
+	 */
+	public String getSegundoApellido() {
+		return segundoApellido;
+	}
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @return the identificacion
+	 */
+	public String getIdentificacion() {
+		return identificacion;
+	}
+
+	/**
+	 * @return the fechaNacimiento
+	 */
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	/**
+	 * @return the cuentas
+	 */
+	public ArrayList<Cuenta> getCuentas() {
+		return cuentas;
+	}
 }

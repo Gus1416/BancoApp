@@ -102,5 +102,4 @@ public class TipoCambio {
 	private void setVenta() {
 		this.indicador = 318;
 	}
-
 }

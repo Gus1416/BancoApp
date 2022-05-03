@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Busqueda {
 	// a
 
-	public Cuenta buscarCuenta(String pNumCuenta, ArrayList<Cuenta> pListaCuentas) {
+	public static Cuenta buscarCuenta(String pNumCuenta, ArrayList<Cuenta> pListaCuentas) {
 		for (int i = 0; i < pListaCuentas.size(); i++) {
 			if (pListaCuentas.get(i).getNumeroCuenta().equals(pNumCuenta)) {
 				return pListaCuentas.get(i);
