@@ -10,6 +10,6 @@ import java.util.Date;
 public class Usuario extends Persona{
 
 	public Usuario(String pPrimerApellido, String pSegundoApellido, String pNombre, String pIdentificacion, Date pFechaNacimiento) {
-		super(pPrimerApellido, pSegundoApellido, pNombre, pIdentificacion, pFechaNacimiento);
+		super(pIdentificacion,pPrimerApellido, pSegundoApellido, pNombre, pFechaNacimiento);
 	}
 }

@@ -18,6 +18,8 @@ public class Cuenta implements IComisiones, Comparable {
 	private String pin;
 	private ArrayList<Operacion> operaciones;
 	private int cantidadDepositosOperaciones = 0;
+	
+	public Cuenta(){}
 
 	public Cuenta(String pPin, double pMontoInicial) {
 		pin = pPin;
@@ -76,7 +78,7 @@ public class Cuenta implements IComisiones, Comparable {
 		}
 	}
 
-	private void retirarDolares(double pMontoRetiro) throws FondosInsuficientesExcepcion {
+	public void retirarDolares(double pMontoRetiro) throws FondosInsuficientesExcepcion {
 		boolean seCobraComision = determinarCobroComision();
 		double comision = 0.00;
 		
@@ -97,6 +99,11 @@ public class Cuenta implements IComisiones, Comparable {
 		}
 	}
 	
+	public void recibirTransferencia(double pMontoRecibido){
+		this.saldo += pMontoRecibido;
+		registrarOperacion("Transferencia", pMontoRecibido, false, 0.00, "Colones");
+	}
+	
 	private boolean validarRetiro(double pMontoTotalRetiro) {
 		return pMontoTotalRetiro + (pMontoTotalRetiro * 0.02) <= this.saldo;
 	}
@@ -109,6 +116,11 @@ public class Cuenta implements IComisiones, Comparable {
 		Operacion operacion = new Operacion(obtenerFechaSistema(), pTipoOperacion, pMontoOperacion, pSeCobraComision, pMontoComision, pMoneda);
 		operaciones.add(operacion);
 		this.cantidadDepositosOperaciones++;
+	}
+	
+	private void registraOperacion(){
+		Operacion operacion = new Operacion( obtenerFechaSistema(), "Consulta", false);
+		operaciones.add(operacion);
 	}
 
 	@Override
@@ -125,11 +137,10 @@ public class Cuenta implements IComisiones, Comparable {
 	public double calcularTotalComisionesRetiros() {
 		ArrayList<Operacion> retiros = obtenerListaRetiros();
 		double totalComisionesRetiros = 0.0;
-
 		for (Operacion retiro : retiros) {
 			totalComisionesRetiros += retiro.getMontoComision();
 		}
-
+		
 		return totalComisionesRetiros;
 	}
 
@@ -162,6 +173,18 @@ public class Cuenta implements IComisiones, Comparable {
 		}
 		return retiros;
 	}
+	
+	public void inactivarCuenta() {
+		this.estatus = "inactiva";
+	}
+
+	public void cambiarPin(String pNuevoPin) {
+		this.pin = pNuevoPin;
+	}
+
+	public boolean verificarPin(String pPinAntiguo) {
+		return this.getPin().equals(pPinAntiguo) == true;
+	}
 
 	@Override
 	public boolean comparar(Comparable b) {
@@ -183,6 +206,14 @@ public class Cuenta implements IComisiones, Comparable {
 
 	@Override
 	public String toString() {
-		return "Cuenta{" + "numeroCuenta=" + numeroCuenta + ", fechaCreacion=" + fechaCreacion + ", saldo=" + saldo + ", estatus=" + estatus + ", pin=" + pin + ", operaciones=" + operaciones + '}';
+		return "Cuenta{" + "numeroCuenta=" + numeroCuenta + ", fechaCreacion=" + fechaCreacion + ", saldo=" + saldo + ", estatus=" + estatus + ", pin=" + getPin() + ", operaciones=" + operaciones + '}';
+	}
+
+	/**
+	 * @return the pin
+	 */
+	public String getPin() {
+		return pin;
 	}
 }
+
