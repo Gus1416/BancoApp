@@ -42,6 +42,11 @@ public class Operacion {
 
 	@Override
 	public String toString() {
-		return "Operacion{" + "fechaOperacion=" + fechaOperacion + ", tipoOperacion=" + tipoOperacion + ", seCobraComision=" + seCobraComision + ", montoOperacion=" + montoOperacion + ", montoComision=" + montoComision + ", moneda=" + moneda + ", porcentajeComision=" + porcentajeComision + '}';
+		String mensaje = "Fecha de operacion: " + fechaOperacion
+						+ "Tipo de operacion: " + tipoOperacion + "Cobro comision: "
+						+ seCobraComision + "Monto de operacion: " + montoOperacion
+						+ "Monto de comision" + montoComision + "Moneda: " + moneda
+						+ "Porcentaje de comision" + porcentajeComision;
+		return mensaje;
 	}
 }

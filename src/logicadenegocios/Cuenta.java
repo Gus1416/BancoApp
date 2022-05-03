@@ -174,6 +174,19 @@ public class Cuenta implements IComisiones, Comparable {
 		return retiros;
 	}
 	
+	public String consultarDetallesOperaciones() {
+		String mensaje = "Operaciones: \n";
+		for (Operacion elemento : operaciones) {
+			mensaje += operaciones.toString();
+		}
+		return mensaje;
+	}
+
+	public String consultarEstatus() {
+		String mensaje = "La cuenta número XXXXXX tiene estatus de: " + estatus;
+		return mensaje;
+	}
+	
 	public void inactivarCuenta() {
 		this.estatus = "inactiva";
 	}
