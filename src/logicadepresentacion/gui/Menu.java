@@ -4,6 +4,8 @@
  */
 package logicadepresentacion.gui;
 
+import java.awt.Color;
+
 /**
  *
  * @author Alejandra Merino
@@ -31,34 +33,46 @@ public class Menu extends javax.swing.JFrame {
     btnRegistrarCliente = new javax.swing.JPanel();
     btnRegistrarClienteLabel = new javax.swing.JLabel();
     jLabel1 = new javax.swing.JLabel();
-    jPanel2 = new javax.swing.JPanel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setLocationByPlatform(true);
+    setResizable(false);
 
     bg.setBackground(new java.awt.Color(255, 255, 255));
     bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-    jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+    jPanel1.setBackground(new java.awt.Color(49, 24, 140));
 
-    btnRegistrarCliente.setBackground(new java.awt.Color(51, 102, 255));
+    btnRegistrarCliente.setBackground(new java.awt.Color(49, 24, 140));
 
     btnRegistrarClienteLabel.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
     btnRegistrarClienteLabel.setForeground(new java.awt.Color(255, 255, 255));
+    btnRegistrarClienteLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
     btnRegistrarClienteLabel.setText("Registrar un cliente");
     btnRegistrarClienteLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnRegistrarClienteLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnRegistrarClienteLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnRegistrarClienteLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnRegistrarClienteLayout = new javax.swing.GroupLayout(btnRegistrarCliente);
     btnRegistrarCliente.setLayout(btnRegistrarClienteLayout);
     btnRegistrarClienteLayout.setHorizontalGroup(
       btnRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(btnRegistrarClienteLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnRegistrarClienteLayout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addComponent(btnRegistrarClienteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
     btnRegistrarClienteLayout.setVerticalGroup(
       btnRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(btnRegistrarClienteLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+      .addComponent(btnRegistrarClienteLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
     );
 
-    jLabel1.setFont(new java.awt.Font("Montserrat", 0, 36)); // NOI18N
+    jLabel1.setFont(new java.awt.Font("Montserrat", 0, 30)); // NOI18N
     jLabel1.setForeground(new java.awt.Color(255, 255, 255));
     jLabel1.setText("iBanco");
     jLabel1.setToolTipText("");
@@ -71,7 +85,7 @@ public class Menu extends javax.swing.JFrame {
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addGap(48, 48, 48)
         .addComponent(jLabel1)
-        .addContainerGap(54, Short.MAX_VALUE))
+        .addContainerGap(57, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,21 +98,6 @@ public class Menu extends javax.swing.JFrame {
     );
 
     bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 500));
-
-    jPanel2.setBackground(new java.awt.Color(51, 153, 255));
-
-    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-    jPanel2.setLayout(jPanel2Layout);
-    jPanel2Layout.setHorizontalGroup(
-      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 590, Short.MAX_VALUE)
-    );
-    jPanel2Layout.setVerticalGroup(
-      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 100, Short.MAX_VALUE)
-    );
-
-    bg.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 590, -1));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -113,6 +112,14 @@ public class Menu extends javax.swing.JFrame {
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
+
+  private void btnRegistrarClienteLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarClienteLabelMouseEntered
+    btnRegistrarCliente.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnRegistrarClienteLabelMouseEntered
+
+  private void btnRegistrarClienteLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarClienteLabelMouseExited
+    btnRegistrarCliente.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnRegistrarClienteLabelMouseExited
 
   /**
    * @param args the command line arguments
@@ -155,6 +162,5 @@ public class Menu extends javax.swing.JFrame {
   private javax.swing.JLabel btnRegistrarClienteLabel;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JPanel jPanel1;
-  private javax.swing.JPanel jPanel2;
   // End of variables declaration//GEN-END:variables
 }
