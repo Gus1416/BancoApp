@@ -38,8 +38,8 @@ public class Menu extends javax.swing.JFrame {
     btnRegistrarCliente = new javax.swing.JPanel();
     btnRegistrarClienteLabel = new javax.swing.JLabel();
     principal = new javax.swing.JLabel();
-    jPanel3 = new javax.swing.JPanel();
-    btnCrearCuenta = new javax.swing.JLabel();
+    btnCrearCuenta = new javax.swing.JPanel();
+    btnCrearCuentaL = new javax.swing.JLabel();
     jPanel5 = new javax.swing.JPanel();
     jLabel3 = new javax.swing.JLabel();
     jPanel6 = new javax.swing.JPanel();
@@ -133,13 +133,14 @@ public class Menu extends javax.swing.JFrame {
     btnRegistrarCliente.setLayout(btnRegistrarClienteLayout);
     btnRegistrarClienteLayout.setHorizontalGroup(
       btnRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnRegistrarClienteLayout.createSequentialGroup()
-        .addGap(0, 0, Short.MAX_VALUE)
-        .addComponent(btnRegistrarClienteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+      .addGroup(btnRegistrarClienteLayout.createSequentialGroup()
+        .addGap(18, 18, 18)
+        .addComponent(btnRegistrarClienteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     btnRegistrarClienteLayout.setVerticalGroup(
       btnRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(btnRegistrarClienteLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+      .addComponent(btnRegistrarClienteLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
     );
 
     principal.setFont(new java.awt.Font("Montserrat", 1, 30)); // NOI18N
@@ -153,30 +154,38 @@ public class Menu extends javax.swing.JFrame {
       }
     });
 
-    jPanel3.setPreferredSize(new java.awt.Dimension(200, 31));
+    btnCrearCuenta.setBackground(new java.awt.Color(49, 24, 140));
+    btnCrearCuenta.setPreferredSize(new java.awt.Dimension(200, 31));
 
-    btnCrearCuenta.setText("Crear cuenta");
-    btnCrearCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+    btnCrearCuentaL.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
+    btnCrearCuentaL.setForeground(new java.awt.Color(255, 255, 255));
+    btnCrearCuentaL.setText("Crear cuenta");
+    btnCrearCuentaL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnCrearCuentaL.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        btnCrearCuentaMouseClicked(evt);
+        btnCrearCuentaLMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnCrearCuentaLMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnCrearCuentaLMouseExited(evt);
       }
     });
 
-    javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-    jPanel3.setLayout(jPanel3Layout);
-    jPanel3Layout.setHorizontalGroup(
-      jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel3Layout.createSequentialGroup()
-        .addGap(25, 25, 25)
-        .addComponent(btnCrearCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    javax.swing.GroupLayout btnCrearCuentaLayout = new javax.swing.GroupLayout(btnCrearCuenta);
+    btnCrearCuenta.setLayout(btnCrearCuentaLayout);
+    btnCrearCuentaLayout.setHorizontalGroup(
+      btnCrearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCrearCuentaLayout.createSequentialGroup()
+        .addGap(0, 20, Short.MAX_VALUE)
+        .addComponent(btnCrearCuentaL, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
-    jPanel3Layout.setVerticalGroup(
-      jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel3Layout.createSequentialGroup()
-        .addContainerGap()
-        .addComponent(btnCrearCuenta)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    btnCrearCuentaLayout.setVerticalGroup(
+      btnCrearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCrearCuentaLayout.createSequentialGroup()
+        .addComponent(btnCrearCuentaL, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+        .addContainerGap())
     );
 
     jPanel5.setPreferredSize(new java.awt.Dimension(200, 31));
@@ -463,7 +472,7 @@ public class Menu extends javax.swing.JFrame {
       .addGroup(jPanel18Layout.createSequentialGroup()
         .addGap(27, 27, 27)
         .addComponent(jLabel16)
-        .addContainerGap(74, Short.MAX_VALUE))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanel18Layout.setVerticalGroup(
       jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -498,8 +507,6 @@ public class Menu extends javax.swing.JFrame {
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-      .addComponent(btnRegistrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
       .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
       .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
@@ -516,16 +523,18 @@ public class Menu extends javax.swing.JFrame {
       .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
       .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
       .addComponent(principal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(btnRegistrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(btnCrearCuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addGap(32, 32, 32)
         .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addComponent(btnRegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(btnRegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(btnCrearCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -556,7 +565,7 @@ public class Menu extends javax.swing.JFrame {
         .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(8, Short.MAX_VALUE))
+        .addContainerGap(9, Short.MAX_VALUE))
     );
 
     bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 710));
@@ -589,12 +598,12 @@ public class Menu extends javax.swing.JFrame {
             .addGap(90, 90, 90)
             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(contentLayout.createSequentialGroup()
-            .addGap(46, 46, 46)
+            .addGap(162, 162, 162)
             .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(jLabel20)
               .addComponent(jLabel19)
               .addComponent(jLabel21))))
-        .addContainerGap(49, Short.MAX_VALUE))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentLayout.createSequentialGroup()
         .addGap(0, 0, Short.MAX_VALUE)
         .addComponent(jLabel22)
@@ -649,10 +658,18 @@ public class Menu extends javax.swing.JFrame {
     
   }//GEN-LAST:event_principalMouseClicked
 
-  private void btnCrearCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaMouseClicked
+  private void btnCrearCuentaLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaLMouseClicked
     CrearCuenta ventanaCrearCuenta = new CrearCuenta();
     ShowPanel(ventanaCrearCuenta);
-  }//GEN-LAST:event_btnCrearCuentaMouseClicked
+  }//GEN-LAST:event_btnCrearCuentaLMouseClicked
+
+  private void btnCrearCuentaLMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaLMouseEntered
+    btnCrearCuenta.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnCrearCuentaLMouseEntered
+
+  private void btnCrearCuentaLMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaLMouseExited
+    btnCrearCuenta.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnCrearCuentaLMouseExited
   
   private void ShowPanel (JPanel p ) {
     p.setSize(830, 710);
@@ -700,7 +717,8 @@ public class Menu extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JPanel bg;
-  private javax.swing.JLabel btnCrearCuenta;
+  private javax.swing.JPanel btnCrearCuenta;
+  private javax.swing.JLabel btnCrearCuentaL;
   private javax.swing.JPanel btnRegistrarCliente;
   private javax.swing.JLabel btnRegistrarClienteLabel;
   private javax.swing.JPanel content;
@@ -737,7 +755,6 @@ public class Menu extends javax.swing.JFrame {
   private javax.swing.JPanel jPanel19;
   private javax.swing.JPanel jPanel2;
   private javax.swing.JPanel jPanel20;
-  private javax.swing.JPanel jPanel3;
   private javax.swing.JPanel jPanel5;
   private javax.swing.JPanel jPanel6;
   private javax.swing.JPanel jPanel7;
