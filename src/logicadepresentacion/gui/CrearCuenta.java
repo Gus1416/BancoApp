@@ -15,6 +15,7 @@ public class CrearCuenta extends javax.swing.JPanel {
    */
   public CrearCuenta() {
     initComponents();
+    
   }
 
   /**
@@ -28,6 +29,16 @@ public class CrearCuenta extends javax.swing.JPanel {
 
     bgCrearCuenta = new javax.swing.JPanel();
     jLabel1 = new javax.swing.JLabel();
+    jLabel2 = new javax.swing.JLabel();
+    jComboBox1 = new javax.swing.JComboBox<>();
+    jLabel3 = new javax.swing.JLabel();
+    jTextField1 = new javax.swing.JTextField();
+    jSeparator1 = new javax.swing.JSeparator();
+    jLabel4 = new javax.swing.JLabel();
+    jTextField2 = new javax.swing.JTextField();
+    jSeparator2 = new javax.swing.JSeparator();
+    panel1 = new java.awt.Panel();
+    jLabel5 = new javax.swing.JLabel();
 
     setBackground(new java.awt.Color(255, 255, 255));
     setPreferredSize(new java.awt.Dimension(830, 710));
@@ -39,29 +50,115 @@ public class CrearCuenta extends javax.swing.JPanel {
     jLabel1.setForeground(new java.awt.Color(0, 0, 0));
     jLabel1.setText("Crea una nueva cuenta");
 
+    jLabel2.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+    jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel2.setText("Dueño de la cuenta");
+
+    jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+    jComboBox1.setForeground(new java.awt.Color(153, 153, 153));
+    jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+    jLabel3.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+    jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel3.setText("Pin");
+
+    jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+    jTextField1.setBorder(null);
+
+    jLabel4.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+    jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel4.setText("Depósito inicial");
+
+    jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+    jTextField2.setBorder(null);
+
+    panel1.setBackground(new java.awt.Color(115, 56, 242));
+
+    jLabel5.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+    jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel5.setText("Crear");
+
+    javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+    panel1.setLayout(panel1Layout);
+    panel1Layout.setHorizontalGroup(
+      panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+    );
+    panel1Layout.setVerticalGroup(
+      panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+    );
+
     javax.swing.GroupLayout bgCrearCuentaLayout = new javax.swing.GroupLayout(bgCrearCuenta);
     bgCrearCuenta.setLayout(bgCrearCuentaLayout);
     bgCrearCuentaLayout.setHorizontalGroup(
       bgCrearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgCrearCuentaLayout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addGroup(bgCrearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addComponent(jLabel4)
+          .addComponent(jLabel2)
+          .addComponent(jComboBox1, 0, 501, Short.MAX_VALUE)
+          .addComponent(jLabel3)
+          .addComponent(jTextField1)
+          .addComponent(jSeparator1)
+          .addComponent(jTextField2)
+          .addComponent(jSeparator2))
+        .addGap(157, 157, 157))
       .addGroup(bgCrearCuentaLayout.createSequentialGroup()
-        .addGap(247, 247, 247)
-        .addComponent(jLabel1)
-        .addContainerGap(292, Short.MAX_VALUE))
+        .addGroup(bgCrearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(bgCrearCuentaLayout.createSequentialGroup()
+            .addGap(252, 252, 252)
+            .addComponent(jLabel1))
+          .addGroup(bgCrearCuentaLayout.createSequentialGroup()
+            .addGap(356, 356, 356)
+            .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(287, Short.MAX_VALUE))
     );
     bgCrearCuentaLayout.setVerticalGroup(
       bgCrearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(bgCrearCuentaLayout.createSequentialGroup()
-        .addGap(76, 76, 76)
+        .addGap(75, 75, 75)
         .addComponent(jLabel1)
-        .addContainerGap(604, Short.MAX_VALUE))
+        .addGap(43, 43, 43)
+        .addComponent(jLabel2)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addComponent(jLabel3)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jLabel4)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(37, 37, 37)
+        .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(308, Short.MAX_VALUE))
     );
 
-    add(bgCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 710));
+    add(bgCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 720));
   }// </editor-fold>//GEN-END:initComponents
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JPanel bgCrearCuenta;
+  private javax.swing.JComboBox<String> jComboBox1;
   private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JLabel jLabel4;
+  private javax.swing.JLabel jLabel5;
+  private javax.swing.JSeparator jSeparator1;
+  private javax.swing.JSeparator jSeparator2;
+  private javax.swing.JTextField jTextField1;
+  private javax.swing.JTextField jTextField2;
+  private java.awt.Panel panel1;
   // End of variables declaration//GEN-END:variables
 }

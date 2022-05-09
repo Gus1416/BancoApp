@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import logicadeaccesodedatos.ClienteCRUD;
 import logicadenegocios.Cliente;
 
 /**
@@ -24,10 +25,12 @@ public class ControladorRegistroCliente {
           String pPrimerApellido, String pSegundoApellido, String pNombre, 
           Date pFechaNacimiento, String pNumeroTelefono, 
           String pCorreoElectronico) {
-    //convertirDate (pFechaNacimiento);
+    
     Cliente cliente = new Cliente(pIdentificacion, pPrimerApellido, 
             pSegundoApellido, pNombre, fechaNacimiento, pNumeroTelefono, 
             pCorreoElectronico);
+    ClienteCRUD clienteCRUD = new ClienteCRUD();
+    clienteCRUD.registrarCliente(cliente);
     
     String mensaje = "Se ha creado un nuevo cliente en el sistema, los datos que"
             + " fueron almacenados son: \nCodigo: "+cliente.getCodigoCliente() 
