@@ -242,6 +242,13 @@ public class Cuenta implements IComisiones, Comparable {
     public String getPin() {
         return pin;
     }
+    
+    /**
+     * @return the operaciones
+     */
+    public ArrayList<Operacion> getOperaciones() {
+      return operaciones;
+    }
 
     public void setNumeroCuenta(String numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
@@ -255,6 +262,12 @@ public class Cuenta implements IComisiones, Comparable {
         this.fechaCreacion = fechaCreacion;
     }
     
+    /**
+     * @param operaciones the operaciones to set
+     */
+    public void setOperaciones(ArrayList<Operacion> operaciones) {
+      this.operaciones = operaciones;
+    }
       
     
 }

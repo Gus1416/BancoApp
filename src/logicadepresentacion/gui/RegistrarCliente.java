@@ -7,6 +7,7 @@ package logicadepresentacion.gui;
 import logicadevalidacion.ValidacionCliente;
 import logicadevalidacion.ValidacionPersona;
 import javax.swing.JOptionPane;
+import logicadeintegracion.gui.ControladorRegistroCliente;
 
 /**
  *
@@ -257,9 +258,14 @@ public class RegistrarCliente extends javax.swing.JPanel {
     ValidacionCliente validacionCliente = new ValidacionCliente ();
     validacionCliente.validarDatosCliente(txtTelefono.getText(), 
             txtCorreo.getText());
+    
     if(validacionPersona.esValido && validacionCliente.esValido) {
-      //llamar al controlador y pasarle los metodos 
-      //actualiza el mensaje de resultado de validacion cliente
+      ControladorRegistroCliente control = new ControladorRegistroCliente ();
+      String mensaje = control.controlarRegistroCliente (txtIdentificacion.getText(), 
+              txt1Apellido.getText(), txt2Apellido.getText(), 
+              txtNombre.getText(), fechaNacimientoCliente.getDate(), 
+              txtTelefono.getText(), txtCorreo.getText());
+      validacionCliente.setResultado(mensaje);
     }
     JOptionPane.showMessageDialog(this, validacionPersona.resultado + "\n" + 
             validacionCliente.resultado);

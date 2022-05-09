@@ -84,6 +84,13 @@ public class Persona implements Comparable {
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
+        
+        /**
+	 * @param cuentas the cuentas to set
+	 */
+	public void setCuentas(ArrayList<Cuenta> cuentas) {
+		this.cuentas = cuentas;
+	}
 
 	/**
 	 * @return the cuentas
