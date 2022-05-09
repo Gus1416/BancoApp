@@ -4,6 +4,10 @@
  */
 package logicadepresentacion.gui;
 
+import logicadevalidacion.ValidacionCliente;
+import logicadevalidacion.ValidacionPersona;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alejandra Merino
@@ -88,25 +92,21 @@ public class RegistrarCliente extends javax.swing.JPanel {
     txt1Apellido.setBackground(new java.awt.Color(255, 255, 255));
     txt1Apellido.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
     txt1Apellido.setForeground(new java.awt.Color(153, 153, 153));
-    txt1Apellido.setText("Ingrese su primer apellido");
     txt1Apellido.setBorder(null);
 
     txt2Apellido.setBackground(new java.awt.Color(255, 255, 255));
     txt2Apellido.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
     txt2Apellido.setForeground(new java.awt.Color(153, 153, 153));
-    txt2Apellido.setText("Ingrese su segundo apellido");
     txt2Apellido.setBorder(null);
 
     txtNombre.setBackground(new java.awt.Color(255, 255, 255));
     txtNombre.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
     txtNombre.setForeground(new java.awt.Color(153, 153, 153));
-    txtNombre.setText("Ingrese su nombre");
     txtNombre.setBorder(null);
 
     txtIdentificacion.setBackground(new java.awt.Color(255, 255, 255));
     txtIdentificacion.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
     txtIdentificacion.setForeground(new java.awt.Color(153, 153, 153));
-    txtIdentificacion.setText("Ingrese su identificación");
     txtIdentificacion.setBorder(null);
 
     btnGuardarClientePanel.setBackground(new java.awt.Color(115, 56, 242));
@@ -147,13 +147,11 @@ public class RegistrarCliente extends javax.swing.JPanel {
     txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
     txtTelefono.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
     txtTelefono.setForeground(new java.awt.Color(153, 153, 153));
-    txtTelefono.setText("Ingrese su número telefónico");
     txtTelefono.setBorder(null);
 
     txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
     txtCorreo.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
     txtCorreo.setForeground(new java.awt.Color(153, 153, 153));
-    txtCorreo.setText("Ingrese su correo electrónico");
     txtCorreo.setBorder(null);
 
     javax.swing.GroupLayout bgRegistrarClienteLayout = new javax.swing.GroupLayout(bgRegistrarCliente);
@@ -190,10 +188,10 @@ public class RegistrarCliente extends javax.swing.JPanel {
           .addGroup(bgRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
             .addComponent(jSeparator9, javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+            .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fechaNacimientoCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(fechaNacimientoCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)))
         .addGap(0, 218, Short.MAX_VALUE))
     );
     bgRegistrarClienteLayout.setVerticalGroup(
@@ -252,7 +250,19 @@ public class RegistrarCliente extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnGuardarClienteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarClienteLabelMouseClicked
-    
+    ValidacionPersona validacionPersona = new ValidacionPersona ();
+    validacionPersona.validarDatosPersona(txt1Apellido.getText(), 
+            txt2Apellido.getText(), txtNombre.getText(), 
+            txtIdentificacion.getText());
+    ValidacionCliente validacionCliente = new ValidacionCliente ();
+    validacionCliente.validarDatosCliente(txtTelefono.getText(), 
+            txtCorreo.getText());
+    if(validacionPersona.esValido && validacionCliente.esValido) {
+      //llamar al controlador y pasarle los metodos 
+      //actualiza el mensaje de resultado de validacion cliente
+    }
+    JOptionPane.showMessageDialog(this, validacionPersona.resultado + "\n" + 
+            validacionCliente.resultado);
   }//GEN-LAST:event_btnGuardarClienteLabelMouseClicked
 
 

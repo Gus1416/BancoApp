@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class Conexion {
 	//Atributos de clase
 	private final String base = "bd_bancoapp";
-	private final String password = "12345";
+	private final String password = "18Mapo0305";
 	private final String user = "root";
 	private final String url = "jdbc:mysql://localhost:3306/" + base;
 	private Connection con = null;
