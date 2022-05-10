@@ -154,14 +154,14 @@ private ControladorCrearCuenta control;
         .addComponent(jLabel3)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(txtPin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jLabel4)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(txtDepositoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(37, 37, 37)
         .addComponent(btnCrearCuentaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap(311, Short.MAX_VALUE))
@@ -174,9 +174,9 @@ private ControladorCrearCuenta control;
     ValidacionCuenta validacionCuenta = new ValidacionCuenta ();
     validacionCuenta.validarDatosCuenta(txtPin.getText(), txtDepositoInicial.getText());
     if(validacionCuenta.esValido) {
-      String codigoCliente = (String) cbxCliente.getSelectedItem();
-      codigoCliente = codigoCliente.trim();
-      String[] listaCliente = codigoCliente.split(" ");
+      String idCliente = (String) cbxCliente.getSelectedItem();
+      idCliente = idCliente.trim();
+      String[] listaCliente = idCliente.split(" ");
       String mensaje = control.controlarRegistroCuenta(txtPin.getText(), 
               txtDepositoInicial.getText(), listaCliente[0]);
       validacionCuenta.setResultado(mensaje);

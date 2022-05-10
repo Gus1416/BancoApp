@@ -21,14 +21,14 @@ public class ValidacionCliente extends Validacion {
   public void validarTelefono (String pNum) {
     if(!validarNumeroTelefonico (pNum)) {
       esValido = false;
-      resultado = "Debe ingresar un número telefónico válido";
+      resultado += "Debe ingresar un número telefónico válido\n";
     }
   }
   
   public void validarCorreo (String pCorreo) {
     if(!validarCorreoElectronico (pCorreo)) {
       esValido = false;
-      resultado = "Debe ingresar un correo electrónico válido";
+      resultado += "Debe ingresar un correo electrónico válido";
     }
   }
   

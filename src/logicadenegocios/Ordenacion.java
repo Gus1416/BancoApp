@@ -4,21 +4,23 @@
  */
 package logicadenegocios;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Alejandra Merino
  */
 public class Ordenacion {
   
-  public void insercion (Comparable[] pArreglo) {
-    for (int i = 1; i<pArreglo.length; i++) {
-      Comparable nuevo = pArreglo[i];
+  public void insercion (ArrayList<Comparable> pArreglo) {
+    for (int i = 1; i<pArreglo.size(); i++) {
+      Comparable nuevo = pArreglo.get(i);
       int j = i-1;
-      while(j>=0 && ! pArreglo [j].comparar(nuevo)) {
-        pArreglo [j + 1] = pArreglo [j];
+      while(j>=0 && ! pArreglo.get(j).comparar(nuevo)) {
+        pArreglo.add(j + 1, pArreglo.get(j));
         j--;
       }
-      pArreglo [j+1] = nuevo;
+      pArreglo.add(j+1, nuevo);
     }
   }
   

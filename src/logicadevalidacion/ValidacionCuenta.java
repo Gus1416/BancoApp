@@ -21,15 +21,15 @@ public class ValidacionCuenta extends Validacion {
   public void validarPinCuenta (String pPIN) {
     if(!validarPIN (pPIN)) {
       esValido = false;
-      resultado = "Debe ingresar un PIN con al menos una letra mayúscula, al "
-              + "menos un número y al menos un carácter especial). ";
+      resultado += "Debe ingresar un PIN con al menos una letra mayúscula, al "
+              + "menos un número y al menos un carácter especial. \n";
     }
   }
   
   public void validarNumeroEntero (String pNum) {
     if(!esEntero (pNum)) {
       esValido = false;
-      resultado = "Debe ingresar un número entero";
+      resultado += "Debe ingresar un número entero\n";
     }
   } 
   

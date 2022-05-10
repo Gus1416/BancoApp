@@ -24,21 +24,21 @@ public class ValidacionPersona extends Validacion {
   public void validarApellido12 (String pCadena) {
     if(!validarApellido (pCadena)) {
       esValido = false;
-      resultado = "Debe utilizar el alfabeto en inglés";
+      resultado += "Debe utilizar el alfabeto en inglés\n";
     }
   }
   
   public void validarNombres (String pCadena) {
     if(!validarNombre (pCadena)) {
       esValido = false;
-      resultado = "Debe utilizar el alfabeto en inglés";
+      resultado += "Debe utilizar el alfabeto en inglés\n";
     }
   }
   
   public void validarID (String pNum) {
     if(!validarIdentificacion (pNum)) {
       esValido = false;
-      resultado = "Debe ingresar un número de identificación válido";
+      resultado += "Debe ingresar un número de identificación válido\n";
     }
   }
   

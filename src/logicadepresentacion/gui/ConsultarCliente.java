@@ -4,17 +4,33 @@
  */
 package logicadepresentacion.gui;
 
+import java.util.ArrayList;
+import logicadeintegracion.gui.ControladorCrearCuenta;
+import logicadenegocios.Ordenacion;
+
 /**
  *
  * @author Alejandra Merino
  */
 public class ConsultarCliente extends javax.swing.JPanel {
-
+  private ArrayList listaClientes;
+  private ControladorCrearCuenta control;
   /**
    * Creates new form ConsultarCliente
    */
   public ConsultarCliente() {
     initComponents();
+    control = new ControladorCrearCuenta ();
+    listaClientes = control.cargarClientes();
+    cargarListaClientes();
+    Ordenacion ordena = new Ordenacion ();
+    ordena.insercion(listaClientes);
+  }
+  
+  private void cargarListaClientes() {
+    for (int i =0;i<listaClientes.size(); i++) {
+      cbxListadoClientes.addItem(listaClientes.get(i).toString());
+    }
   }
 
   /**
@@ -26,19 +42,105 @@ public class ConsultarCliente extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
+    panel1 = new java.awt.Panel();
+    jLabel1 = new javax.swing.JLabel();
+    cbxListadoClientes = new javax.swing.JComboBox<>();
+    jLabel2 = new javax.swing.JLabel();
+    scrollPane1 = new java.awt.ScrollPane();
+    panel2 = new java.awt.Panel();
+    jLabel3 = new javax.swing.JLabel();
+
+    setBackground(new java.awt.Color(255, 255, 255));
+    setPreferredSize(new java.awt.Dimension(830, 710));
+
+    jLabel1.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
+    jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel1.setText("Consulte un cliente");
+
+    cbxListadoClientes.setBackground(new java.awt.Color(255, 255, 255));
+    cbxListadoClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+    jLabel2.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+    jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel2.setText("Seleccione un cliente de la lista:");
+
+    panel2.setBackground(new java.awt.Color(153, 153, 153));
+
+    jLabel3.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+    jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel3.setText("Consultar");
+
+    javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
+    panel2.setLayout(panel2Layout);
+    panel2Layout.setHorizontalGroup(
+      panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+    );
+    panel2Layout.setVerticalGroup(
+      panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panel2Layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jLabel3)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+    panel1.setLayout(panel1Layout);
+    panel1Layout.setHorizontalGroup(
+      panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panel1Layout.createSequentialGroup()
+        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(panel1Layout.createSequentialGroup()
+            .addGap(262, 262, 262)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(panel1Layout.createSequentialGroup()
+            .addGap(173, 173, 173)
+            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(jLabel2)
+              .addComponent(cbxListadoClientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)))
+          .addGroup(panel1Layout.createSequentialGroup()
+            .addGap(339, 339, 339)
+            .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(191, Short.MAX_VALUE))
+    );
+    panel1Layout.setVerticalGroup(
+      panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panel1Layout.createSequentialGroup()
+        .addGap(97, 97, 97)
+        .addComponent(jLabel1)
+        .addGap(35, 35, 35)
+        .addComponent(jLabel2)
+        .addGap(18, 18, 18)
+        .addComponent(cbxListadoClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(19, 19, 19)
+        .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(70, Short.MAX_VALUE))
+    );
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 400, Short.MAX_VALUE)
+      .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 300, Short.MAX_VALUE)
+      .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
   }// </editor-fold>//GEN-END:initComponents
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JComboBox<String> cbxListadoClientes;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
+  private java.awt.Panel panel1;
+  private java.awt.Panel panel2;
+  private java.awt.ScrollPane scrollPane1;
   // End of variables declaration//GEN-END:variables
 }

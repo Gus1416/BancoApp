@@ -21,7 +21,7 @@ public class ControladorCrearCuenta {
     ArrayList<Cliente> listaClientes = clienteCRUD.consultarClientes();
     ArrayList listaClientesP = new ArrayList ();
     for (Cliente cliente: listaClientes ) {
-      String mensaje = ""+ cliente.getCodigoCliente() +" "+ 
+      String mensaje = ""+ cliente.getIdentificacion() +" "+ 
               cliente.getPrimerApellido() + " "+ cliente.getSegundoApellido() 
               +" "+ cliente.getNombre();
       listaClientesP.add(mensaje);
@@ -34,12 +34,20 @@ public class ControladorCrearCuenta {
     Cuenta cuenta = new Cuenta (pPin, deposito);
     //CuentaCRUD cuentaCRUD = new CuentaCRUD ();
     //cuentaCRUD.registrarCuenta(cuenta, pIdentificacion);
+    ClienteCRUD clienteCRUD = new ClienteCRUD ();
+    Cliente clienteRegistrado = clienteCRUD.consultarCliente(pIdentificacion);
+    System.out.println(clienteRegistrado.toString());
     String mensaje = "Se ha creado una nueva cuenta en el sistema, los datos de"
-            + " la cuenta son:\n Número de cuenta:"+pIdentificacion+ "\n Estatus de la cuenta:\n" +
-            "Saldo actual: \n ---\n "
-            + "Nombre del dueño de la cuenta:\n "
-            + "Número de teléfono ?asociado? a la cuenta:\n "
-            + "Dirección de correo electrónico ?asociada? a la cuenta:";
+            + " la cuenta son:\n Número de cuenta: "+cuenta.getNumeroCuenta() 
+            + "\n Estatus de la cuenta: " + cuenta.getEstatus() + "\n"+
+            "Saldo actual: "+cuenta.getSaldo()+"\n ---\n "
+            + "Nombre del dueño de la cuenta: "+clienteRegistrado.getNombre()
+            + " "+ clienteRegistrado.getPrimerApellido()+ " " + 
+            clienteRegistrado.getSegundoApellido() +"\n "
+            + "Número de teléfono asociado a la cuenta:" 
+            +clienteRegistrado.getNumeroTelefono() + "\n "
+            + "Dirección de correo electrónico ?asociada? a la cuenta:"
+            +clienteRegistrado.getCorreoElectronico();
     return mensaje;
   }
   
