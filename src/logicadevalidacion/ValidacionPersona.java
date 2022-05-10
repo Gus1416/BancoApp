@@ -11,14 +11,7 @@ import java.util.regex.Pattern;
  *
  * @author Alejandra Merino
  */
-public class ValidacionPersona {
-  public boolean esValido;
-  public String resultado;
-
-  public ValidacionPersona() {
-    esValido = true;
-    resultado = "";
-  }
+public class ValidacionPersona extends Validacion {
   
   public void validarDatosPersona (String apellido1, String apellido2, 
           String pNombre, String pID) {

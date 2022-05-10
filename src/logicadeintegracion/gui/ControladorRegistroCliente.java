@@ -5,10 +5,7 @@
 package logicadeintegracion.gui;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import logicadeaccesodedatos.ClienteCRUD;
 import logicadenegocios.Cliente;
 
@@ -17,7 +14,6 @@ import logicadenegocios.Cliente;
  * @author Alejandra Merino
  */
 public class ControladorRegistroCliente {
-  private Date fechaNacimiento;
   
   //Conversiones
   //Construir los objetos y guardarlos en la BD
@@ -27,7 +23,7 @@ public class ControladorRegistroCliente {
           String pCorreoElectronico) {
     
     Cliente cliente = new Cliente(pIdentificacion, pPrimerApellido, 
-            pSegundoApellido, pNombre, fechaNacimiento, pNumeroTelefono, 
+            pSegundoApellido, pNombre, pFechaNacimiento, pNumeroTelefono, 
             pCorreoElectronico);
     ClienteCRUD clienteCRUD = new ClienteCRUD();
     clienteCRUD.registrarCliente(cliente);
@@ -40,14 +36,5 @@ public class ControladorRegistroCliente {
     return mensaje;
   }
   
-  private void convertirDate (String pFechaNacimiento) {
-    SimpleDateFormat formato = new SimpleDateFormat ("dd/MM/yyyy");
-    Date fecha;
-    try {
-      fecha = formato.parse(pFechaNacimiento);
-      fechaNacimiento = fecha;
-    } catch (ParseException ex) {
-      Logger.getLogger(ControladorRegistroCliente.class.getName()).log(Level.SEVERE, null, ex);
-    }
-  }
+  
 }

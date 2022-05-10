@@ -4,18 +4,33 @@
  */
 package logicadepresentacion.gui;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import logicadeintegracion.gui.ControladorCrearCuenta;
+import logicadevalidacion.ValidacionCuenta;
+
 /**
  *
  * @author Alejandra Merino
  */
 public class CrearCuenta extends javax.swing.JPanel {
+private ArrayList listaClientes;
+private ControladorCrearCuenta control;
 
   /**
    * Creates new form CrearCuenta
    */
   public CrearCuenta() {
     initComponents();
-    
+    control = new ControladorCrearCuenta ();
+    listaClientes = control.cargarClientes();
+    cargarListaClientes();
+  }
+  
+  private void cargarListaClientes() {
+    for (int i =0;i<listaClientes.size(); i++) {
+      cbxCliente.addItem(listaClientes.get(i).toString());
+    }
   }
 
   /**
@@ -30,15 +45,15 @@ public class CrearCuenta extends javax.swing.JPanel {
     bgCrearCuenta = new javax.swing.JPanel();
     jLabel1 = new javax.swing.JLabel();
     jLabel2 = new javax.swing.JLabel();
-    jComboBox1 = new javax.swing.JComboBox<>();
+    cbxCliente = new javax.swing.JComboBox<>();
     jLabel3 = new javax.swing.JLabel();
-    jTextField1 = new javax.swing.JTextField();
+    txtPin = new javax.swing.JTextField();
     jSeparator1 = new javax.swing.JSeparator();
     jLabel4 = new javax.swing.JLabel();
-    jTextField2 = new javax.swing.JTextField();
+    txtDepositoInicial = new javax.swing.JTextField();
     jSeparator2 = new javax.swing.JSeparator();
-    panel1 = new java.awt.Panel();
-    jLabel5 = new javax.swing.JLabel();
+    btnCrearCuentaPanel = new java.awt.Panel();
+    btnCrearCuentaLabel = new javax.swing.JLabel();
 
     setBackground(new java.awt.Color(255, 255, 255));
     setPreferredSize(new java.awt.Dimension(830, 710));
@@ -52,43 +67,52 @@ public class CrearCuenta extends javax.swing.JPanel {
 
     jLabel2.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
     jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-    jLabel2.setText("Dueño de la cuenta");
+    jLabel2.setText("Nombre del cliente");
 
-    jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-    jComboBox1.setForeground(new java.awt.Color(153, 153, 153));
-    jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-    jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    cbxCliente.setBackground(new java.awt.Color(255, 255, 255));
+    cbxCliente.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+    cbxCliente.setForeground(new java.awt.Color(153, 153, 153));
+    cbxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    cbxCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
     jLabel3.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
     jLabel3.setForeground(new java.awt.Color(0, 0, 0));
     jLabel3.setText("Pin");
 
-    jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-    jTextField1.setBorder(null);
+    txtPin.setBackground(new java.awt.Color(255, 255, 255));
+    txtPin.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+    txtPin.setBorder(null);
 
     jLabel4.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
     jLabel4.setForeground(new java.awt.Color(0, 0, 0));
     jLabel4.setText("Depósito inicial");
 
-    jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-    jTextField2.setBorder(null);
+    txtDepositoInicial.setBackground(new java.awt.Color(255, 255, 255));
+    txtDepositoInicial.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+    txtDepositoInicial.setBorder(null);
 
-    panel1.setBackground(new java.awt.Color(115, 56, 242));
+    btnCrearCuentaPanel.setBackground(new java.awt.Color(115, 56, 242));
 
-    jLabel5.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-    jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel5.setText("Crear");
+    btnCrearCuentaLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+    btnCrearCuentaLabel.setForeground(new java.awt.Color(255, 255, 255));
+    btnCrearCuentaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    btnCrearCuentaLabel.setText("Crear");
+    btnCrearCuentaLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnCrearCuentaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnCrearCuentaLabelMouseClicked(evt);
+      }
+    });
 
-    javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-    panel1.setLayout(panel1Layout);
-    panel1Layout.setHorizontalGroup(
-      panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+    javax.swing.GroupLayout btnCrearCuentaPanelLayout = new javax.swing.GroupLayout(btnCrearCuentaPanel);
+    btnCrearCuentaPanel.setLayout(btnCrearCuentaPanelLayout);
+    btnCrearCuentaPanelLayout.setHorizontalGroup(
+      btnCrearCuentaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(btnCrearCuentaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
     );
-    panel1Layout.setVerticalGroup(
-      panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+    btnCrearCuentaPanelLayout.setVerticalGroup(
+      btnCrearCuentaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(btnCrearCuentaLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
     );
 
     javax.swing.GroupLayout bgCrearCuentaLayout = new javax.swing.GroupLayout(bgCrearCuenta);
@@ -100,11 +124,11 @@ public class CrearCuenta extends javax.swing.JPanel {
         .addGroup(bgCrearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
           .addComponent(jLabel4)
           .addComponent(jLabel2)
-          .addComponent(jComboBox1, 0, 501, Short.MAX_VALUE)
+          .addComponent(cbxCliente, 0, 501, Short.MAX_VALUE)
           .addComponent(jLabel3)
-          .addComponent(jTextField1)
+          .addComponent(txtPin)
           .addComponent(jSeparator1)
-          .addComponent(jTextField2)
+          .addComponent(txtDepositoInicial)
           .addComponent(jSeparator2))
         .addGap(157, 157, 157))
       .addGroup(bgCrearCuentaLayout.createSequentialGroup()
@@ -114,7 +138,7 @@ public class CrearCuenta extends javax.swing.JPanel {
             .addComponent(jLabel1))
           .addGroup(bgCrearCuentaLayout.createSequentialGroup()
             .addGap(356, 356, 356)
-            .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(btnCrearCuentaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap(287, Short.MAX_VALUE))
     );
     bgCrearCuentaLayout.setVerticalGroup(
@@ -125,40 +149,53 @@ public class CrearCuenta extends javax.swing.JPanel {
         .addGap(43, 43, 43)
         .addComponent(jLabel2)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(cbxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(18, 18, 18)
         .addComponent(jLabel3)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(txtPin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jLabel4)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(txtDepositoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(37, 37, 37)
-        .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(308, Short.MAX_VALUE))
+        .addComponent(btnCrearCuentaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(311, Short.MAX_VALUE))
     );
 
     add(bgCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 720));
   }// </editor-fold>//GEN-END:initComponents
 
+  private void btnCrearCuentaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaLabelMouseClicked
+    ValidacionCuenta validacionCuenta = new ValidacionCuenta ();
+    validacionCuenta.validarDatosCuenta(txtPin.getText(), txtDepositoInicial.getText());
+    if(validacionCuenta.esValido) {
+      String codigoCliente = (String) cbxCliente.getSelectedItem();
+      codigoCliente = codigoCliente.trim();
+      String[] listaCliente = codigoCliente.split(" ");
+      String mensaje = control.controlarRegistroCuenta(txtPin.getText(), 
+              txtDepositoInicial.getText(), listaCliente[0]);
+      validacionCuenta.setResultado(mensaje);
+    } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+  }//GEN-LAST:event_btnCrearCuentaLabelMouseClicked
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JPanel bgCrearCuenta;
-  private javax.swing.JComboBox<String> jComboBox1;
+  private javax.swing.JLabel btnCrearCuentaLabel;
+  private java.awt.Panel btnCrearCuentaPanel;
+  private javax.swing.JComboBox<String> cbxCliente;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
-  private javax.swing.JLabel jLabel5;
   private javax.swing.JSeparator jSeparator1;
   private javax.swing.JSeparator jSeparator2;
-  private javax.swing.JTextField jTextField1;
-  private javax.swing.JTextField jTextField2;
-  private java.awt.Panel panel1;
+  private javax.swing.JTextField txtDepositoInicial;
+  private javax.swing.JTextField txtPin;
   // End of variables declaration//GEN-END:variables
 }

@@ -11,14 +11,7 @@ import java.util.regex.Pattern;
  *
  * @author Alejandra Merino
  */
-public class ValidacionCliente {
-  public boolean esValido;
-  public String resultado;
-
-  public ValidacionCliente() {
-    esValido = true;
-    resultado = "";
-  }
+public class ValidacionCliente extends Validacion {
   
   public void validarDatosCliente (String pNum, String pCorreo) {
     validarTelefono (pNum);
@@ -50,10 +43,6 @@ public class ValidacionCliente {
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
     Matcher compara = patron.matcher(pCorreo);
     return compara.matches();
-  }
-
-  public void setResultado(String resultado) {
-    this.resultado = resultado;
   }
   
 }
