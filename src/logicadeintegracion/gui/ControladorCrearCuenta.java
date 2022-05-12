@@ -32,8 +32,8 @@ public class ControladorCrearCuenta {
   public String controlarRegistroCuenta (String pPin, String pNum, String pIdentificacion) {
     double deposito = Double.parseDouble(pNum);
     Cuenta cuenta = new Cuenta (pPin, deposito);
-    //CuentaCRUD cuentaCRUD = new CuentaCRUD ();
-    //cuentaCRUD.registrarCuenta(cuenta, pIdentificacion);
+    CuentaCRUD cuentaCRUD = new CuentaCRUD ();
+    cuentaCRUD.registrarCuenta(cuenta, pIdentificacion);
     ClienteCRUD clienteCRUD = new ClienteCRUD ();
     Cliente clienteRegistrado = clienteCRUD.consultarCliente(pIdentificacion);
     System.out.println(clienteRegistrado.toString());
@@ -46,7 +46,7 @@ public class ControladorCrearCuenta {
             clienteRegistrado.getSegundoApellido() +"\n "
             + "Número de teléfono asociado a la cuenta:" 
             +clienteRegistrado.getNumeroTelefono() + "\n "
-            + "Dirección de correo electrónico ?asociada? a la cuenta:"
+            + "Dirección de correo electrónico asociada a la cuenta:"
             +clienteRegistrado.getCorreoElectronico();
     return mensaje;
   }
