@@ -196,6 +196,17 @@ public class Menu extends javax.swing.JFrame {
     btnConsultarclienteLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnConsultarclienteLabel.setText("Consultar cliente");
     btnConsultarclienteLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnConsultarclienteLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnConsultarclienteLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnConsultarclienteLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnConsultarclienteLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnConsultarClientePanelLayout = new javax.swing.GroupLayout(btnConsultarClientePanel);
     btnConsultarClientePanel.setLayout(btnConsultarClientePanelLayout);
@@ -221,6 +232,17 @@ public class Menu extends javax.swing.JFrame {
     btnConsultaCuentaLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnConsultaCuentaLabel.setText("Consultar cuenta");
     btnConsultaCuentaLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnConsultaCuentaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnConsultaCuentaLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnConsultaCuentaLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnConsultaCuentaLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnConsultaCuentaPanelLayout = new javax.swing.GroupLayout(btnConsultaCuentaPanel);
     btnConsultaCuentaPanel.setLayout(btnConsultaCuentaPanelLayout);
@@ -246,6 +268,17 @@ public class Menu extends javax.swing.JFrame {
     btnCambiarPinLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnCambiarPinLabel.setText("Cambiar PIN");
     btnCambiarPinLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnCambiarPinLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnCambiarPinLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnCambiarPinLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnCambiarPinLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnCambiarPinPanelLayout = new javax.swing.GroupLayout(btnCambiarPinPanel);
     btnCambiarPinPanel.setLayout(btnCambiarPinPanelLayout);
@@ -271,6 +304,17 @@ public class Menu extends javax.swing.JFrame {
     btnDepositarLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnDepositarLabel.setText("Depositar");
     btnDepositarLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnDepositarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnDepositarLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnDepositarLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnDepositarLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnDepositarPanelLayout = new javax.swing.GroupLayout(btnDepositarPanel);
     btnDepositarPanel.setLayout(btnDepositarPanelLayout);
@@ -296,6 +340,17 @@ public class Menu extends javax.swing.JFrame {
     btnRetirarLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnRetirarLabel.setText("Retirar");
     btnRetirarLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnRetirarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnRetirarLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnRetirarLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnRetirarLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnRetirarPanelLayout = new javax.swing.GroupLayout(btnRetirarPanel);
     btnRetirarPanel.setLayout(btnRetirarPanelLayout);
@@ -321,6 +376,17 @@ public class Menu extends javax.swing.JFrame {
     btnTransferirLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnTransferirLabel.setText("Transferir");
     btnTransferirLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnTransferirLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnTransferirLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnTransferirLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnTransferirLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnTransferirPanelLayout = new javax.swing.GroupLayout(btnTransferirPanel);
     btnTransferirPanel.setLayout(btnTransferirPanelLayout);
@@ -346,6 +412,17 @@ public class Menu extends javax.swing.JFrame {
     btnTipoCambioLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnTipoCambioLabel.setText("Tipo de cambio");
     btnTipoCambioLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnTipoCambioLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnTipoCambioLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnTipoCambioLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnTipoCambioLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnTipoCambioPanelLayout = new javax.swing.GroupLayout(btnTipoCambioPanel);
     btnTipoCambioPanel.setLayout(btnTipoCambioPanelLayout);
@@ -371,6 +448,17 @@ public class Menu extends javax.swing.JFrame {
     btnConsultarSaldoActualLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnConsultarSaldoActualLabel.setText("Consultar saldo actual");
     btnConsultarSaldoActualLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnConsultarSaldoActualLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnConsultarSaldoActualLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnConsultarSaldoActualLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnConsultarSaldoActualLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnConsultarSaldoActualPanelLayout = new javax.swing.GroupLayout(btnConsultarSaldoActualPanel);
     btnConsultarSaldoActualPanel.setLayout(btnConsultarSaldoActualPanelLayout);
@@ -395,6 +483,17 @@ public class Menu extends javax.swing.JFrame {
     btnConsultarSaldoDolaresLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnConsultarSaldoDolaresLabel.setText("Consultar saldo actual dolares");
     btnConsultarSaldoDolaresLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnConsultarSaldoDolaresLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnConsultarSaldoDolaresLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnConsultarSaldoDolaresLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnConsultarSaldoDolaresLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnConsultarSaldoDolaresPanelLayout = new javax.swing.GroupLayout(btnConsultarSaldoDolaresPanel);
     btnConsultarSaldoDolaresPanel.setLayout(btnConsultarSaldoDolaresPanelLayout);
@@ -420,6 +519,17 @@ public class Menu extends javax.swing.JFrame {
     btnEstadoCuentaLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnEstadoCuentaLabel.setText("Estado de cuenta");
     btnEstadoCuentaLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnEstadoCuentaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnEstadoCuentaLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnEstadoCuentaLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnEstadoCuentaLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnEstadoCuentaPanelLayout = new javax.swing.GroupLayout(btnEstadoCuentaPanel);
     btnEstadoCuentaPanel.setLayout(btnEstadoCuentaPanelLayout);
@@ -445,6 +555,17 @@ public class Menu extends javax.swing.JFrame {
     btnEstadoCuentaDolarLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnEstadoCuentaDolarLabel.setText("Estado de cuenta dolares");
     btnEstadoCuentaDolarLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnEstadoCuentaDolarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnEstadoCuentaDolarLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnEstadoCuentaDolarLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnEstadoCuentaDolarLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnEstadoCuentaDolarPanelLayout = new javax.swing.GroupLayout(btnEstadoCuentaDolarPanel);
     btnEstadoCuentaDolarPanel.setLayout(btnEstadoCuentaDolarPanelLayout);
@@ -470,6 +591,17 @@ public class Menu extends javax.swing.JFrame {
     btnEstatusLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnEstatusLabel.setText("Estatus de cuenta");
     btnEstatusLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnEstatusLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnEstatusLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnEstatusLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnEstatusLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnEstatusPanelLayout = new javax.swing.GroupLayout(btnEstatusPanel);
     btnEstatusPanel.setLayout(btnEstatusPanelLayout);
@@ -495,6 +627,17 @@ public class Menu extends javax.swing.JFrame {
     btnComisionTotalLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnComisionTotalLabel.setText("Comisiones ganadas");
     btnComisionTotalLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnComisionTotalLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnComisionTotalLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnComisionTotalLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnComisionTotalLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnComisionTotalPanelLayout = new javax.swing.GroupLayout(btnComisionTotalPanel);
     btnComisionTotalPanel.setLayout(btnComisionTotalPanelLayout);
@@ -520,6 +663,17 @@ public class Menu extends javax.swing.JFrame {
     btnComisionCuentaLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnComisionCuentaLabel.setText("Comisiones ganadas por cuenta");
     btnComisionCuentaLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnComisionCuentaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnComisionCuentaLabelMouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        btnComisionCuentaLabelMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        btnComisionCuentaLabelMouseExited(evt);
+      }
+    });
 
     javax.swing.GroupLayout btnComisionCuentaPanelLayout = new javax.swing.GroupLayout(btnComisionCuentaPanel);
     btnComisionCuentaPanel.setLayout(btnComisionCuentaPanelLayout);
@@ -730,6 +884,188 @@ public class Menu extends javax.swing.JFrame {
   private void btnCrearCuentaLMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaLMouseExited
     btnCrearCuenta.setBackground(new Color ( 49, 24, 140));
   }//GEN-LAST:event_btnCrearCuentaLMouseExited
+
+  private void btnConsultarclienteLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarclienteLabelMouseEntered
+     btnConsultarClientePanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnConsultarclienteLabelMouseEntered
+
+  private void btnConsultarclienteLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarclienteLabelMouseExited
+    btnConsultarClientePanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnConsultarclienteLabelMouseExited
+
+  private void btnConsultarclienteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarclienteLabelMouseClicked
+    ConsultarCliente ventanaConsultarCliente = new ConsultarCliente ();
+    ShowPanel(ventanaConsultarCliente);
+  }//GEN-LAST:event_btnConsultarclienteLabelMouseClicked
+
+  private void btnConsultaCuentaLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultaCuentaLabelMouseEntered
+    btnConsultaCuentaPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnConsultaCuentaLabelMouseEntered
+
+  private void btnConsultaCuentaLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultaCuentaLabelMouseExited
+    btnConsultaCuentaPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnConsultaCuentaLabelMouseExited
+
+  private void btnConsultaCuentaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultaCuentaLabelMouseClicked
+    ConsultarCuenta ventanaConsultarCuenta = new ConsultarCuenta ();
+    ShowPanel(ventanaConsultarCuenta);
+  }//GEN-LAST:event_btnConsultaCuentaLabelMouseClicked
+
+  private void btnCambiarPinLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarPinLabelMouseEntered
+    btnCambiarPinPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnCambiarPinLabelMouseEntered
+
+  private void btnCambiarPinLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarPinLabelMouseExited
+    btnCambiarPinPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnCambiarPinLabelMouseExited
+
+  private void btnCambiarPinLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarPinLabelMouseClicked
+    CambiarPin ventanaCambiarPin = new CambiarPin ();
+    ShowPanel(ventanaCambiarPin);
+  }//GEN-LAST:event_btnCambiarPinLabelMouseClicked
+
+  private void btnDepositarLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDepositarLabelMouseEntered
+    btnDepositarPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnDepositarLabelMouseEntered
+
+  private void btnDepositarLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDepositarLabelMouseExited
+    btnDepositarPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnDepositarLabelMouseExited
+
+  private void btnDepositarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDepositarLabelMouseClicked
+    Depositar ventanaDepositar = new Depositar ();
+    ShowPanel(ventanaDepositar);
+  }//GEN-LAST:event_btnDepositarLabelMouseClicked
+
+  private void btnRetirarLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRetirarLabelMouseEntered
+    btnRetirarPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnRetirarLabelMouseEntered
+
+  private void btnRetirarLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRetirarLabelMouseExited
+    btnRetirarPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnRetirarLabelMouseExited
+
+  private void btnRetirarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRetirarLabelMouseClicked
+    Retirar ventanaRetirar = new Retirar ();
+    ShowPanel(ventanaRetirar);
+  }//GEN-LAST:event_btnRetirarLabelMouseClicked
+
+  private void btnTransferirLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTransferirLabelMouseEntered
+    btnTransferirPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnTransferirLabelMouseEntered
+
+  private void btnTransferirLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTransferirLabelMouseExited
+    btnTransferirPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnTransferirLabelMouseExited
+
+  private void btnTransferirLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTransferirLabelMouseClicked
+    Transferir ventanaTransferir = new Transferir ();
+    ShowPanel(ventanaTransferir);
+  }//GEN-LAST:event_btnTransferirLabelMouseClicked
+
+  private void btnTipoCambioLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTipoCambioLabelMouseEntered
+    btnTipoCambioPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnTipoCambioLabelMouseEntered
+
+  private void btnTipoCambioLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTipoCambioLabelMouseExited
+    btnTipoCambioPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnTipoCambioLabelMouseExited
+
+  private void btnTipoCambioLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTipoCambioLabelMouseClicked
+    TipoCambio ventanaTipoCambio = new TipoCambio ();
+    ShowPanel(ventanaTipoCambio);
+  }//GEN-LAST:event_btnTipoCambioLabelMouseClicked
+
+  private void btnConsultarSaldoActualLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarSaldoActualLabelMouseEntered
+    btnConsultarSaldoActualPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnConsultarSaldoActualLabelMouseEntered
+
+  private void btnConsultarSaldoActualLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarSaldoActualLabelMouseExited
+    btnConsultarSaldoActualPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnConsultarSaldoActualLabelMouseExited
+
+  private void btnConsultarSaldoActualLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarSaldoActualLabelMouseClicked
+    ConsultaSaldoActual ventanaConsultaSaldoActual = new ConsultaSaldoActual();
+    ShowPanel(ventanaConsultaSaldoActual);
+  }//GEN-LAST:event_btnConsultarSaldoActualLabelMouseClicked
+
+  private void btnConsultarSaldoDolaresLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarSaldoDolaresLabelMouseEntered
+    btnConsultarSaldoDolaresPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnConsultarSaldoDolaresLabelMouseEntered
+
+  private void btnConsultarSaldoDolaresLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarSaldoDolaresLabelMouseExited
+    btnConsultarSaldoDolaresPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnConsultarSaldoDolaresLabelMouseExited
+
+  private void btnConsultarSaldoDolaresLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarSaldoDolaresLabelMouseClicked
+    ConsultaSaldoActualDolares ventanaConsultaSaldoActualDolares = new ConsultaSaldoActualDolares ();
+    ShowPanel(ventanaConsultaSaldoActualDolares);
+  }//GEN-LAST:event_btnConsultarSaldoDolaresLabelMouseClicked
+
+  private void btnEstadoCuentaLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoCuentaLabelMouseEntered
+    btnEstadoCuentaPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnEstadoCuentaLabelMouseEntered
+
+  private void btnEstadoCuentaLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoCuentaLabelMouseExited
+    btnEstadoCuentaPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnEstadoCuentaLabelMouseExited
+
+  private void btnEstadoCuentaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoCuentaLabelMouseClicked
+    EstadoCuenta ventanaEstadoCuenta = new EstadoCuenta ();
+    ShowPanel(ventanaEstadoCuenta);
+  }//GEN-LAST:event_btnEstadoCuentaLabelMouseClicked
+
+  private void btnEstadoCuentaDolarLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoCuentaDolarLabelMouseEntered
+    btnEstadoCuentaDolarPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnEstadoCuentaDolarLabelMouseEntered
+
+  private void btnEstadoCuentaDolarLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoCuentaDolarLabelMouseExited
+    btnEstadoCuentaDolarPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnEstadoCuentaDolarLabelMouseExited
+
+  private void btnEstadoCuentaDolarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoCuentaDolarLabelMouseClicked
+    EstadoCuentaDolares ventanaEstadoCuentaDolares = new EstadoCuentaDolares ();
+    ShowPanel(ventanaEstadoCuentaDolares);
+  }//GEN-LAST:event_btnEstadoCuentaDolarLabelMouseClicked
+
+  private void btnEstatusLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstatusLabelMouseEntered
+    btnEstatusPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnEstatusLabelMouseEntered
+
+  private void btnEstatusLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstatusLabelMouseExited
+    btnEstatusPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnEstatusLabelMouseExited
+
+  private void btnEstatusLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstatusLabelMouseClicked
+    EstatusCuenta ventanaEstatusCuenta = new EstatusCuenta ();
+    ShowPanel(ventanaEstatusCuenta);
+  }//GEN-LAST:event_btnEstatusLabelMouseClicked
+
+  private void btnComisionTotalLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComisionTotalLabelMouseEntered
+    btnComisionTotalPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnComisionTotalLabelMouseEntered
+
+  private void btnComisionTotalLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComisionTotalLabelMouseExited
+    btnComisionTotalPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnComisionTotalLabelMouseExited
+
+  private void btnComisionTotalLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComisionTotalLabelMouseClicked
+    ComisionGanada ventanaComisionGanada = new ComisionGanada ();
+    ShowPanel(ventanaComisionGanada);
+  }//GEN-LAST:event_btnComisionTotalLabelMouseClicked
+
+  private void btnComisionCuentaLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComisionCuentaLabelMouseEntered
+    btnComisionCuentaPanel.setBackground(new Color ( 115, 56, 242));
+  }//GEN-LAST:event_btnComisionCuentaLabelMouseEntered
+
+  private void btnComisionCuentaLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComisionCuentaLabelMouseExited
+    btnComisionCuentaPanel.setBackground(new Color ( 49, 24, 140));
+  }//GEN-LAST:event_btnComisionCuentaLabelMouseExited
+
+  private void btnComisionCuentaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComisionCuentaLabelMouseClicked
+    ComisionGanadaCuenta ventanaComisionGanadaCuenta = new ComisionGanadaCuenta ();
+    ShowPanel(ventanaComisionGanadaCuenta);
+  }//GEN-LAST:event_btnComisionCuentaLabelMouseClicked
   
   private void ShowPanel (JPanel p ) {
     p.setSize(830, 710);
