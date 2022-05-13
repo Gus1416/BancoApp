@@ -64,7 +64,6 @@ public class ConsultarCliente extends javax.swing.JPanel {
 
     cbxListadoClientes.setBackground(new java.awt.Color(255, 255, 255));
     cbxListadoClientes.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
-    cbxListadoClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
     jLabel2.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
     jLabel2.setForeground(new java.awt.Color(0, 0, 0));

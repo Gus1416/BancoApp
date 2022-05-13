@@ -8,7 +8,7 @@ import java.util.Date;
  * 
  * @author Gustavo
  */
-public class Cliente extends Persona{
+public class Cliente extends Persona {
 	private String numeroTelefono;
 	private String correoElectronico;
 	private String codigoCliente;
@@ -22,6 +22,21 @@ public class Cliente extends Persona{
 		codigoCliente = "CIF_" + ++cantidadClientes;
 		cuentas = new ArrayList<>();
 	}
+        
+        public Cliente (String pIdentificacion, String pPrimerApellido, String pSegundoApellido, String pNombre, Date pFechaNacimiento, String pNumeroTelefono, String pCorreoElectronico, int pNum){
+		super(pIdentificacion, pPrimerApellido, pSegundoApellido, pNombre, pFechaNacimiento);
+		cantidadClientes = pNum;
+                numeroTelefono = pNumeroTelefono;
+		correoElectronico = pCorreoElectronico;
+		codigoCliente = "CIF_" + ++cantidadClientes;
+		cuentas = new ArrayList<>();
+	}
+
+        public Cliente() {
+          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+        
+        
 	
 	@Override
 	public String toString(){

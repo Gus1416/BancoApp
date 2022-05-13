@@ -21,11 +21,12 @@ public class ControladorRegistroCliente {
           String pPrimerApellido, String pSegundoApellido, String pNombre, 
           Date pFechaNacimiento, String pNumeroTelefono, 
           String pCorreoElectronico) {
-    
+    ClienteCRUD clienteCRUD = new ClienteCRUD();
+    int cantidadClientes = clienteCRUD.obtenerCantidadClientes();
     Cliente cliente = new Cliente(pIdentificacion, pPrimerApellido, 
             pSegundoApellido, pNombre, pFechaNacimiento, pNumeroTelefono, 
-            pCorreoElectronico);
-    ClienteCRUD clienteCRUD = new ClienteCRUD();
+            pCorreoElectronico, cantidadClientes);
+    
     clienteCRUD.registrarCliente(cliente);
     
     String mensaje = "Se ha creado un nuevo cliente en el sistema, los datos que"

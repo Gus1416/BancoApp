@@ -72,7 +72,6 @@ private ControladorCrearCuenta control;
     cbxCliente.setBackground(new java.awt.Color(255, 255, 255));
     cbxCliente.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
     cbxCliente.setForeground(new java.awt.Color(153, 153, 153));
-    cbxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
     cbxCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
     jLabel3.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N

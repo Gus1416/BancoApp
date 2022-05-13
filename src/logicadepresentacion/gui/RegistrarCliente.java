@@ -262,7 +262,7 @@ public class RegistrarCliente extends javax.swing.JPanel {
     if(validacionPersona.esValido && validacionCliente.esValido) {
       ControladorRegistroCliente control = new ControladorRegistroCliente ();
       String mensaje = control.controlarRegistroCliente (txtIdentificacion.getText(), 
-              txt1Apellido.getText(), txt2Apellido.getText(), 
+              txt2Apellido.getText(), txt1Apellido.getText(), 
               txtNombre.getText(), fechaNacimientoCliente.getDate(), 
               txtTelefono.getText(), txtCorreo.getText());
       validacionCliente.setResultado(mensaje);

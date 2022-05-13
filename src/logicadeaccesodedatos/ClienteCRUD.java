@@ -159,4 +159,27 @@ public class ClienteCRUD extends Conexion{
 			return null;
 		}
 	}
+        
+        public int obtenerCantidadClientes() {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        int cantidad = 0 ;
+
+        String sql = "SELECT COUNT(*) AS cantidad FROM bd_bancoapp.cliente;";
+
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+            cantidad = rs.getInt("cantidad");
+            }
+                return cantidad;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return 0;
+        }
+    }
+        
 }

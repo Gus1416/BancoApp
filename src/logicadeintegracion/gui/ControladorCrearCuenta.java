@@ -32,8 +32,8 @@ public class ControladorCrearCuenta  {
   public String controlarRegistroCuenta (String pPin, String pNum, String pIdentificacion) {
     double deposito = Double.parseDouble(pNum);
     Cuenta cuenta = new Cuenta (pPin, deposito);
-    //CuentaCRUD cuentaCRUD = new CuentaCRUD ();
-    //cuentaCRUD.registrarCuenta(cuenta, pIdentificacion);
+    CuentaCRUD cuentaCRUD = new CuentaCRUD ();
+    cuentaCRUD.registrarCuenta(cuenta, pIdentificacion);
     ClienteCRUD clienteCRUD = new ClienteCRUD ();
     Cliente clienteRegistrado = clienteCRUD.consultarCliente(pIdentificacion);
     System.out.println(clienteRegistrado.toString());
