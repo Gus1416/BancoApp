@@ -14,16 +14,16 @@ import logicadenegocios.Cuenta;
  *
  * @author Alejandra Merino
  */
-public class ControladorCrearCuenta {
-  
+public class ControladorCrearCuenta  {
+ 
   public ArrayList cargarClientes () {
     ClienteCRUD clienteCRUD = new ClienteCRUD ();
     ArrayList<Cliente> listaClientes = clienteCRUD.consultarClientes();
     ArrayList listaClientesP = new ArrayList ();
     for (Cliente cliente: listaClientes ) {
-      String mensaje = ""+ cliente.getIdentificacion() +" "+ 
-              cliente.getPrimerApellido() + " "+ cliente.getSegundoApellido() 
-              +" "+ cliente.getNombre();
+      String mensaje = ""+ cliente.getPrimerApellido() +" "+ 
+              cliente.getSegundoApellido()  + " "+ cliente.getNombre() 
+              +" "+ cliente.getIdentificacion();
       listaClientesP.add(mensaje);
     }
     return listaClientesP;
@@ -32,8 +32,8 @@ public class ControladorCrearCuenta {
   public String controlarRegistroCuenta (String pPin, String pNum, String pIdentificacion) {
     double deposito = Double.parseDouble(pNum);
     Cuenta cuenta = new Cuenta (pPin, deposito);
-    CuentaCRUD cuentaCRUD = new CuentaCRUD ();
-    cuentaCRUD.registrarCuenta(cuenta, pIdentificacion);
+    //CuentaCRUD cuentaCRUD = new CuentaCRUD ();
+    //cuentaCRUD.registrarCuenta(cuenta, pIdentificacion);
     ClienteCRUD clienteCRUD = new ClienteCRUD ();
     Cliente clienteRegistrado = clienteCRUD.consultarCliente(pIdentificacion);
     System.out.println(clienteRegistrado.toString());
