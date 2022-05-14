@@ -22,11 +22,11 @@ public class BancoApp {
           Date fecha = new Date ();
           Cliente cliente = new Cliente ("504380302", "Sanchez", "Ramirez", "Eduardo", fecha, "87784533","edu33@hotmail.com");
           Date fecha2 = new Date ();
-          Cliente cliente2 = new Cliente ("404380302", "Arias", "Ramirez", "Pepe", fecha, "77784533","ari@hotmail.com");
+          Cliente cliente2 = new Cliente ("404380302", "Arias", "Ramirez", "Pepe", fecha2, "77784533","ari@hotmail.com");
           Date fecha3 = new Date ();
-          Cliente cliente3 = new Cliente ("404380302", "Cespedes", "Ramirez", "Maribel", fecha, "81184533","mari@hotmail.com");
+          Cliente cliente3 = new Cliente ("404380302", "Cespedes", "Ramirez", "Maribel", fecha3, "81184533","mari@hotmail.com");
           Date fecha4 = new Date ();
-          Cliente cliente4 = new Cliente ("404380302", "Duarte", "Ramirez", "Ana Yancy", fecha, "97784533","yancy@hotmail.com");
+          Cliente cliente4 = new Cliente ("404380302", "Duarte", "Ramirez", "Ana Yancy", fecha4, "97784533","yancy@hotmail.com");
           
           ArrayList <Comparable> listaClientes = new ArrayList ();
           listaClientes.add((Comparable) cliente);
