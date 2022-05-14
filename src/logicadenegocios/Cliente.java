@@ -84,3 +84,4 @@ public class Cliente extends Persona {
 		this.codigoCliente = codigoCliente;
 	}
 }
+
