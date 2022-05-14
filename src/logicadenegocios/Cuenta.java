@@ -31,6 +31,16 @@ public class Cuenta implements IComisiones, Comparable {
         fechaCreacion = obtenerFechaSistema();
         operaciones = new ArrayList<>();
     }
+    
+    public Cuenta(String pPin, double pMontoInicial, int pNum) {
+        identificadorCuenta = pNum;  
+        pin = pPin;
+        saldo = pMontoInicial;
+        estatus = "activa" ;   ////
+        numeroCuenta = "CTA_" + ++identificadorCuenta;  ///
+        fechaCreacion = obtenerFechaSistema();
+        operaciones = new ArrayList<>();
+    }
 
     private Date obtenerFechaSistema() {
         Date fecha = new Date();
@@ -268,7 +278,12 @@ public class Cuenta implements IComisiones, Comparable {
     public void setOperaciones(ArrayList<Operacion> operaciones) {
       this.operaciones = operaciones;
     }
-      
+
+    public void setPin(String pin) {
+      this.pin = pin;
+    }
+     
+    
     
 }
 

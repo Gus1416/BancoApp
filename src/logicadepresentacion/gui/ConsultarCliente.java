@@ -27,8 +27,8 @@ public class ConsultarCliente extends javax.swing.JPanel {
     consulta = new ControladorConsultarCliente ();
     listaClientes = control.cargarClientes();
     cargarListaClientes();
-    Ordenacion ordena = new Ordenacion ();
-    ordena.insercion(listaClientes);
+    //Ordenacion ordena = new Ordenacion ();
+    //ordena.insercion(listaClientes);
   }
   
   private void cargarListaClientes() {

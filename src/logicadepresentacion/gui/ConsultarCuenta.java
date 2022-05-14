@@ -22,8 +22,9 @@ public class ConsultarCuenta extends javax.swing.JPanel {
     initComponents();
     consulta = new ControladorConsultarCuenta ();
     listaCuentas = consulta.cargarCuentas();
-    Ordenacion ordena = new Ordenacion ();
-    ordena.insercion(listaCuentas);
+    cargarListaCuentas();
+    //Ordenacion ordena = new Ordenacion ();
+    //ordena.insercion(listaCuentas);
   }
   
   private void cargarListaCuentas() {
@@ -67,7 +68,6 @@ public class ConsultarCuenta extends javax.swing.JPanel {
 
     cbxListaCuentas.setBackground(new java.awt.Color(255, 255, 255));
     cbxListaCuentas.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
-    cbxListaCuentas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
     cbxListaCuentas.setBorder(null);
     cbxListaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -85,6 +85,7 @@ public class ConsultarCuenta extends javax.swing.JPanel {
     btnConsultaCuentaLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnConsultaCuentaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     btnConsultaCuentaLabel.setText("Consultar");
+    btnConsultaCuentaLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     btnConsultaCuentaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
         btnConsultaCuentaLabelMouseClicked(evt);
@@ -192,7 +193,7 @@ public class ConsultarCuenta extends javax.swing.JPanel {
     String idCuenta = (String) cbxListaCuentas.getSelectedItem();
     idCuenta = idCuenta.trim();
     String[] listaCuenta = idCuenta.split(" ");
-    String resultado = consulta.cargarCuenta(idCuenta);
+    String resultado = consulta.cargarCuenta(listaCuenta[0]);
     txtConsultaCuenta.setText(resultado);
   }//GEN-LAST:event_btnConsultaCuentaLabelMouseClicked
 

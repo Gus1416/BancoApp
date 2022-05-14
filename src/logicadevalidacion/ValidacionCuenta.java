@@ -4,18 +4,55 @@
  */
 package logicadevalidacion;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import logicadeaccesodedatos.CuentaCRUD;
+import logicadenegocios.Cuenta;
 
 /**
  *
  * @author Alejandra Merino
  */
 public class ValidacionCuenta extends Validacion {
+  public CuentaCRUD cuentaCRUD;
+
+  public ValidacionCuenta() {
+    cuentaCRUD = new CuentaCRUD ();
+  }
+  
+  
   
   public void validarDatosCuenta (String pPin, String pNum) {
     validarPinCuenta (pPin);
     validarNumeroEntero (pNum);
+  }
+  
+  public void validarCambioPin (String pPinActual, String pPinNuevo, String pNumCuenta) {
+    validarNumeroCuenta (pNumCuenta);
+    validarPinCuenta (pPinActual);
+    validarPinIngresadoPinActual (pPinActual,pNumCuenta);
+    validarPinCuenta (pPinNuevo);
+  }
+  
+  public void validarPinIngresadoPinActual (String pPinActual, String pNumCuenta) {
+    Cuenta cuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
+    if (!(cuenta.getPin().equals(pPinActual))) {
+      esValido = false;
+      resultado+= "El número de PIN ingresado no corresponde al de su cuenta. \n";
+    }
+  }
+  
+  
+  public void validarNumeroCuenta (String pNumCuenta) {
+    ArrayList<Cuenta> cuentas = cuentaCRUD.consultarCuentas();
+    for (Cuenta cuenta:cuentas) {
+      if (cuenta.getNumeroCuenta().equals(pNumCuenta)) {
+        break;
+      }
+    }
+    esValido = false;
+    resultado+= "Debe ingresar un número de cuenta válido. \n";
   }
   
   public void validarPinCuenta (String pPIN) {
