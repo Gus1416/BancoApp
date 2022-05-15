@@ -27,6 +27,19 @@ public class Operacion {
 		this.moneda = pMoneda;
 		this.idOperacion = ++cantidadOperaciones;
 	}
+        
+        public Operacion(Date pFechaOperacion, String pTipoOperacion, double 
+                pMontoOperacion, boolean pSeCobraComision, double pMontoComision
+                , String pMoneda, int pNum) {
+                this.cantidadOperaciones = pNum;
+		this.fechaOperacion = pFechaOperacion;
+		this.tipoOperacion = pTipoOperacion;
+		this.seCobraComision = pSeCobraComision;
+		this.montoOperacion = pMontoOperacion;
+		this.montoComision = pMontoComision;
+		this.moneda = pMoneda;
+		this.idOperacion = ++cantidadOperaciones;
+	}
 
 	public Operacion(Date fechaOperacion, String tipoOperacion, boolean seCobraComision) {
 		this.fechaOperacion = fechaOperacion;

@@ -80,6 +80,7 @@ public class CambiarPin extends javax.swing.JPanel {
     btnCambiarPinLabel.setForeground(new java.awt.Color(255, 255, 255));
     btnCambiarPinLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     btnCambiarPinLabel.setText("Cambiar");
+    btnCambiarPinLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     btnCambiarPinLabel.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
         btnCambiarPinLabelMouseClicked(evt);

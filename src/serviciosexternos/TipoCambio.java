@@ -82,6 +82,11 @@ public class TipoCambio {
 		}
 	}
 
+        public String getFechaFinal() {
+                return fechaFinal;
+        }
+        
+
 	private void setUrl() {
 		String params = "Indicador=" + indicador + "&FechaInicio=" + fechaInicial + "&FechaFinal=" + fechaFinal + "&Nombre=" + nombre + "&SubNiveles=" + subNiveles +"&CorreoElectronico="+ correoElectronico +"&Token=" + token;
 		this.url = HOST + "?" + params;

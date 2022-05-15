@@ -31,8 +31,15 @@ public class ValidacionCuenta extends Validacion {
   public void validarCambioPin (String pPinActual, String pPinNuevo, String pNumCuenta) {
     validarNumeroCuenta (pNumCuenta);
     validarPinCuenta (pPinActual);
-    validarPinIngresadoPinActual (pPinActual,pNumCuenta);
     validarPinCuenta (pPinNuevo);
+    if(esValido) {
+      validarPinIngresadoPinActual (pPinActual,pNumCuenta);
+    }
+  }
+  
+  public void validarDatosDeposito (String pNumCuenta, String pNum) {
+    validarNumeroCuenta (pNumCuenta);
+    validarNumeroEntero (pNum);
   }
   
   public void validarPinIngresadoPinActual (String pPinActual, String pNumCuenta) {
@@ -48,7 +55,7 @@ public class ValidacionCuenta extends Validacion {
     ArrayList<Cuenta> cuentas = cuentaCRUD.consultarCuentas();
     for (Cuenta cuenta:cuentas) {
       if (cuenta.getNumeroCuenta().equals(pNumCuenta)) {
-        break;
+        return;
       }
     }
     esValido = false;

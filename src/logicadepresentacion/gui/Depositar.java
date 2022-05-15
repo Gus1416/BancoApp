@@ -4,17 +4,22 @@
  */
 package logicadepresentacion.gui;
 
+import javax.swing.JOptionPane;
+import logicadeintegracion.gui.ControladorDepositar;
+import logicadevalidacion.ValidacionCuenta;
+
 /**
  *
  * @author Alejandra Merino
  */
 public class Depositar extends javax.swing.JPanel {
-
+  public ControladorDepositar control;
   /**
    * Creates new form Depositar
    */
   public Depositar() {
     initComponents();
+    control = new ControladorDepositar ();
   }
 
   /**
@@ -26,19 +31,155 @@ public class Depositar extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
+    jPanel1 = new javax.swing.JPanel();
+    jLabel1 = new javax.swing.JLabel();
+    jLabel2 = new javax.swing.JLabel();
+    txtNumeroCuenta = new javax.swing.JTextField();
+    jSeparator1 = new javax.swing.JSeparator();
+    jLabel3 = new javax.swing.JLabel();
+    cbxMoneda = new javax.swing.JComboBox<>();
+    jSeparator2 = new javax.swing.JSeparator();
+    jLabel4 = new javax.swing.JLabel();
+    txtMontoDeposito = new javax.swing.JTextField();
+    jSeparator3 = new javax.swing.JSeparator();
+    btnDepositarPanel = new javax.swing.JPanel();
+    btnDepositarLabel = new javax.swing.JLabel();
+
+    jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+    jLabel1.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
+    jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel1.setText("Realice un depósito");
+
+    jLabel2.setText("Ingrese su número de cuenta:");
+
+    txtNumeroCuenta.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+
+    jLabel3.setText("Seleccione la moneda de su depósito:");
+
+    cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Colones", "Dólares" }));
+
+    jLabel4.setText("Ingrese el monto del depósito:");
+
+    btnDepositarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    btnDepositarLabel.setText("Depositar");
+    btnDepositarLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnDepositarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnDepositarLabelMouseClicked(evt);
+      }
+    });
+
+    javax.swing.GroupLayout btnDepositarPanelLayout = new javax.swing.GroupLayout(btnDepositarPanel);
+    btnDepositarPanel.setLayout(btnDepositarPanelLayout);
+    btnDepositarPanelLayout.setHorizontalGroup(
+      btnDepositarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(btnDepositarPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(btnDepositarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+    btnDepositarPanelLayout.setVerticalGroup(
+      btnDepositarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(btnDepositarPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(btnDepositarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(285, 285, 285)
+            .addComponent(jLabel1))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(181, 181, 181)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(jLabel4)
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(cbxMoneda, 0, 210, Short.MAX_VALUE))
+              .addComponent(jLabel2)
+              .addComponent(txtNumeroCuenta)
+              .addComponent(jSeparator1)
+              .addComponent(jSeparator2)
+              .addComponent(txtMontoDeposito)
+              .addComponent(jSeparator3)))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(343, 343, 343)
+            .addComponent(btnDepositarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(220, Short.MAX_VALUE))
+    );
+    jPanel1Layout.setVerticalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGap(80, 80, 80)
+        .addComponent(jLabel1)
+        .addGap(18, 18, 18)
+        .addComponent(jLabel2)
+        .addGap(18, 18, 18)
+        .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel3)
+          .addComponent(cbxMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jLabel4)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(txtMontoDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addComponent(btnDepositarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(343, Short.MAX_VALUE))
+    );
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 400, Short.MAX_VALUE)
+      .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 300, Short.MAX_VALUE)
+      .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
   }// </editor-fold>//GEN-END:initComponents
 
+  private void btnDepositarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDepositarLabelMouseClicked
+    ValidacionCuenta validacionCuenta = new ValidacionCuenta ();
+    validacionCuenta.validarDatosDeposito(txtNumeroCuenta.getText(), txtMontoDeposito.getText());
+    if(validacionCuenta.esValido) {
+      control.controlarDeposito(txtNumeroCuenta.getText(), 
+              txtMontoDeposito.getText(), (String) cbxMoneda.getSelectedItem());
+      validacionCuenta.setResultado(control.getMensaje());
+    }
+    JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+  }//GEN-LAST:event_btnDepositarLabelMouseClicked
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JLabel btnDepositarLabel;
+  private javax.swing.JPanel btnDepositarPanel;
+  private javax.swing.JComboBox<String> cbxMoneda;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JLabel jLabel4;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JSeparator jSeparator1;
+  private javax.swing.JSeparator jSeparator2;
+  private javax.swing.JSeparator jSeparator3;
+  private javax.swing.JTextField txtMontoDeposito;
+  private javax.swing.JTextField txtNumeroCuenta;
   // End of variables declaration//GEN-END:variables
 }

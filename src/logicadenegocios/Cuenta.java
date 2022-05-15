@@ -47,6 +47,7 @@ public class Cuenta implements IComisiones, Comparable {
         return fecha;
     }
 
+    //La comision deberia restarse o se suma?
     public void depositarColones(double pMontoDeposito) {
         boolean seCobraComision = determinarCobroComision();
         double comision = 0.00;
@@ -55,8 +56,20 @@ public class Cuenta implements IComisiones, Comparable {
             comision = pMontoDeposito * 0.02;
         }
 
-        this.saldo += (pMontoDeposito + comision);
+        this.saldo += (pMontoDeposito - comision);
         registrarOperacion("Depósito", pMontoDeposito, seCobraComision, comision, "Colones");
+    }
+    
+    public void depositarColones(double pMontoDeposito, int pNum) {
+        boolean seCobraComision = determinarCobroComision();
+        double comision = 0.00;
+
+        if (seCobraComision) {
+            comision = pMontoDeposito * 0.02;
+        }
+
+        this.saldo += (pMontoDeposito - comision);
+        registrarOperacion("Depósito", pMontoDeposito, seCobraComision, comision, "Colones", pNum);
     }
 
     public void depositarDolares(double pMontoDepositoDolares) {
@@ -69,8 +82,22 @@ public class Cuenta implements IComisiones, Comparable {
             comision = depositoEnColones * 0.02;
         }
 
-        this.saldo += (depositoEnColones + comision);
+        this.saldo += (depositoEnColones - comision);
         registrarOperacion("Depósito", pMontoDepositoDolares, seCobraComision, comision, "Dólares");
+    }
+    
+    public void depositarDolares(double pMontoDepositoDolares, int pNum) {
+        TipoCambio tc = new TipoCambio();
+        double depositoEnColones = tc.convertirAColones(pMontoDepositoDolares);
+        boolean seCobraComision = determinarCobroComision();
+        double comision = 0.00;
+
+        if (seCobraComision) {
+            comision = depositoEnColones * 0.02;
+        }
+
+        this.saldo += (depositoEnColones - comision);
+        registrarOperacion("Depósito", pMontoDepositoDolares, seCobraComision, comision, "Dólares", pNum);
     }
 
     public void retirarColones(double pMontoRetiro) throws FondosInsuficientesExcepcion {
@@ -86,6 +113,25 @@ public class Cuenta implements IComisiones, Comparable {
         if (validarRetiro(montoTotalRetiro)) {
             this.saldo -= (montoTotalRetiro);
             registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Colones");
+        } else {
+            double saldoFaltante = montoTotalRetiro - this.saldo;
+            throw new FondosInsuficientesExcepcion(saldoFaltante);
+        }
+    }
+    
+    public void retirarColones(double pMontoRetiro, int pNum) throws FondosInsuficientesExcepcion {
+        boolean seCobraComision = determinarCobroComision();
+        double comision = 0.00;
+        double montoTotalRetiro = pMontoRetiro;
+
+        if (seCobraComision) {
+            comision = pMontoRetiro * 0.02;
+            montoTotalRetiro += comision;
+        }
+
+        if (validarRetiro(montoTotalRetiro)) {
+            this.saldo -= (montoTotalRetiro);
+            registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Colones", pNum);
         } else {
             double saldoFaltante = montoTotalRetiro - this.saldo;
             throw new FondosInsuficientesExcepcion(saldoFaltante);
@@ -112,10 +158,36 @@ public class Cuenta implements IComisiones, Comparable {
             throw new FondosInsuficientesExcepcion(saldoFaltante);
         }
     }
+    
+    public void retirarDolares(double pMontoRetiro, int pNum) throws FondosInsuficientesExcepcion {
+        boolean seCobraComision = determinarCobroComision();
+        double comision = 0.00;
+
+        TipoCambio tc = new TipoCambio();
+        double montoTotalRetiro = tc.convertirAColones(pMontoRetiro);
+
+        if (seCobraComision) {
+            comision = pMontoRetiro * 0.02;
+            montoTotalRetiro += comision;
+        }
+
+        if (validarRetiro(montoTotalRetiro)) {
+            this.saldo -= montoTotalRetiro;
+            registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Dólares", pNum);
+        } else {
+            double saldoFaltante = montoTotalRetiro - this.saldo;
+            throw new FondosInsuficientesExcepcion(saldoFaltante);
+        }
+    }
 
     public void recibirTransferencia(double pMontoRecibido) {
         this.saldo += pMontoRecibido;
         registrarOperacion("Transferencia", pMontoRecibido, false, 0.00, "Colones");
+    }
+    
+    public void recibirTransferencia(double pMontoRecibido, int pNum) {
+        this.saldo += pMontoRecibido;
+        registrarOperacion("Transferencia", pMontoRecibido, false, 0.00, "Colones", pNum);
     }
 
     private boolean validarRetiro(double pMontoTotalRetiro) {
@@ -128,6 +200,14 @@ public class Cuenta implements IComisiones, Comparable {
 
     private void registrarOperacion(String pTipoOperacion, double pMontoOperacion, boolean pSeCobraComision, double pMontoComision, String pMoneda) {
         Operacion operacion = new Operacion(obtenerFechaSistema(), pTipoOperacion, pMontoOperacion, pSeCobraComision, pMontoComision, pMoneda);
+        operaciones.add(operacion);
+        this.cantidadDepositosOperaciones++;
+    }
+    
+    private void registrarOperacion(String pTipoOperacion, double pMontoOperacion,
+            boolean pSeCobraComision, double pMontoComision, String pMoneda, int pNum) {
+        Operacion operacion = new Operacion(obtenerFechaSistema(), pTipoOperacion,
+                pMontoOperacion, pSeCobraComision, pMontoComision, pMoneda, pNum);
         operaciones.add(operacion);
         this.cantidadDepositosOperaciones++;
     }
