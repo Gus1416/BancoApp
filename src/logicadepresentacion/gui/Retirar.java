@@ -4,17 +4,24 @@
  */
 package logicadepresentacion.gui;
 
+import javax.swing.JOptionPane;
+import logicadeintegracion.gui.ControladorRetirar;
+import logicadevalidacion.ValidacionCuenta;
+
 /**
  *
  * @author Alejandra Merino
  */
 public class Retirar extends javax.swing.JPanel {
-
+  private ControladorRetirar control;
+  private ValidacionCuenta validacionCuenta;
   /**
    * Creates new form Retirar
    */
   public Retirar() {
     initComponents();
+    control = new ControladorRetirar ();
+    validacionCuenta = new ValidacionCuenta ();
   }
 
   /**
@@ -29,22 +36,24 @@ public class Retirar extends javax.swing.JPanel {
     jPanel1 = new javax.swing.JPanel();
     jLabel1 = new javax.swing.JLabel();
     jLabel2 = new javax.swing.JLabel();
-    jTextField1 = new javax.swing.JTextField();
+    txtNumeroCuenta = new javax.swing.JTextField();
     jSeparator1 = new javax.swing.JSeparator();
     jLabel3 = new javax.swing.JLabel();
-    jComboBox1 = new javax.swing.JComboBox<>();
+    cbxMoneda = new javax.swing.JComboBox<>();
     jSeparator2 = new javax.swing.JSeparator();
     jLabel4 = new javax.swing.JLabel();
-    jTextField2 = new javax.swing.JTextField();
+    txtPinActual = new javax.swing.JTextField();
     jLabel5 = new javax.swing.JLabel();
     jSeparator3 = new javax.swing.JSeparator();
-    jTextField3 = new javax.swing.JTextField();
+    txtPalabraSecreta = new javax.swing.JTextField();
     jSeparator4 = new javax.swing.JSeparator();
     jLabel6 = new javax.swing.JLabel();
-    jTextField4 = new javax.swing.JTextField();
+    txtMontoRetiro = new javax.swing.JTextField();
     jSeparator5 = new javax.swing.JSeparator();
-    jPanel2 = new javax.swing.JPanel();
-    jLabel7 = new javax.swing.JLabel();
+    btnRetirarPanel = new javax.swing.JPanel();
+    btnRetirarLabel = new javax.swing.JLabel();
+    btnValidarRetiroPanel = new javax.swing.JPanel();
+    btnValidarRetiroLabel = new javax.swing.JLabel();
 
     jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -55,32 +64,78 @@ public class Retirar extends javax.swing.JPanel {
 
     jLabel2.setText("Ingrese su número de cuenta:");
 
+    txtNumeroCuenta.setBackground(new java.awt.Color(255, 255, 255));
+    txtNumeroCuenta.setBorder(null);
+
     jLabel3.setText("Seleccione la moneda de su retiro:");
 
-    jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Colones", "Dólares" }));
+    cbxMoneda.setBackground(new java.awt.Color(255, 255, 255));
+    cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Colones", "Dólares" }));
 
     jLabel4.setText("Ingrese el PIN de su cuenta:");
 
+    txtPinActual.setBackground(new java.awt.Color(255, 255, 255));
+    txtPinActual.setBorder(null);
+
     jLabel5.setText("Ingrese la palabra que recibió por mensaje de texto: ");
 
-    jLabel6.setText("Ingrese el monto del depósito:");
+    txtPalabraSecreta.setBackground(new java.awt.Color(255, 255, 255));
+    txtPalabraSecreta.setForeground(new java.awt.Color(0, 0, 0));
+    txtPalabraSecreta.setBorder(null);
 
-    jLabel7.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-    jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel7.setText("Retirar");
+    jLabel6.setText("Ingrese el monto del retiro:");
 
-    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-    jPanel2.setLayout(jPanel2Layout);
-    jPanel2Layout.setHorizontalGroup(
-      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+    txtMontoRetiro.setBackground(new java.awt.Color(255, 255, 255));
+    txtMontoRetiro.setBorder(null);
+
+    btnRetirarLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+    btnRetirarLabel.setForeground(new java.awt.Color(255, 255, 255));
+    btnRetirarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    btnRetirarLabel.setText("Retirar");
+    btnRetirarLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnRetirarLabel.setEnabled(false);
+    btnRetirarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnRetirarLabelMouseClicked(evt);
+      }
+    });
+
+    javax.swing.GroupLayout btnRetirarPanelLayout = new javax.swing.GroupLayout(btnRetirarPanel);
+    btnRetirarPanel.setLayout(btnRetirarPanelLayout);
+    btnRetirarPanelLayout.setHorizontalGroup(
+      btnRetirarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(btnRetirarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
     );
-    jPanel2Layout.setVerticalGroup(
-      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel2Layout.createSequentialGroup()
+    btnRetirarPanelLayout.setVerticalGroup(
+      btnRetirarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(btnRetirarPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+        .addComponent(btnRetirarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    btnValidarRetiroLabel.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
+    btnValidarRetiroLabel.setForeground(new java.awt.Color(255, 255, 255));
+    btnValidarRetiroLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    btnValidarRetiroLabel.setText("Validar");
+    btnValidarRetiroLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnValidarRetiroLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnValidarRetiroLabelMouseClicked(evt);
+      }
+    });
+
+    javax.swing.GroupLayout btnValidarRetiroPanelLayout = new javax.swing.GroupLayout(btnValidarRetiroPanel);
+    btnValidarRetiroPanel.setLayout(btnValidarRetiroPanelLayout);
+    btnValidarRetiroPanelLayout.setHorizontalGroup(
+      btnValidarRetiroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(btnValidarRetiroLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+    );
+    btnValidarRetiroPanelLayout.setVerticalGroup(
+      btnValidarRetiroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnValidarRetiroPanelLayout.createSequentialGroup()
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(btnValidarRetiroLabel)
         .addContainerGap())
     );
 
@@ -95,28 +150,35 @@ public class Retirar extends javax.swing.JPanel {
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(182, 182, 182)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-              .addComponent(jLabel6)
-              .addComponent(jSeparator3)
-              .addComponent(jLabel5)
-              .addComponent(jLabel4)
-              .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addComponent(jLabel2)
-              .addComponent(jTextField1)
-              .addComponent(jSeparator1)
-              .addComponent(jSeparator2)
-              .addComponent(jTextField2)
-              .addComponent(jTextField3)
-              .addComponent(jSeparator4)
-              .addComponent(jTextField4)
-              .addComponent(jSeparator5)))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(txtMontoRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jLabel6)
+                .addComponent(jSeparator3)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(jLabel3)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                  .addComponent(cbxMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel2)
+                .addComponent(txtNumeroCuenta)
+                .addComponent(jSeparator1)
+                .addComponent(jSeparator2)
+                .addComponent(jSeparator4)
+                .addComponent(jSeparator5)
+                .addComponent(jLabel5)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                      .addComponent(jLabel4)
+                      .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtPinActual))
+                  .addGap(18, 18, 18)
+                  .addComponent(btnValidarRetiroPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtPalabraSecreta))))
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(347, 347, 347)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addGap(0, 185, Short.MAX_VALUE))
+            .addGap(353, 353, 353)
+            .addComponent(btnRetirarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(185, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,36 +188,39 @@ public class Retirar extends javax.swing.JPanel {
         .addGap(18, 18, 18)
         .addComponent(jLabel2)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel3)
-          .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jLabel4)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(jLabel3)
+              .addComponent(cbxMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jLabel4)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(txtPinActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(btnValidarRetiroPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jLabel5)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(txtPalabraSecreta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jLabel6)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(txtMontoRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(218, Short.MAX_VALUE))
+        .addGap(18, 18, 18)
+        .addComponent(btnRetirarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(230, Short.MAX_VALUE))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -170,26 +235,46 @@ public class Retirar extends javax.swing.JPanel {
     );
   }// </editor-fold>//GEN-END:initComponents
 
+  private void btnRetirarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRetirarLabelMouseClicked
+    
+    
+  }//GEN-LAST:event_btnRetirarLabelMouseClicked
+
+  private void btnValidarRetiroLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidarRetiroLabelMouseClicked
+    validacionCuenta.validarDatosPrevioRetiro(txtNumeroCuenta.getText(), 
+            txtPinActual.getText());
+    if(validacionCuenta.esValido) {
+      txtNumeroCuenta.setEditable(false);
+      txtPinActual.setEditable(false);
+      btnRetirarLabel.setEnabled(true);
+      control.controlarEnvioSms(txtNumeroCuenta.getText());
+      validacionCuenta.setResultado(control.getMensaje());
+      validacionCuenta.setPalabraSecreta(control.getPalabraSecreta());
+    } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+  }//GEN-LAST:event_btnValidarRetiroLabelMouseClicked
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JComboBox<String> jComboBox1;
+  private javax.swing.JLabel btnRetirarLabel;
+  private javax.swing.JPanel btnRetirarPanel;
+  private javax.swing.JLabel btnValidarRetiroLabel;
+  private javax.swing.JPanel btnValidarRetiroPanel;
+  private javax.swing.JComboBox<String> cbxMoneda;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel5;
   private javax.swing.JLabel jLabel6;
-  private javax.swing.JLabel jLabel7;
   private javax.swing.JPanel jPanel1;
-  private javax.swing.JPanel jPanel2;
   private javax.swing.JSeparator jSeparator1;
   private javax.swing.JSeparator jSeparator2;
   private javax.swing.JSeparator jSeparator3;
   private javax.swing.JSeparator jSeparator4;
   private javax.swing.JSeparator jSeparator5;
-  private javax.swing.JTextField jTextField1;
-  private javax.swing.JTextField jTextField2;
-  private javax.swing.JTextField jTextField3;
-  private javax.swing.JTextField jTextField4;
+  private javax.swing.JTextField txtMontoRetiro;
+  private javax.swing.JTextField txtNumeroCuenta;
+  private javax.swing.JTextField txtPalabraSecreta;
+  private javax.swing.JTextField txtPinActual;
   // End of variables declaration//GEN-END:variables
 }

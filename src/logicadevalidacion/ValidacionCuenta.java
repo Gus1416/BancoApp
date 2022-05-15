@@ -16,6 +16,7 @@ import logicadenegocios.Cuenta;
  */
 public class ValidacionCuenta extends Validacion {
   public CuentaCRUD cuentaCRUD;
+  public String palabraSecreta;
 
   public ValidacionCuenta() {
     cuentaCRUD = new CuentaCRUD ();
@@ -40,6 +41,19 @@ public class ValidacionCuenta extends Validacion {
   public void validarDatosDeposito (String pNumCuenta, String pNum) {
     validarNumeroCuenta (pNumCuenta);
     validarNumeroEntero (pNum);
+  }
+  
+  public void validarDatosPrevioRetiro (String pNumCuenta, String pPin) {
+    validarNumeroCuenta (pNumCuenta);
+    validarPinCuenta (pPin);
+    if(esValido) {
+      validarPinIngresadoPinActual (pPin,pNumCuenta);
+    }
+  }
+  
+  public void validarDatosRetiro (String pSecreta, String pRetiro) {
+    validarPalabraSecreta (pSecreta);
+    validarNumeroEntero (pRetiro);
   }
   
   public void validarPinIngresadoPinActual (String pPinActual, String pNumCuenta) {
@@ -70,6 +84,13 @@ public class ValidacionCuenta extends Validacion {
     }
   }
   
+  public void validarPalabraSecreta (String pSecreta) {
+    if(!(palabraSecreta.equals(pSecreta))) {
+      esValido = false;
+      resultado += "Debe ingresar la palabra secreta correspondiente \n";
+    }
+  }
+  
   public void validarNumeroEntero (String pNum) {
     if(!esEntero (pNum)) {
       esValido = false;
@@ -91,6 +112,10 @@ public class ValidacionCuenta extends Validacion {
     } catch (NumberFormatException nfe){
       return false;
     }
+  }
+
+  public void setPalabraSecreta(String palabraSecreta) {
+    this.palabraSecreta = palabraSecreta;
   }
   
 }
