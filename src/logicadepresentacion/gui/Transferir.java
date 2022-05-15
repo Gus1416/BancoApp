@@ -26,29 +26,29 @@ public class Transferir extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    jPanel1 = new javax.swing.JPanel();
+    btnValidarPanel = new javax.swing.JPanel();
     jLabel1 = new javax.swing.JLabel();
     jLabel2 = new javax.swing.JLabel();
-    jTextField1 = new javax.swing.JTextField();
+    txtNumeroCuenta = new javax.swing.JTextField();
     jSeparator1 = new javax.swing.JSeparator();
     jLabel3 = new javax.swing.JLabel();
-    jTextField2 = new javax.swing.JTextField();
+    txtPinActual = new javax.swing.JTextField();
     jSeparator2 = new javax.swing.JSeparator();
     jPanel2 = new javax.swing.JPanel();
-    jLabel4 = new javax.swing.JLabel();
+    btnValidarLabel = new javax.swing.JLabel();
     jLabel5 = new javax.swing.JLabel();
-    jTextField3 = new javax.swing.JTextField();
+    txtPalabraSecreta = new javax.swing.JTextField();
     jSeparator3 = new javax.swing.JSeparator();
     jLabel6 = new javax.swing.JLabel();
-    jTextField4 = new javax.swing.JTextField();
+    txtMontoTrans = new javax.swing.JTextField();
     jSeparator4 = new javax.swing.JSeparator();
     jLabel7 = new javax.swing.JLabel();
-    jTextField5 = new javax.swing.JTextField();
+    txtNumeroCuentaTrans = new javax.swing.JTextField();
     jSeparator5 = new javax.swing.JSeparator();
-    jPanel3 = new javax.swing.JPanel();
-    jLabel8 = new javax.swing.JLabel();
+    btnTransferirPanel = new javax.swing.JPanel();
+    btnTransferirLabel = new javax.swing.JLabel();
 
-    jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+    btnValidarPanel.setBackground(new java.awt.Color(255, 255, 255));
 
     jLabel1.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
     jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -57,160 +57,195 @@ public class Transferir extends javax.swing.JPanel {
 
     jLabel2.setText("Ingrese su número de cuenta:");
 
+    txtNumeroCuenta.setBackground(new java.awt.Color(255, 255, 255));
+    txtNumeroCuenta.setBorder(null);
+
     jLabel3.setText("Ingrese el PIN de su cuenta:");
 
-    jLabel4.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-    jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel4.setText("Validar");
-    jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    txtPinActual.setBackground(new java.awt.Color(255, 255, 255));
+    txtPinActual.setForeground(new java.awt.Color(255, 255, 255));
+    txtPinActual.setBorder(null);
+
+    btnValidarLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+    btnValidarLabel.setForeground(new java.awt.Color(255, 255, 255));
+    btnValidarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    btnValidarLabel.setText("Validar");
+    btnValidarLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnValidarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnValidarLabelMouseClicked(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+      .addComponent(btnValidarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
     );
     jPanel2Layout.setVerticalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(btnValidarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
 
     jLabel5.setText("Ingrese la palabra que recibió por mensaje de texto: ");
 
+    txtPalabraSecreta.setBackground(new java.awt.Color(255, 255, 255));
+    txtPalabraSecreta.setBorder(null);
+
     jLabel6.setText("Ingrese el monto a transferir: ");
+
+    txtMontoTrans.setBackground(new java.awt.Color(255, 255, 255));
+    txtMontoTrans.setBorder(null);
 
     jLabel7.setText("Ingrese el número de cuenta a transferir:");
 
-    jLabel8.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-    jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel8.setText("Transferir");
-    jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    txtNumeroCuentaTrans.setBackground(new java.awt.Color(255, 255, 255));
+    txtNumeroCuentaTrans.setBorder(null);
 
-    javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-    jPanel3.setLayout(jPanel3Layout);
-    jPanel3Layout.setHorizontalGroup(
-      jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+    btnTransferirLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+    btnTransferirLabel.setForeground(new java.awt.Color(255, 255, 255));
+    btnTransferirLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    btnTransferirLabel.setText("Transferir");
+    btnTransferirLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnTransferirLabel.setEnabled(false);
+    btnTransferirLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnTransferirLabelMouseClicked(evt);
+      }
+    });
+
+    javax.swing.GroupLayout btnTransferirPanelLayout = new javax.swing.GroupLayout(btnTransferirPanel);
+    btnTransferirPanel.setLayout(btnTransferirPanelLayout);
+    btnTransferirPanelLayout.setHorizontalGroup(
+      btnTransferirPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(btnTransferirLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
     );
-    jPanel3Layout.setVerticalGroup(
-      jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel3Layout.createSequentialGroup()
+    btnTransferirPanelLayout.setVerticalGroup(
+      btnTransferirPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(btnTransferirPanelLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jLabel8)
+        .addComponent(btnTransferirLabel)
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-    jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    javax.swing.GroupLayout btnValidarPanelLayout = new javax.swing.GroupLayout(btnValidarPanel);
+    btnValidarPanel.setLayout(btnValidarPanelLayout);
+    btnValidarPanelLayout.setHorizontalGroup(
+      btnValidarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-      .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(jPanel1Layout.createSequentialGroup()
+      .addGroup(btnValidarPanelLayout.createSequentialGroup()
+        .addGroup(btnValidarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(btnValidarPanelLayout.createSequentialGroup()
             .addGap(168, 168, 168)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(btnValidarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
               .addComponent(jLabel7)
               .addComponent(jLabel6)
               .addComponent(jLabel5)
               .addComponent(jLabel3)
               .addComponent(jLabel2)
-              .addComponent(jTextField1)
+              .addComponent(txtNumeroCuenta)
               .addComponent(jSeparator1)
               .addComponent(jSeparator2)
-              .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGroup(btnValidarPanelLayout.createSequentialGroup()
+                .addComponent(txtPinActual, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-              .addComponent(jTextField3)
+              .addComponent(txtPalabraSecreta)
               .addComponent(jSeparator3)
-              .addComponent(jTextField4)
+              .addComponent(txtMontoTrans)
               .addComponent(jSeparator4)
-              .addComponent(jTextField5)
+              .addComponent(txtNumeroCuentaTrans)
               .addComponent(jSeparator5)))
-          .addGroup(jPanel1Layout.createSequentialGroup()
+          .addGroup(btnValidarPanelLayout.createSequentialGroup()
             .addGap(354, 354, 354)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(btnTransferirPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap(196, Short.MAX_VALUE))
     );
-    jPanel1Layout.setVerticalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel1Layout.createSequentialGroup()
+    btnValidarPanelLayout.setVerticalGroup(
+      btnValidarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(btnValidarPanelLayout.createSequentialGroup()
         .addGap(61, 61, 61)
         .addComponent(jLabel1)
         .addGap(27, 27, 27)
         .addComponent(jLabel2)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jLabel3)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        .addGroup(btnValidarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
           .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(jTextField2))
+          .addComponent(txtPinActual))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jLabel5)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(txtPalabraSecreta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jLabel6)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(txtMontoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jLabel7)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(txtNumeroCuentaTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(240, Short.MAX_VALUE))
+        .addComponent(btnTransferirPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(268, Short.MAX_VALUE))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(btnValidarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(btnValidarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
   }// </editor-fold>//GEN-END:initComponents
 
+  private void btnValidarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidarLabelMouseClicked
+    // TODO add your handling code here:
+  }//GEN-LAST:event_btnValidarLabelMouseClicked
+
+  private void btnTransferirLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTransferirLabelMouseClicked
+    // TODO add your handling code here:
+  }//GEN-LAST:event_btnTransferirLabelMouseClicked
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JLabel btnTransferirLabel;
+  private javax.swing.JPanel btnTransferirPanel;
+  private javax.swing.JLabel btnValidarLabel;
+  private javax.swing.JPanel btnValidarPanel;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
-  private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel5;
   private javax.swing.JLabel jLabel6;
   private javax.swing.JLabel jLabel7;
-  private javax.swing.JLabel jLabel8;
-  private javax.swing.JPanel jPanel1;
   private javax.swing.JPanel jPanel2;
-  private javax.swing.JPanel jPanel3;
   private javax.swing.JSeparator jSeparator1;
   private javax.swing.JSeparator jSeparator2;
   private javax.swing.JSeparator jSeparator3;
   private javax.swing.JSeparator jSeparator4;
   private javax.swing.JSeparator jSeparator5;
-  private javax.swing.JTextField jTextField1;
-  private javax.swing.JTextField jTextField2;
-  private javax.swing.JTextField jTextField3;
-  private javax.swing.JTextField jTextField4;
-  private javax.swing.JTextField jTextField5;
+  private javax.swing.JTextField txtMontoTrans;
+  private javax.swing.JTextField txtNumeroCuenta;
+  private javax.swing.JTextField txtNumeroCuentaTrans;
+  private javax.swing.JTextField txtPalabraSecreta;
+  private javax.swing.JTextField txtPinActual;
   // End of variables declaration//GEN-END:variables
 }
