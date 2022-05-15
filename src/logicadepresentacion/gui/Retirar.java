@@ -4,8 +4,11 @@
  */
 package logicadepresentacion.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logicadeintegracion.gui.ControladorRetirar;
+import logicadevalidacion.FondosInsuficientesExcepcion;
 import logicadevalidacion.ValidacionCuenta;
 
 /**
@@ -236,8 +239,17 @@ public class Retirar extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnRetirarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRetirarLabelMouseClicked
-    
-    
+    validacionCuenta.validarDatosRetiro(txtPalabraSecreta.getText(), 
+            txtMontoRetiro.getText());
+    if(validacionCuenta.esValido) {
+      try {
+        control.controlarRetiro(txtNumeroCuenta.getText(),
+                txtMontoRetiro.getText(), (String) cbxMoneda.getSelectedItem());
+        validacionCuenta.setResultado(control.getMensaje());
+      } catch (FondosInsuficientesExcepcion ex) {
+        validacionCuenta.setResultado(ex.toString());
+      }
+    } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
   }//GEN-LAST:event_btnRetirarLabelMouseClicked
 
   private void btnValidarRetiroLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidarRetiroLabelMouseClicked
