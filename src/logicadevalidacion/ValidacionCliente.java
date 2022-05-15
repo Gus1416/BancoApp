@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  */
 public class ValidacionCliente {
   
-  public boolean validarNumeroTelefonico (String pNum ) {
+  public static boolean validarNumeroTelefonico (String pNum ) {
     Pattern patron = Pattern.compile("^\\d{8}$");
     Matcher compara = patron.matcher(pNum);
     return compara.matches();

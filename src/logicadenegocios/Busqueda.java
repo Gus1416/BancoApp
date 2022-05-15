@@ -26,5 +26,15 @@ public class Busqueda {
 //		}
 //		return pListaClientes.get(0);
 //	}
+	
+	public static Cliente buscarCliente (String pIdentificacion, ArrayList<Cliente> pClientes){
+		Cliente clienteBuscado = null;
+		for (Cliente cliente : pClientes){
+			if (cliente.getIdentificacion().equals(pIdentificacion)){
+				clienteBuscado =  cliente;
+			}
+		}
+		return clienteBuscado;
+	}
 
 }

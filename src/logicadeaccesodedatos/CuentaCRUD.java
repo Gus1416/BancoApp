@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.util.ArrayList;
+import logicadenegocios.Operacion;
 
 /**
  *
@@ -67,11 +68,12 @@ public class CuentaCRUD extends Conexion{
 				double saldo = rs.getDouble("saldo");
 				String estatus = rs.getString("estatus");
 				String pin = rs.getString("pin");
-				
+				ArrayList<Operacion> operaciones = new OperacionCRUD().consultarOperacionesCuenta(numeroCuenta);
 				Cuenta cuenta = new Cuenta(pin, saldo);
 				cuenta.setNumeroCuenta(numeroCuenta);
 				cuenta.setFechaCreacion(fechaCreacion);
 				cuenta.setEstatus(estatus);
+				cuenta.setOperaciones(operaciones);
 				cuentas.add(cuenta);
 			}
 			return cuentas;
@@ -107,10 +109,12 @@ public class CuentaCRUD extends Conexion{
 				double saldo = rs.getDouble("saldo");
 				String estatus = rs.getString("estatus");
 				String pin = rs.getString("pin");
+				ArrayList<Operacion> operaciones = new OperacionCRUD().consultarOperacionesCuenta(numeroCuenta);
 				Cuenta cuenta = new Cuenta(pin, saldo);
 				cuenta.setNumeroCuenta(numeroCuenta);
 				cuenta.setFechaCreacion(fechaCreacion);
 				cuenta.setEstatus(estatus);
+				cuenta.setOperaciones(operaciones);
 				cuentas.add(cuenta);
 			}
 			return cuentas;
@@ -131,6 +135,7 @@ public class CuentaCRUD extends Conexion{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = getConexion();
+		Cuenta cuenta = null;
 
 		String sql = "CALL consultar_cuenta(?)";
 
@@ -139,22 +144,82 @@ public class CuentaCRUD extends Conexion{
 			ps.setString(1, pNumeroCuenta);
 			rs = ps.executeQuery();
 
-			String numeroCuenta = rs.getString("numero_cuenta");
-			java.util.Date fechaCreacion = rs.getDate("fecha_creacion");
-			double saldo = rs.getDouble("saldo");
-			String estatus = rs.getString("estatus");
-			String pin = rs.getString("pin");
-			
-			Cuenta cuenta = new Cuenta(pin, saldo);
-			cuenta.setNumeroCuenta(numeroCuenta);
-			cuenta.setFechaCreacion(fechaCreacion);
-			cuenta.setEstatus(estatus);
+			if (rs.next()){				
+				String numeroCuenta = rs.getString("numero_cuenta");
+				java.util.Date fechaCreacion = rs.getDate("fecha_creacion");
+				double saldo = rs.getDouble("saldo");
+				String estatus = rs.getString("estatus");
+				String pin = rs.getString("pin");
+				ArrayList<Operacion> operaciones = new OperacionCRUD().consultarOperacionesCuenta(pNumeroCuenta);
+				cuenta = new Cuenta(pin, saldo);
+				cuenta.setNumeroCuenta(numeroCuenta);
+				cuenta.setFechaCreacion(fechaCreacion);
+				cuenta.setEstatus(estatus);
+				cuenta.setOperaciones(operaciones);
+			}
 			
 			return cuenta;
 
 		} catch (SQLException e) {
 			System.err.println(e);
 			return null;
+		}
+	}
+
+	public boolean cambiarPin(Cuenta pCuenta) {
+		PreparedStatement ps = null;
+		Connection con = getConexion();
+
+		String sql = "UPDATE cuenta SET pin = ? WHERE numero_cuenta = ?";
+
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, pCuenta.getPin());
+			ps.setString(2, pCuenta.getNumeroCuenta());
+			ps.execute();
+			return true;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return false;
+		}
+	}
+	
+	public boolean cambiarEstatus(Cuenta pCuenta) {
+		PreparedStatement ps = null;
+		Connection con = getConexion();
+
+		String sql = "UPDATE cuenta SET estatus = ? WHERE numero_cuenta = ?";
+
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, pCuenta.getEstatus());
+			ps.setString(2, pCuenta.getNumeroCuenta());
+			ps.execute();
+			return true;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return false;
+		}
+	}
+	
+	public boolean actualizarSaldo(Cuenta pCuenta) {
+		PreparedStatement ps = null;
+		Connection con = getConexion();
+
+		String sql = "UPDATE cuenta SET saldo = ? WHERE numero_cuenta = ?";
+
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setDouble(1, pCuenta.getSaldo());
+			ps.setString(2, pCuenta.getNumeroCuenta());
+			ps.execute();
+			return true;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return false;
 		}
 	}
 }

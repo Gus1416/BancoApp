@@ -44,11 +44,11 @@ public class Operacion {
 
 	@Override
 	public String toString() {
-		String mensaje = "Fecha de operacion: " + getFechaOperacion()
-						+ "Tipo de operacion: " + tipoOperacion + "Cobro comision: "
-						+ isSeCobraComision() + "Monto de operacion: " + getMontoOperacion()
-						+ "Monto de comision" + montoComision + "Moneda: " + getMoneda()
-						+ "Porcentaje de comision" + porcentajeComision;
+		String mensaje = "Fecha de operacion: " + getFechaOperacion() +"\n"
+						+ "Tipo de operacion: " + tipoOperacion +"\n"+ "Cobro comision: "
+						+ isSeCobraComision() +"\n"+ "Monto de operacion: " + getMontoOperacion()+"\n"
+						+ "Monto de comision" + getMontoComision() +"\n"+ "Moneda: " + getMoneda()+"\n"
+						+ "Porcentaje de comision" + porcentajeComision+"\n";
 		return mensaje;
 	}
 

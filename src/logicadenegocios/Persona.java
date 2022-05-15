@@ -16,6 +16,8 @@ public class Persona implements Comparable {
 	private String identificacion;
 	private Date fechaNacimiento;
 	private ArrayList<Cuenta> cuentas;
+	
+	public Persona(){}
 
 	public Persona(String pIdentificacion, String pPrimerApellido, String pSegundoApellido, String pNombre,  Date pFechaNacimiento) {
 		primerApellido = pPrimerApellido;
@@ -43,11 +45,22 @@ public class Persona implements Comparable {
 
 	@Override
 	public String toString() {
-		String mensaje;
-		mensaje = "Primer apellido: " + getPrimerApellido() + "\nSegundo apellido: "
-						+ getSegundoApellido() + "Nombre: " + getNombre() + "Identificacion: "
-						+ getIdentificacion() + "Fecha de nacimiento: " + getFechaNacimiento();
+		String mensaje = "";
+		
+		mensaje += "Primer apellido: " + getPrimerApellido() + "\n";
+		mensaje += "Segundo apellido: " + getSegundoApellido() + "\n";
+		mensaje += "Nombre: " + getNombre() + "\n";
+		mensaje += "Identificación: " + getIdentificacion() + "\n";
+		mensaje += "Fecha de nacimiento: " + getFechaNacimiento() + "\n";
 		return mensaje;
+	}
+
+	public String mostrarNumerosCuentaCliente() {
+		String numerosCuenta = "";
+		for (Cuenta cuenta : this.cuentas) {
+			numerosCuenta += cuenta.getNumeroCuenta() + "\n";
+		}
+		return numerosCuenta;
 	}
 
 	/**
@@ -83,6 +96,13 @@ public class Persona implements Comparable {
 	 */
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
+	}
+
+	/**
+	 * @param cuentas the cuentas to set
+	 */
+	public void setCuentas(ArrayList<Cuenta> cuentas) {
+		this.cuentas = cuentas;
 	}
 
 	/**

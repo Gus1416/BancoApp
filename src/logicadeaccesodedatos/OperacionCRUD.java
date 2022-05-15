@@ -25,7 +25,7 @@ public class OperacionCRUD extends Conexion{
 		PreparedStatement ps = null;
 		Connection con = getConexion();
 
-		String sql = "registrar_operacion(?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "CALL registrar_operacion(?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			ps = con.prepareStatement(sql);
@@ -66,6 +66,7 @@ public class OperacionCRUD extends Conexion{
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
+				System.out.println("Entra operaciones");
 				int idOperacion = rs.getInt("id_operacion");
 				java.util.Date fechaOperacion = rs.getDate("fecha_operacion");
 				String tipoOperacion = rs.getString("tipo_operacion");

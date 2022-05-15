@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 public class ValidacionCuenta {
   
   
-  public boolean validarPIN (String pPIN ) {
+  public static boolean validarPIN (String pPIN ) {
     Pattern patron = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
                        + "(?=.*[@#$%^&-+=])(?=\\S+$).{6,6}$");
     Matcher compara = patron.matcher(pPIN);

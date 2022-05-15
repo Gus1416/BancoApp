@@ -14,16 +14,20 @@ public class Cuenta implements IComisiones, Comparable {
 	private String numeroCuenta;
 	private Date fechaCreacion;
 	private double saldo;
-	private String estatus = "activa";
+	private String estatus;
 	private String pin;
 	private ArrayList<Operacion> operaciones;
-	private int cantidadDepositosOperaciones = 0;
-	
-	public Cuenta(){}
+	private static int cantidadDepositosOperaciones = 0;
+	private static int identificadorCuenta = 0;  ////
+
+	public Cuenta() {
+	}
 
 	public Cuenta(String pPin, double pMontoInicial) {
 		pin = pPin;
 		saldo = pMontoInicial;
+		estatus = "activa";   ////
+		numeroCuenta = "CTA_" + ++identificadorCuenta;  ///
 		fechaCreacion = obtenerFechaSistema();
 		operaciones = new ArrayList<>();
 	}
@@ -93,6 +97,7 @@ public class Cuenta implements IComisiones, Comparable {
 		if (validarRetiro(montoTotalRetiro)){
 			this.saldo -= montoTotalRetiro;
 			registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Dólares");
+			
 		} else {
 			double saldoFaltante = montoTotalRetiro - this.getSaldo();
 			throw new FondosInsuficientesExcepcion(saldoFaltante);
@@ -102,6 +107,12 @@ public class Cuenta implements IComisiones, Comparable {
 	public void recibirTransferencia(double pMontoRecibido){
 		this.saldo += pMontoRecibido;
 		registrarOperacion("Transferencia", pMontoRecibido, false, 0.00, "Colones");
+	}
+	
+	public double consultarSaldoActual(){
+		double saldoActual = getSaldo();
+		registrarOperacion();
+		return saldoActual;
 	}
 	
 	private boolean validarRetiro(double pMontoTotalRetiro) {
@@ -114,13 +125,13 @@ public class Cuenta implements IComisiones, Comparable {
 	
 	private void registrarOperacion(String pTipoOperacion, double pMontoOperacion, boolean pSeCobraComision, double pMontoComision, String pMoneda) {
 		Operacion operacion = new Operacion(obtenerFechaSistema(), pTipoOperacion, pMontoOperacion, pSeCobraComision, pMontoComision, pMoneda);
-		operaciones.add(operacion);
+		getOperaciones().add(operacion);
 		this.cantidadDepositosOperaciones++;
 	}
 	
-	private void registraOperacion(){
-		Operacion operacion = new Operacion( obtenerFechaSistema(), "Consulta", false);
-		operaciones.add(operacion);
+	private void registrarOperacion(){
+		Operacion operacion = new Operacion(obtenerFechaSistema(), "Consulta", false);
+		getOperaciones().add(operacion);
 	}
 
 	@Override
@@ -148,7 +159,7 @@ public class Cuenta implements IComisiones, Comparable {
 	public double calcularTotalComisiones() {
 		double totalComisiones = 0.0;
 
-		for (Operacion operacion : this.operaciones) {
+		for (Operacion operacion : this.getOperaciones()) {
 			totalComisiones += operacion.getMontoComision();
 		}
 		return totalComisiones;
@@ -156,7 +167,7 @@ public class Cuenta implements IComisiones, Comparable {
 
 	private ArrayList obtenerListaDepositos() {
 		ArrayList depositos = new ArrayList<Operacion>();
-		for (Operacion operacion : this.operaciones) {
+		for (Operacion operacion : this.getOperaciones()) {
 			if (operacion.getTipoOperacion().equals("Depósito")) {
 				depositos.add(operacion);
 			}
@@ -166,8 +177,8 @@ public class Cuenta implements IComisiones, Comparable {
 
 	private ArrayList obtenerListaRetiros() {
 		ArrayList retiros = new ArrayList<Operacion>();
-		for (Operacion operacion : this.operaciones) {
-			if (operacion.getTipoOperacion().equals("Retiros")) {
+		for (Operacion operacion : this.getOperaciones()) {
+			if (operacion.getTipoOperacion().equals("Retiro")) {
 				retiros.add(operacion);
 			}
 		}
@@ -176,8 +187,8 @@ public class Cuenta implements IComisiones, Comparable {
 	
 	public String consultarDetallesOperaciones() {
 		String mensaje = "Operaciones: \n";
-		for (Operacion elemento : operaciones) {
-			mensaje += operaciones.toString();
+		for (Operacion elemento : getOperaciones()) {
+			mensaje += elemento.toString() + "\n";
 		}
 		return mensaje;
 	}
@@ -187,12 +198,20 @@ public class Cuenta implements IComisiones, Comparable {
 		return mensaje;
 	}
 	
+	public String consultarEstadoCuenta(){
+		String estadoCuenta = "";
+		estadoCuenta += this.toString() + "\n";
+		estadoCuenta += this.consultarDetallesOperaciones() + "\n";
+		return estadoCuenta;
+	}
+	
 	public void inactivarCuenta() {
 		this.setEstatus("inactiva");
 	}
 
 	public void cambiarPin(String pNuevoPin) {
 		this.pin = pNuevoPin;
+		registrarOperacion();
 	}
 
 	public boolean verificarPin(String pPinAntiguo) {
@@ -219,7 +238,7 @@ public class Cuenta implements IComisiones, Comparable {
 
 	@Override
 	public String toString() {
-		return "Cuenta{" + "numeroCuenta=" + getNumeroCuenta() + ", fechaCreacion=" + getFechaCreacion() + ", saldo=" + getSaldo() + ", estatus=" + getEstatus() + ", pin=" + getPin() + ", operaciones=" + operaciones + '}';
+		return "Cuenta{" + "numeroCuenta=" + getNumeroCuenta() + ", fechaCreacion=" + getFechaCreacion() + ", saldo=" + getSaldo() + ", estatus=" + getEstatus() + ", pin=" + getPin() + '}';
 	}
 
 	/**
@@ -262,5 +281,19 @@ public class Cuenta implements IComisiones, Comparable {
 	 */
 	public void setEstatus(String estatus) {
 		this.estatus = estatus;
+	}
+
+	/**
+	 * @param operaciones the operaciones to set
+	 */
+	public void setOperaciones(ArrayList<Operacion> operaciones) {
+		this.operaciones = operaciones;
+	}
+
+	/**
+	 * @return the operaciones
+	 */
+	public ArrayList<Operacion> getOperaciones() {
+		return operaciones;
 	}
 }

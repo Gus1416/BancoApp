@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import logicadenegocios.Cliente;
+import logicadenegocios.Cuenta;
 
 /**
  * 
@@ -60,9 +61,13 @@ public class ClienteCRUD extends Conexion{
 				java.util.Date fechaNacimiento = rs.getDate("fecha_nacimiento");
 				String telefono = rs.getString("numero_telefono");
 				String correo = rs.getString("correo_electronico");
+				ArrayList<Cuenta> cuentas = new CuentaCRUD().consultarCuentasCliente(identificacion);
+				
 				
 				Cliente cliente = new Cliente(identificacion, primerApellido, segundoApellido, nombre, fechaNacimiento, telefono, correo);
 				cliente.setCodigoCliente(codigoCliente);	
+				cliente.setCuentas(cuentas);
+				
 				clientes.add(cliente);
 			}
 			return clientes;
@@ -77,24 +82,77 @@ public class ClienteCRUD extends Conexion{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = getConexion();
+		Cliente cliente = null;
 
 		String sql = "CALL consultar_cliente(?)";
 
 		try {
+
 			ps = con.prepareStatement(sql);
 			ps.setString(1, pIdentificacion);
 			rs = ps.executeQuery();
 
-			String codigoCliente = rs.getString("codigo_cliente");
-			String identificacion = rs.getString("identificacion");
-			String primerApellido = rs.getString("primer_apellido");
-			String segundoApellido = rs.getString("segundo_apellido");
-			String nombre = rs.getString("nombre");
-			java.util.Date fechaNacimiento = rs.getDate("fecha_nacimiento");
-			String telefono = rs.getString("numero_telefono");
-			String correo = rs.getString("correo_electronico");
+			if (rs.next()) {
 
-			return new Cliente(identificacion, primerApellido, segundoApellido, nombre, fechaNacimiento, telefono, correo);
+				String codigoCliente = rs.getString("codigo_cliente");
+				String identificacion = rs.getString("identificacion");
+				String primerApellido = rs.getString("primer_apellido");
+				String segundoApellido = rs.getString("segundo_apellido");
+				String nombre = rs.getString("nombre");
+				java.util.Date fechaNacimiento = rs.getDate("fecha_nacimiento");
+				String telefono = rs.getString("numero_telefono");
+				String correo = rs.getString("correo_electronico");
+
+				ArrayList<Cuenta> cuentas = new CuentaCRUD().consultarCuentasCliente(pIdentificacion);
+
+				cliente = new Cliente(identificacion, primerApellido, segundoApellido, nombre, fechaNacimiento, telefono, correo);
+				cliente.setCodigoCliente(codigoCliente);
+				cliente.setCuentas(cuentas);
+				
+			}
+
+			return cliente;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return null;
+		}
+	}
+
+	public Cliente consultarPropietarioCuenta (String pNumeroCuenta){
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConexion();
+		Cliente cliente = null;
+
+		String sql = "CALL consultar_propietario_cuenta(?)";
+
+		try {
+
+			ps = con.prepareStatement(sql);
+			ps.setString(1, pNumeroCuenta);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				String codigoCliente = rs.getString("codigo_cliente");
+				String identificacion = rs.getString("identificacion");
+				String primerApellido = rs.getString("primer_apellido");
+				String segundoApellido = rs.getString("segundo_apellido");
+				String nombre = rs.getString("nombre");
+				java.util.Date fechaNacimiento = rs.getDate("fecha_nacimiento");
+				String telefono = rs.getString("numero_telefono");
+				String correo = rs.getString("correo_electronico");
+
+				ArrayList<Cuenta> cuentas = new CuentaCRUD().consultarCuentasCliente(pNumeroCuenta);
+
+				cliente = new Cliente(identificacion, primerApellido, segundoApellido, nombre, fechaNacimiento, telefono, correo);
+				cliente.setCodigoCliente(codigoCliente);
+				cliente.setCuentas(cuentas);
+
+			}
+
+			return cliente;
 
 		} catch (SQLException e) {
 			System.err.println(e);
