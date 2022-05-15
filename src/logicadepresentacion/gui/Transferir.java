@@ -4,17 +4,28 @@
  */
 package logicadepresentacion.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import logicadeintegracion.gui.ControladorRetirar;
+import logicadeintegracion.gui.ControladorTransferencia;
+import logicadevalidacion.FondosInsuficientesExcepcion;
+import logicadevalidacion.ValidacionCuenta;
+
 /**
  *
  * @author Alejandra Merino
  */
 public class Transferir extends javax.swing.JPanel {
-
+  private ValidacionCuenta validacionCuenta;
+  private ControladorTransferencia control;
   /**
    * Creates new form Transferir
    */
   public Transferir() {
     initComponents();
+    validacionCuenta = new ValidacionCuenta ();
+    control = new ControladorTransferencia ();
   }
 
   /**
@@ -217,11 +228,30 @@ public class Transferir extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnValidarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidarLabelMouseClicked
-    // TODO add your handling code here:
+    validacionCuenta.validarDatosPrevioRetiro(txtNumeroCuenta.getText(), 
+            txtPinActual.getText());
+    if(validacionCuenta.esValido) {
+      txtNumeroCuenta.setEditable(false);
+      txtPinActual.setEditable(false);
+      btnTransferirLabel.setEnabled(true);
+      control.controlarEnvioSms(txtNumeroCuenta.getText());
+      validacionCuenta.setResultado(control.getMensaje());
+      validacionCuenta.setPalabraSecreta(control.getPalabraSecreta());
+    } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
   }//GEN-LAST:event_btnValidarLabelMouseClicked
 
   private void btnTransferirLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTransferirLabelMouseClicked
-    // TODO add your handling code here:
+    validacionCuenta.validarDatosTransferencia(txtPalabraSecreta.getText(),
+            txtMontoTrans.getText() , txtNumeroCuentaTrans.getText());
+    if(validacionCuenta.esValido) {
+      try { 
+        control.controlarTransferencia(txtNumeroCuenta.getText(),
+                txtMontoTrans.getText(), txtNumeroCuentaTrans.getText());
+        validacionCuenta.setResultado(control.getMensaje());
+      } catch (FondosInsuficientesExcepcion ex) {
+        validacionCuenta.setResultado(ex.toString());
+      }
+    } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
   }//GEN-LAST:event_btnTransferirLabelMouseClicked
 
 

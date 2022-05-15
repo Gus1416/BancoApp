@@ -56,6 +56,13 @@ public class ValidacionCuenta extends Validacion {
     validarNumeroEntero (pRetiro);
   }
   
+  public void validarDatosTransferencia (String pSecreta, String pRetiro, 
+          String pNumCuenta) {
+    validarPalabraSecreta (pSecreta);
+    validarNumeroEntero (pRetiro);
+    validarNumeroCuenta (pNumCuenta);
+  }
+  
   public void validarPinIngresadoPinActual (String pPinActual, String pNumCuenta) {
     Cuenta cuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
     if (!(cuenta.getPin().equals(pPinActual))) {
