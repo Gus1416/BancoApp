@@ -69,12 +69,13 @@ public class Transferir extends javax.swing.JPanel {
     jLabel2.setText("Ingrese su número de cuenta:");
 
     txtNumeroCuenta.setBackground(new java.awt.Color(255, 255, 255));
+    txtNumeroCuenta.setForeground(new java.awt.Color(102, 102, 102));
     txtNumeroCuenta.setBorder(null);
 
     jLabel3.setText("Ingrese el PIN de su cuenta:");
 
     txtPinActual.setBackground(new java.awt.Color(255, 255, 255));
-    txtPinActual.setForeground(new java.awt.Color(255, 255, 255));
+    txtPinActual.setForeground(new java.awt.Color(102, 102, 102));
     txtPinActual.setBorder(null);
 
     btnValidarLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N

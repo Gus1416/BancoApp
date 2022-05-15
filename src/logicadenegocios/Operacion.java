@@ -1,6 +1,7 @@
 package logicadenegocios;
 
 import java.util.Date;
+import serviciosexternos.TipoCambio;
 
 /**
  *
@@ -61,6 +62,16 @@ public class Operacion {
 						+ "Tipo de operacion: " + tipoOperacion + "Cobro comision: "
 						+ isSeCobraComision() + "Monto de operacion: " + getMontoOperacion()
 						+ "Monto de comision" + montoComision + "Moneda: " + getMoneda()
+						+ "Porcentaje de comision" + porcentajeComision;
+		return mensaje;
+	}
+        
+        public String toStringDolar() {
+                TipoCambio tc = new TipoCambio();
+		String mensaje = "Fecha de operacion: " + getFechaOperacion()
+						+ "Tipo de operacion: " + tipoOperacion + "Cobro comision: "
+						+ isSeCobraComision() + "Monto de operacion: " + tc.convertirADolares(getMontoOperacion())
+						+ "Monto de comision" + tc.convertirADolares(montoComision) + "Moneda: " + getMoneda()
 						+ "Porcentaje de comision" + porcentajeComision;
 		return mensaje;
 	}

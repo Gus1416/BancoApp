@@ -4,17 +4,24 @@
  */
 package logicadepresentacion.gui;
 
+import javax.swing.JOptionPane;
+import logicadeintegracion.gui.ControladorEstadoCuenta;
+import logicadevalidacion.ValidacionCuenta;
+
 /**
  *
  * @author Alejandra Merino
  */
 public class EstadoCuenta extends javax.swing.JPanel {
-
+  private ValidacionCuenta validacionCuenta;
+  private ControladorEstadoCuenta control;
   /**
    * Creates new form EstadoCuenta
    */
   public EstadoCuenta() {
     initComponents();
+    validacionCuenta = new ValidacionCuenta ();
+    control = new ControladorEstadoCuenta ();
   }
 
   /**
@@ -26,19 +33,153 @@ public class EstadoCuenta extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-    this.setLayout(layout);
-    layout.setHorizontalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 400, Short.MAX_VALUE)
+    jPanel1 = new javax.swing.JPanel();
+    jLabel1 = new javax.swing.JLabel();
+    jLabel2 = new javax.swing.JLabel();
+    txtNumCuenta = new javax.swing.JTextField();
+    jSeparator1 = new javax.swing.JSeparator();
+    jLabel3 = new javax.swing.JLabel();
+    txtPinActual = new javax.swing.JTextField();
+    jSeparator2 = new javax.swing.JSeparator();
+    btnConsultarEstadoCuentaPanel = new javax.swing.JPanel();
+    btnConsultarEstadoCuentaLabel = new javax.swing.JLabel();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    txtDetalleEstadoCuenta = new javax.swing.JTextArea();
+    jLabel5 = new javax.swing.JLabel();
+
+    setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+    jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+    jLabel1.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
+    jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel1.setText("Consulte el estado de su cuenta");
+
+    jLabel2.setText("Ingrese su número de cuenta:");
+
+    txtNumCuenta.setBackground(new java.awt.Color(255, 255, 255));
+    txtNumCuenta.setBorder(null);
+
+    jLabel3.setText("Ingrese el PIN de su cuenta:");
+
+    txtPinActual.setBackground(new java.awt.Color(255, 255, 255));
+    txtPinActual.setForeground(new java.awt.Color(102, 102, 102));
+    txtPinActual.setBorder(null);
+
+    btnConsultarEstadoCuentaLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+    btnConsultarEstadoCuentaLabel.setForeground(new java.awt.Color(255, 255, 255));
+    btnConsultarEstadoCuentaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    btnConsultarEstadoCuentaLabel.setText("Consultar");
+    btnConsultarEstadoCuentaLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnConsultarEstadoCuentaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnConsultarEstadoCuentaLabelMouseClicked(evt);
+      }
+    });
+
+    javax.swing.GroupLayout btnConsultarEstadoCuentaPanelLayout = new javax.swing.GroupLayout(btnConsultarEstadoCuentaPanel);
+    btnConsultarEstadoCuentaPanel.setLayout(btnConsultarEstadoCuentaPanelLayout);
+    btnConsultarEstadoCuentaPanelLayout.setHorizontalGroup(
+      btnConsultarEstadoCuentaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(btnConsultarEstadoCuentaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
     );
-    layout.setVerticalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 300, Short.MAX_VALUE)
+    btnConsultarEstadoCuentaPanelLayout.setVerticalGroup(
+      btnConsultarEstadoCuentaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(btnConsultarEstadoCuentaPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(btnConsultarEstadoCuentaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+        .addContainerGap())
     );
+
+    txtDetalleEstadoCuenta.setBackground(new java.awt.Color(255, 255, 255));
+    txtDetalleEstadoCuenta.setColumns(20);
+    txtDetalleEstadoCuenta.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+    txtDetalleEstadoCuenta.setForeground(new java.awt.Color(102, 102, 102));
+    txtDetalleEstadoCuenta.setRows(5);
+    jScrollPane1.setViewportView(txtDetalleEstadoCuenta);
+
+    jLabel5.setText("Detalle dle estado de cuenta:");
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(0, 132, Short.MAX_VALUE))
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(176, 176, 176)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(jSeparator2)
+              .addComponent(jLabel2)
+              .addComponent(jSeparator1)
+              .addComponent(txtNumCuenta)
+              .addComponent(jLabel3)
+              .addComponent(txtPinActual)
+              .addComponent(jLabel5)
+              .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(380, 380, 380)
+            .addComponent(btnConsultarEstadoCuentaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    jPanel1Layout.setVerticalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGap(58, 58, 58)
+        .addComponent(jLabel1)
+        .addGap(40, 40, 40)
+        .addComponent(jLabel2)
+        .addGap(18, 18, 18)
+        .addComponent(txtNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addComponent(jLabel3)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(txtPinActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addComponent(jLabel5)
+        .addGap(18, 18, 18)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(30, 30, 30)
+        .addComponent(btnConsultarEstadoCuentaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(54, Short.MAX_VALUE))
+    );
+
+    add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
   }// </editor-fold>//GEN-END:initComponents
+
+  private void btnConsultarEstadoCuentaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarEstadoCuentaLabelMouseClicked
+    validacionCuenta.validarDatosPrevioRetiro(txtNumCuenta.getText(), 
+            txtPinActual.getText());
+    if (validacionCuenta.esValido()) {
+      control.controlarEstadoCuenta(txtNumCuenta.getText());
+      txtDetalleEstadoCuenta.setText(control.getMensaje());
+    } else {
+      JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+    }
+  }//GEN-LAST:event_btnConsultarEstadoCuentaLabelMouseClicked
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JLabel btnConsultarEstadoCuentaLabel;
+  private javax.swing.JPanel btnConsultarEstadoCuentaPanel;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JLabel jLabel5;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JSeparator jSeparator1;
+  private javax.swing.JSeparator jSeparator2;
+  private javax.swing.JTextArea txtDetalleEstadoCuenta;
+  private javax.swing.JTextField txtNumCuenta;
+  private javax.swing.JTextField txtPinActual;
   // End of variables declaration//GEN-END:variables
 }

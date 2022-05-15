@@ -15,5 +15,15 @@ public class Validacion {
   public void setResultado(String resultado) {
     this.resultado = resultado;
   }
+
+  public String getResultado() {
+    return resultado;
+  }
+
+  public boolean esValido() {
+    return esValido;
+  }
+  
+  
   
 }

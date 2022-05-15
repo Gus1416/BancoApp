@@ -38,19 +38,19 @@ public class ControladorTransferencia {
     double retiro = Double.parseDouble(pTransferencia);
     int numOperaciones = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuentaO);
     cuenta.retirarColones(retiro, numOperaciones);
-    //cuentaCRUD.actualizarSaldo(cuenta);
+    cuentaCRUD.actualizarSaldo(cuenta);
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();
     Operacion operacion = operaciones.get(operaciones.size()-1);
-    //operacionCRUD.registrarOperacion(operacion, pNumCuentaO);
+    operacionCRUD.registrarOperacion(operacion, pNumCuentaO);
     
     Cuenta cuentaDestino = new Cuenta ();
     cuentaDestino = devolverCuentaDeposito(pNumCuentaD);
     numOperaciones = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuentaD);
     cuentaDestino.recibirTransferencia(retiro, numOperaciones);
-    //cuentaCRUD.actualizarSaldo(cuentaDestino);
+    cuentaCRUD.actualizarSaldo(cuentaDestino);
     ArrayList<Operacion> operacionesD = cuentaDestino.getOperaciones();
     Operacion operacionD = operacionesD.get(operacionesD.size()-1);
-    //operacionCRUD.registrarOperacion(operacionD, pNumCuentaD);
+    operacionCRUD.registrarOperacion(operacionD, pNumCuentaD);
     mensaje = "Estimado usuario, la transferencia de fondos se ejecutó "
             + "satisfactoriamente.\n" + "El monto retirado de la cuenta origen y"
             + " depositado en la cuenta destino es: \n" +retiro+" colones.\n" +

@@ -271,7 +271,15 @@ public class Cuenta implements IComisiones, Comparable {
     public String consultarDetallesOperaciones() {
         String mensaje = "Operaciones: \n";
         for (Operacion elemento : operaciones) {
-            mensaje += operaciones.toString();
+            mensaje += elemento.toString();
+        }
+        return mensaje;
+    }
+    
+    public String consultarDetallesOperacionesDolares() {
+        String mensaje = "Operaciones: \n";
+        for (Operacion elemento : operaciones) {
+            mensaje += elemento.toStringDolar();
         }
         return mensaje;
     }
@@ -320,10 +328,25 @@ public class Cuenta implements IComisiones, Comparable {
         TipoCambio tc = new TipoCambio();
         return tc.convertirADolares(this.saldo);
     }
+    
+    
+    public String estadoCuentaColones() {
+        String mensaje =  "NumeroCuenta: " + numeroCuenta + "\n"
+                + "FechaCreacion: " + fechaCreacion + "\nSaldo: " + saldo + "\n"
+                + "Estatus: " + estatus + consultarDetallesOperaciones ();
+        return mensaje;
+    }
+    
+    public String estadoCuentaDolares() {
+        String mensaje =  "NumeroCuenta: " + numeroCuenta + "\n"
+                + "FechaCreacion: " + fechaCreacion + "\nSaldo: " + getSaldoDolares() + "\n"
+                + "Estatus: " + estatus + consultarDetallesOperacionesDolares();
+        return mensaje;
+    }
 
     @Override
     public String toString() {
-        return "Cuenta{" + "numeroCuenta=" + numeroCuenta + ", fechaCreacion=" + fechaCreacion + ", saldo=" + saldo + ", estatus=" + estatus + ", pin=" + getPin() + ", operaciones=" + operaciones + '}';
+       return "Cuenta{" + "numeroCuenta=" + numeroCuenta + ", fechaCreacion=" + fechaCreacion + ", saldo=" + saldo + ", estatus=" + estatus + ", pin=" + pin + ", operaciones=" + operaciones + ", cantidadDepositosOperaciones=" + cantidadDepositosOperaciones + '}';
     }
 
     /**

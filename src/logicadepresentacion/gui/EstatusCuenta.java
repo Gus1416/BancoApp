@@ -4,17 +4,24 @@
  */
 package logicadepresentacion.gui;
 
+import javax.swing.JOptionPane;
+import logicadeintegracion.gui.ControladorEstatusCuenta;
+import logicadevalidacion.ValidacionCuenta;
+
 /**
  *
  * @author Alejandra Merino
  */
 public class EstatusCuenta extends javax.swing.JPanel {
-
+  private ValidacionCuenta validacionCuenta;
+  private ControladorEstatusCuenta control;
   /**
    * Creates new form EstatusCuenta
    */
   public EstatusCuenta() {
     initComponents();
+    validacionCuenta = new ValidacionCuenta ();
+    control = new ControladorEstatusCuenta ();
   }
 
   /**
@@ -26,19 +33,121 @@ public class EstatusCuenta extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
+    jPanel1 = new javax.swing.JPanel();
+    jLabel1 = new javax.swing.JLabel();
+    jLabel2 = new javax.swing.JLabel();
+    txtNumCuenta = new javax.swing.JTextField();
+    jSeparator1 = new javax.swing.JSeparator();
+    btnConsultarPanel = new javax.swing.JPanel();
+    btnConsultarLabel = new javax.swing.JLabel();
+
+    jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+    jLabel1.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
+    jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel1.setText("Consulte el estatus de su cuenta");
+
+    jLabel2.setText("Ingrese su número de cuenta:");
+
+    txtNumCuenta.setBackground(new java.awt.Color(255, 255, 255));
+    txtNumCuenta.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+    txtNumCuenta.setForeground(new java.awt.Color(102, 102, 102));
+    txtNumCuenta.setBorder(null);
+
+    btnConsultarLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+    btnConsultarLabel.setForeground(new java.awt.Color(255, 255, 255));
+    btnConsultarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    btnConsultarLabel.setText("Consultar");
+    btnConsultarLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnConsultarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        btnConsultarLabelMouseClicked(evt);
+      }
+    });
+
+    javax.swing.GroupLayout btnConsultarPanelLayout = new javax.swing.GroupLayout(btnConsultarPanel);
+    btnConsultarPanel.setLayout(btnConsultarPanelLayout);
+    btnConsultarPanelLayout.setHorizontalGroup(
+      btnConsultarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(btnConsultarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+    );
+    btnConsultarPanelLayout.setVerticalGroup(
+      btnConsultarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(btnConsultarPanelLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(btnConsultarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(208, 208, 208)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(330, 330, 330)
+            .addComponent(jLabel2)))
+        .addContainerGap(210, Short.MAX_VALUE))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addComponent(btnConsultarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(355, 355, 355))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addComponent(txtNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(202, 202, 202))))
+    );
+    jPanel1Layout.setVerticalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGap(100, 100, 100)
+        .addComponent(jLabel1)
+        .addGap(89, 89, 89)
+        .addComponent(jLabel2)
+        .addGap(18, 18, 18)
+        .addComponent(txtNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(80, 80, 80)
+        .addComponent(btnConsultarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(300, Short.MAX_VALUE))
+    );
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 400, Short.MAX_VALUE)
+      .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 300, Short.MAX_VALUE)
+      .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
   }// </editor-fold>//GEN-END:initComponents
 
+  private void btnConsultarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarLabelMouseClicked
+    validacionCuenta.validarNumeroCuenta(txtNumCuenta.getText());
+    if(validacionCuenta.esValido()) {
+      control.controlarEstatusCuenta(txtNumCuenta.getText());
+      validacionCuenta.setResultado(control.getMensaje());
+    } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+  }//GEN-LAST:event_btnConsultarLabelMouseClicked
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JLabel btnConsultarLabel;
+  private javax.swing.JPanel btnConsultarPanel;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JSeparator jSeparator1;
+  private javax.swing.JTextField txtNumCuenta;
   // End of variables declaration//GEN-END:variables
 }
