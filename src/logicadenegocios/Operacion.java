@@ -34,6 +34,9 @@ public class Operacion {
 		this.seCobraComision = seCobraComision;
 	}
 
+	public Operacion() {
+	}
+
 	public double getMontoComision() {
 		return this.montoComision;
 	}

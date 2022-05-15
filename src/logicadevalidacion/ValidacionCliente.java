@@ -19,7 +19,7 @@ public class ValidacionCliente {
     return compara.matches();
   }
   
-  public boolean validarCorreoElectronico (String pCorreo) {
+  public static boolean validarCorreoElectronico (String pCorreo) {
     Pattern patron = Pattern.compile ("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
     Matcher compara = patron.matcher(pCorreo);

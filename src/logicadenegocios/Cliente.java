@@ -65,5 +65,4 @@ public class Cliente extends Persona{
 	public void setCodigoCliente(String codigoCliente) {
 		this.codigoCliente = codigoCliente;
 	}
-
 }
