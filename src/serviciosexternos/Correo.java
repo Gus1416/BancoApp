@@ -93,7 +93,9 @@ public class Correo {
     String cuerpo = "";
     cuerpo += "Estimad@ usuario " + pNombreCliente;
     cuerpo += "\n";
-    cuerpo += "Le informamos que su cuenta número: " + pNumCuenta + " ha sido desactivada debido al ingreso de PIN incorrecto en múltiples ocasiones" ;
+    cuerpo += "Le informamos que su cuenta número: " + pNumCuenta + " ha sido "
+            + "desactivada debido al ingreso incorrecto del PIN o palabra "
+            + "secreta en múltiples ocasiones" ;
     return cuerpo;
   }
   

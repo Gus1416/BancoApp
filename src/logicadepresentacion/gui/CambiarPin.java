@@ -175,9 +175,10 @@ public class CambiarPin extends javax.swing.JPanel {
   }//GEN-LAST:event_txtNumCuentaActionPerformed
 
   private void btnCambiarPinLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarPinLabelMouseClicked
-
+    System.out.println("Cantidad de veces que falla antes: "+validacionCuenta.getFallaPin());
     validacionCuenta.validarCambioPin(txtPinActual.getText(), txtPinNuevo.getText(), txtNumCuenta.getText());
-    if (validacionCuenta.esValido) {
+    System.out.println("Cantidad de veces que falla: "+validacionCuenta.getFallaPin());
+    if (validacionCuenta.esValido()) {
       String mensaje = control.controlarCambioPin(txtNumCuenta.getText(), txtPinNuevo.getText());
       validacionCuenta.setResultado(mensaje);
     }

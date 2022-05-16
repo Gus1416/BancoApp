@@ -9,7 +9,7 @@ package logicadevalidacion;
  * @author Alejandra Merino
  */
 public class Validacion {
-  public boolean esValido = true;
+  public static boolean esValido = true;
   public String resultado = "";
   
   public void setResultado(String resultado) {

@@ -10,13 +10,13 @@ import logicadevalidacion.FondosInsuficientesExcepcion;
  */
 public class Persona implements Comparable {
 
-	private String primerApellido;
-	private String segundoApellido;
-	private String nombre;
-	private String identificacion;
-	private Date fechaNacimiento;
-	private ArrayList<Cuenta> cuentas;
-
+	protected String primerApellido;
+	protected String segundoApellido;
+	protected String nombre;
+	protected String identificacion;
+	protected Date fechaNacimiento;
+	protected ArrayList<Cuenta> cuentas;
+   
 	public Persona(String pIdentificacion, String pPrimerApellido, String pSegundoApellido, String pNombre,  Date pFechaNacimiento) {
 		primerApellido = pPrimerApellido;
 		segundoApellido = pSegundoApellido;
@@ -34,11 +34,6 @@ public class Persona implements Comparable {
         public void crearCuenta(String pPin, double pMontoInicial, int pNum) {
 		Cuenta nuevaCuenta = new Cuenta(pPin, pMontoInicial, pNum);
 		getCuentas().add(nuevaCuenta);
-	}
-	
-	public void transferirSaldoEntreCuentasPropias(String pNumeroCuentaOrigen, String pNumeroCuentaDestino, double pMontoTransferencia) throws FondosInsuficientesExcepcion {
-		Busqueda.buscarCuenta(pNumeroCuentaDestino, cuentas).retirarColones(pMontoTransferencia);
-		Busqueda.buscarCuenta(pNumeroCuentaOrigen, cuentas).recibirTransferencia(pMontoTransferencia);
 	}
 
 	@Override

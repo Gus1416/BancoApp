@@ -6,6 +6,7 @@ import logicadeaccesodedatos.ClienteCRUD;
 import logicadenegocios.Cliente;
 import logicadenegocios.Ordenacion;
 import logicadenegocios.Comparable;
+import logicadenegocios.Persona;
 import logicadevalidacion.ValidacionCuenta;
 import logicadevalidacion.ValidacionPersona;
 

@@ -19,7 +19,6 @@ public class Cuenta implements IComisiones, Comparable {
     private ArrayList<Operacion> operaciones;
     private int cantidadDepositosOperaciones = 0;
     private static int identificadorCuenta = 0;  ////
- 
     public Cuenta() {
     }
 
@@ -178,16 +177,6 @@ public class Cuenta implements IComisiones, Comparable {
             double saldoFaltante = montoTotalRetiro - this.saldo;
             throw new FondosInsuficientesExcepcion(saldoFaltante);
         }
-    }
-
-    public void recibirTransferencia(double pMontoRecibido) {
-        this.saldo += pMontoRecibido;
-        registrarOperacion("Transferencia", pMontoRecibido, false, 0.00, "Colones");
-    }
-    
-    public void recibirTransferencia(double pMontoRecibido, int pNum) {
-        this.saldo += pMontoRecibido;
-        registrarOperacion("Transferencia", pMontoRecibido, false, 0.00, "Colones", pNum);
     }
 
     private boolean validarRetiro(double pMontoTotalRetiro) {

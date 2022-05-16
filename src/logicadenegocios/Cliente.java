@@ -9,18 +9,18 @@ import java.util.Date;
  * @author Gustavo
  */
 public class Cliente extends Persona {
-	private String numeroTelefono;
-	private String correoElectronico;
-	private String codigoCliente;
-	private static int cantidadClientes = 0;
-	private ArrayList<Cuenta> cuentas;
+	public String numeroTelefono;
+	public String correoElectronico;
+	public String codigoCliente;
+	public static int cantidadClientes = 0;
+	//private ArrayList<Cuenta> cuentas;
 	
 	public Cliente (String pIdentificacion, String pPrimerApellido, String pSegundoApellido, String pNombre, Date pFechaNacimiento, String pNumeroTelefono, String pCorreoElectronico){
 		super(pIdentificacion, pPrimerApellido, pSegundoApellido, pNombre, pFechaNacimiento);
 		numeroTelefono = pNumeroTelefono;
 		correoElectronico = pCorreoElectronico;
 		codigoCliente = "CIF_" + ++cantidadClientes;
-		cuentas = new ArrayList<>();
+		//cuentas = new ArrayList<>();
 	}
         
         public Cliente (String pIdentificacion, String pPrimerApellido, String pSegundoApellido, String pNombre, Date pFechaNacimiento, String pNumeroTelefono, String pCorreoElectronico, int pNum){
@@ -29,7 +29,7 @@ public class Cliente extends Persona {
                 numeroTelefono = pNumeroTelefono;
 		correoElectronico = pCorreoElectronico;
 		codigoCliente = "CIF_" + ++cantidadClientes;
-		cuentas = new ArrayList<>();
+		//cuentas = new ArrayList<>();
 	}
 
         public Cliente() {

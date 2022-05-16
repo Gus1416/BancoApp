@@ -46,7 +46,7 @@ public class ControladorTransferencia {
     Cuenta cuentaDestino = new Cuenta ();
     cuentaDestino = devolverCuentaDeposito(pNumCuentaD);
     numOperaciones = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuentaD);
-    cuentaDestino.recibirTransferencia(retiro, numOperaciones);
+    cuentaDestino.depositarColones(retiro, numOperaciones);
     cuentaCRUD.actualizarSaldo(cuentaDestino);
     ArrayList<Operacion> operacionesD = cuentaDestino.getOperaciones();
     Operacion operacionD = operacionesD.get(operacionesD.size()-1);

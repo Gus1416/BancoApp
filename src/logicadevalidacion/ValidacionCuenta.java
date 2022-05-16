@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import logicadeaccesodedatos.CuentaCRUD;
+import logicadeintegracion.gui.ControladorInactivacionCuenta;
 import logicadenegocios.Cuenta;
 
 /**
@@ -17,11 +18,13 @@ import logicadenegocios.Cuenta;
 public class ValidacionCuenta extends Validacion {
   public CuentaCRUD cuentaCRUD;
   public String palabraSecreta;
-  private int fallaPin = 0;
-  private int fallaPalabra=0;
+  private static int fallaPin = 0;
+  private static int fallaPalabra=0;
+  private ControladorInactivacionCuenta control;
 
   public ValidacionCuenta() {
     cuentaCRUD = new CuentaCRUD ();
+    control = new ControladorInactivacionCuenta ();
   }
   
   public void validarDatosCuenta (String pPin, String pNum) {
@@ -31,10 +34,10 @@ public class ValidacionCuenta extends Validacion {
   
   public void validarCambioPin (String pPinActual, String pPinNuevo, String pNumCuenta) {
     validarNumeroCuenta (pNumCuenta);
-    validarEstatusNumeroCuenta (pNumCuenta);
     validarPinCuenta (pPinActual);
     validarPinCuenta (pPinNuevo);
     if(esValido) {
+      validarEstatusNumeroCuenta (pNumCuenta);
       validarPinIngresadoPinActual (pPinActual,pNumCuenta);
     }
     esPinVulnerado (pNumCuenta);
@@ -42,16 +45,18 @@ public class ValidacionCuenta extends Validacion {
   
   public void validarDatosDeposito (String pNumCuenta, String pNum) {
     validarNumeroCuenta (pNumCuenta);
-    validarEstatusNumeroCuenta (pNumCuenta);
     validarNumeroEntero (pNum);
+    if(esValido) {
+      validarEstatusNumeroCuenta (pNumCuenta);
+    }
   }
   
   public void validarDatosPrevioRetiro (String pNumCuenta, String pPin) {
     validarNumeroCuenta (pNumCuenta);
-    validarEstatusNumeroCuenta (pNumCuenta);
     validarPinCuenta (pPin);
     if(esValido) {
       validarPinIngresadoPinActual (pPin,pNumCuenta);
+      validarEstatusNumeroCuenta (pNumCuenta);
     }
     esPinVulnerado (pNumCuenta);
   }
@@ -67,16 +72,21 @@ public class ValidacionCuenta extends Validacion {
     validarPalabraSecreta (pSecreta);
     validarNumeroEntero (pRetiro);
     validarNumeroCuenta (pNumCuentaD);
-    validarEstatusNumeroCuenta (pNumCuentaD);
+    if(esValido) {
+      validarEstatusNumeroCuenta (pNumCuentaD);
+    }
     esPalabraVulnerada (pNumCuentaO);
   }
   
   public void validarPinIngresadoPinActual (String pPinActual, String pNumCuenta) {
     Cuenta cuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
+    System.out.println("Pin de la base: "+cuenta.getPin());
+    System.out.println("Pin del GUI "+ pPinActual);
     if (!(cuenta.getPin().equals(pPinActual))) {
       esValido = false;
       resultado+= "El número de PIN ingresado no corresponde al de su cuenta. \n";
       fallaPin++;
+      System.out.println("Hizo el ++");
     }
   }
   
@@ -127,6 +137,7 @@ public class ValidacionCuenta extends Validacion {
       esValido = false;
       resultado += "Ha ingresado su palabra secreta de forma incorrecta dos veces."
               + "\nSu cuenta ha sido bloqueada\n";
+      control.controlarInactivarCuenta (pNumCuenta);
     }
   }
   
@@ -135,6 +146,7 @@ public class ValidacionCuenta extends Validacion {
       esValido = false;
       resultado += "Ha ingresado su PIN de forma incorrecta dos veces."
               + "\nSu cuenta ha sido bloqueada\n";
+      control.controlarInactivarCuenta (pNumCuenta);
     }
   }
   

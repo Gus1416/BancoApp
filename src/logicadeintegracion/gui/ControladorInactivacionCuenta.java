@@ -4,6 +4,12 @@
  */
 package logicadeintegracion.gui;
 
+import logicadeaccesodedatos.ClienteCRUD;
+import logicadeaccesodedatos.CuentaCRUD;
+import logicadenegocios.Cliente;
+import logicadenegocios.Cuenta;
+import serviciosexternos.Correo;
+
 /**
  *
  * @author Alejandra Merino
@@ -11,9 +17,18 @@ package logicadeintegracion.gui;
 public class ControladorInactivacionCuenta {
   private String mensaje;
   
-  public void controlarInactivarCuenta (int pFallaPin, int pFallaPalabra, 
-          String pNumCuenta) {
-  
+  public void controlarInactivarCuenta (String pNumCuenta) {
+    ClienteCRUD clienteCRUD = new ClienteCRUD ();
+    CuentaCRUD cuentaCRUD = new CuentaCRUD ();
+    Cliente cliente = clienteCRUD.consultarPropietarioCuenta(pNumCuenta);
+    Cuenta cuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
+    cuenta.inactivarCuenta();
+    cuentaCRUD.cambiarEstatus(cuenta);
+    Correo correo = new Correo ();
+    if (correo.enviarCorreo(cliente.getCorreoElectronico(), 
+          cliente.getNombre(), pNumCuenta)) {
+      return;
+    }
   }
 
   public String getMensaje() {
