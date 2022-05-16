@@ -18,11 +18,13 @@ import logicadenegocios.Cuenta;
 public class ValidacionCuenta extends Validacion {
   public CuentaCRUD cuentaCRUD;
   public String palabraSecreta;
-  private static int fallaPin = 0;
-  private static int fallaPalabra=0;
+  private  int fallaPin;
+  private  int fallaPalabra;
   private ControladorInactivacionCuenta control;
 
   public ValidacionCuenta() {
+    this.fallaPalabra = 0;
+    this.fallaPin = 0;
     cuentaCRUD = new CuentaCRUD ();
     control = new ControladorInactivacionCuenta ();
   }

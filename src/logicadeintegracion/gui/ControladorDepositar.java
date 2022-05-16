@@ -40,7 +40,7 @@ public class ControladorDepositar {
   public void controlarDepositoDolares (String pNumCuenta, String pDeposito) {
     cuenta = devolverCuentaDeposito(pNumCuenta);
     double deposito = Double.parseDouble(pDeposito);
-    int numOperaciones = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuenta);
+    int numOperaciones = cuentaCRUD.obtenerCantidadOperaciones();
     cuenta.depositarDolares(deposito,numOperaciones);
     cuentaCRUD.actualizarSaldo(cuenta);
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();
@@ -48,10 +48,12 @@ public class ControladorDepositar {
     operacionCRUD.registrarOperacion(operacion, pNumCuenta);
     double montoReal = operacion.getMontoOperacion() - operacion.getMontoComision();
     TipoCambio tc = new  TipoCambio ();
+    double saldoEqui = tc.convertirAColones(deposito);
+    double redondeo = Math.round(saldoEqui*100.0)/100.0;
     mensaje = "Estimado usuario, se han recibido correctamente: "+deposito
-            +"dólares\n[Según el BCCR, el tipo de cambio de compra del dólar de:"+ 
+            +" dólares\n[Según el BCCR, el tipo de cambio de compra del dólar de:"+ 
             tc.getFechaFinal()+ " es: "+tc.getCompra()+ "]\n[El monto equivalente"
-            + " en colones es: " + tc.convertirAColones(deposito) + "]\n[El "
+            + " en colones es: " + redondeo + "]\n[El "
             + "monto real depositado a su cuenta: " +cuenta.getNumeroCuenta() 
             +" es de: "+montoReal+ " colones]\n[El monto cobrado por concepto de comisión"
             + " fue de: "+operacion.getMontoComision() +" colones, que fueron "
@@ -61,7 +63,7 @@ public class ControladorDepositar {
   public void controlarDepositoColones (String pNumCuenta, String pDeposito) {
     cuenta = devolverCuentaDeposito(pNumCuenta);
     double deposito = Double.parseDouble(pDeposito);
-    int numOperaciones = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuenta);
+    int numOperaciones = cuentaCRUD.obtenerCantidadOperaciones();
     cuenta.depositarColones(deposito, numOperaciones);
     cuentaCRUD.actualizarSaldo(cuenta);
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();

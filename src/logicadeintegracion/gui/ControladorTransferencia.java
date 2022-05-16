@@ -36,7 +36,7 @@ public class ControladorTransferencia {
           String pNumCuentaD) throws FondosInsuficientesExcepcion {
     cuenta = devolverCuentaDeposito(pNumCuentaO);
     double retiro = Double.parseDouble(pTransferencia);
-    int numOperaciones = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuentaO);
+    int numOperaciones = cuentaCRUD.obtenerCantidadOperaciones();
     cuenta.retirarColones(retiro, numOperaciones);
     cuentaCRUD.actualizarSaldo(cuenta);
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();
@@ -45,7 +45,7 @@ public class ControladorTransferencia {
     
     Cuenta cuentaDestino = new Cuenta ();
     cuentaDestino = devolverCuentaDeposito(pNumCuentaD);
-    numOperaciones = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuentaD);
+    numOperaciones = cuentaCRUD.obtenerCantidadOperaciones();
     cuentaDestino.depositarColones(retiro, numOperaciones);
     cuentaCRUD.actualizarSaldo(cuentaDestino);
     ArrayList<Operacion> operacionesD = cuentaDestino.getOperaciones();

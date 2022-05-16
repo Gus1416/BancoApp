@@ -183,7 +183,7 @@ public class CambiarPin extends javax.swing.JPanel {
       validacionCuenta.setResultado(mensaje);
     }
     JOptionPane.showMessageDialog(this, validacionCuenta.getResultado());
-    
+    validacionCuenta.setResultado("");
   }//GEN-LAST:event_btnCambiarPinLabelMouseClicked
 
 

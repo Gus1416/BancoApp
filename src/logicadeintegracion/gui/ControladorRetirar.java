@@ -32,6 +32,7 @@ public class ControladorRetirar {
   public ControladorRetirar() {
     clienteCRUD = new ClienteCRUD ();
     cuentaCRUD = new CuentaCRUD ();
+    operacionCRUD = new OperacionCRUD ();
   }
   
   public void controlarRetiro (String pNumCuenta, String pRetiro, String 
@@ -46,7 +47,8 @@ public class ControladorRetirar {
   public void controlarRetiroColones (String pNumCuenta, String pRetiro) throws FondosInsuficientesExcepcion {
     cuenta = devolverCuentaDeposito(pNumCuenta);
     double retiro = Double.parseDouble(pRetiro);
-    int numOperaciones = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuenta);
+    int numOperaciones = cuentaCRUD.obtenerCantidadOperaciones();
+    System.out.println("\n"+numOperaciones);
     cuenta.retirarColones(retiro, numOperaciones);
     cuentaCRUD.actualizarSaldo(cuenta);
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();
@@ -61,7 +63,7 @@ public class ControladorRetirar {
   public void controlarRetiroDolares (String pNumCuenta, String pRetiro) throws FondosInsuficientesExcepcion {
     cuenta = devolverCuentaDeposito(pNumCuenta);
     double retiro = Double.parseDouble(pRetiro);
-    int numOperaciones = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuenta);
+    int numOperaciones = cuentaCRUD.obtenerCantidadOperaciones();
     cuenta.retirarDolares(retiro, numOperaciones);
     cuentaCRUD.actualizarSaldo(cuenta);
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();
