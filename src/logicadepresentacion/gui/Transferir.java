@@ -243,7 +243,8 @@ public class Transferir extends javax.swing.JPanel {
 
   private void btnTransferirLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTransferirLabelMouseClicked
     validacionCuenta.validarDatosTransferencia(txtPalabraSecreta.getText(),
-            txtMontoTrans.getText() , txtNumeroCuentaTrans.getText());
+            txtMontoTrans.getText() , txtNumeroCuentaTrans.getText(), 
+            txtNumeroCuenta.getText());
     if(validacionCuenta.esValido) {
       try { 
         control.controlarTransferencia(txtNumeroCuenta.getText(),

@@ -209,6 +209,7 @@ public class Cuenta implements IComisiones, Comparable {
         Operacion operacion = new Operacion(obtenerFechaSistema(), pTipoOperacion,
                 pMontoOperacion, pSeCobraComision, pMontoComision, pMoneda, pNum);
         operaciones.add(operacion);
+        this.cantidadDepositosOperaciones = pNum;
         this.cantidadDepositosOperaciones++;
     }
 
@@ -333,13 +334,15 @@ public class Cuenta implements IComisiones, Comparable {
     public String estadoCuentaColones() {
         String mensaje =  "NumeroCuenta: " + numeroCuenta + "\n"
                 + "FechaCreacion: " + fechaCreacion + "\nSaldo: " + saldo + "\n"
-                + "Estatus: " + estatus + consultarDetallesOperaciones ();
+                + "Estatus: " + estatus +"\n"+ consultarDetallesOperaciones ();
         return mensaje;
     }
     
     public String estadoCuentaDolares() {
+      double saldoDolares = getSaldoDolares();
+      double redondeo = Math.round(saldoDolares*100.0)/100.0;
         String mensaje =  "NumeroCuenta: " + numeroCuenta + "\n"
-                + "FechaCreacion: " + fechaCreacion + "\nSaldo: " + getSaldoDolares() + "\n"
+                + "FechaCreacion: " + fechaCreacion + "\nSaldo: " + redondeo + "\n"
                 + "Estatus: " + estatus + consultarDetallesOperacionesDolares();
         return mensaje;
     }

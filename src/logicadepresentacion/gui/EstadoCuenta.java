@@ -107,7 +107,7 @@ public class EstadoCuenta extends javax.swing.JPanel {
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(0, 132, Short.MAX_VALUE))
+        .addGap(0, 52, Short.MAX_VALUE))
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
@@ -149,10 +149,10 @@ public class EstadoCuenta extends javax.swing.JPanel {
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(30, 30, 30)
         .addComponent(btnConsultarEstadoCuentaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(54, Short.MAX_VALUE))
+        .addContainerGap(53, Short.MAX_VALUE))
     );
 
-    add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+    add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 710));
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnConsultarEstadoCuentaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarEstadoCuentaLabelMouseClicked

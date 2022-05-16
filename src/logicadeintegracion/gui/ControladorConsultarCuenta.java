@@ -39,7 +39,6 @@ public String cargarPropietarioCuenta (String pNumCuenta) {
   }
 
 public String cargarCuenta (String pNumCuenta) {
-  System.out.println("El numero de cuenta es: "+pNumCuenta);
   CuentaCRUD cuentaCRUD = new CuentaCRUD ();
   Cuenta cuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
   String mensaje = cuenta.estadoCuentaColones();

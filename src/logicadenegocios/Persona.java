@@ -30,6 +30,11 @@ public class Persona implements Comparable {
 		Cuenta nuevaCuenta = new Cuenta(pPin, pMontoInicial);
 		getCuentas().add(nuevaCuenta);
 	}
+        
+        public void crearCuenta(String pPin, double pMontoInicial, int pNum) {
+		Cuenta nuevaCuenta = new Cuenta(pPin, pMontoInicial, pNum);
+		getCuentas().add(nuevaCuenta);
+	}
 	
 	public void transferirSaldoEntreCuentasPropias(String pNumeroCuentaOrigen, String pNumeroCuentaDestino, double pMontoTransferencia) throws FondosInsuficientesExcepcion {
 		Busqueda.buscarCuenta(pNumeroCuentaDestino, cuentas).retirarColones(pMontoTransferencia);
@@ -40,13 +45,21 @@ public class Persona implements Comparable {
 	public boolean comparar(Comparable b) {
 		return getNombre().compareTo(((Persona) b).getNombre()) <= 0;
 	}
+        
+        public String toStringCuentas () {
+          String mensaje = "Los numeros de cuenta son: \n";
+            for (Cuenta cuenta: cuentas){
+              mensaje+=cuenta.getNumeroCuenta() +"\n";
+            }
+          return mensaje;
+        }
 
 	@Override
 	public String toString() {
 		String mensaje;
 		mensaje = "Primer apellido: " + getPrimerApellido() + "\nSegundo apellido: "
-						+ getSegundoApellido() + "Nombre: " + getNombre() + "Identificacion: "
-						+ getIdentificacion() + "Fecha de nacimiento: " + getFechaNacimiento();
+						+ getSegundoApellido() + "\nNombre: " + getNombre() + "\nIdentificacion: "
+						+ getIdentificacion() + "\nFecha de nacimiento: " + getFechaNacimiento();
 		return mensaje;
 	}
 

@@ -44,6 +44,7 @@ public class Cliente extends Persona {
 		mensaje += "Número de teléfono: " + getNumeroTelefono() + "\n";
 		mensaje += "Correo electrónico: " + getCorreoElectronico() + "\n";
 		mensaje += "Código de cliente: " + getCodigoCliente() + "\n";
+                mensaje+= super.toStringCuentas();
 		return mensaje;
 	}
 

@@ -6,6 +6,7 @@ package logicadepresentacion.gui;
 
 import javax.swing.JOptionPane;
 import logicadeintegracion.gui.ControladorCambioPin;
+import logicadeintegracion.gui.ControladorInactivacionCuenta;
 import logicadevalidacion.ValidacionCuenta;
 
 /**
@@ -14,12 +15,14 @@ import logicadevalidacion.ValidacionCuenta;
  */
 public class CambiarPin extends javax.swing.JPanel {
   public ControladorCambioPin control;
+  private ValidacionCuenta validacionCuenta;
   /**
    * Creates new form CambiarPin
    */
   public CambiarPin() {
     initComponents();
     control = new ControladorCambioPin ();
+    validacionCuenta = new ValidacionCuenta ();
   }
 
   /**
@@ -172,13 +175,14 @@ public class CambiarPin extends javax.swing.JPanel {
   }//GEN-LAST:event_txtNumCuentaActionPerformed
 
   private void btnCambiarPinLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarPinLabelMouseClicked
-    ValidacionCuenta validacionCuenta = new ValidacionCuenta ();
+
     validacionCuenta.validarCambioPin(txtPinActual.getText(), txtPinNuevo.getText(), txtNumCuenta.getText());
-    if(validacionCuenta.esValido) {
+    if (validacionCuenta.esValido) {
       String mensaje = control.controlarCambioPin(txtNumCuenta.getText(), txtPinNuevo.getText());
       validacionCuenta.setResultado(mensaje);
     }
-    JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+    JOptionPane.showMessageDialog(this, validacionCuenta.getResultado());
+    
   }//GEN-LAST:event_btnCambiarPinLabelMouseClicked
 
 

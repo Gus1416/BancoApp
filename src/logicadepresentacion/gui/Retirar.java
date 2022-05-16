@@ -238,7 +238,7 @@ public class Retirar extends javax.swing.JPanel {
 
   private void btnRetirarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRetirarLabelMouseClicked
     validacionCuenta.validarDatosRetiro(txtPalabraSecreta.getText(), 
-            txtMontoRetiro.getText());
+            txtMontoRetiro.getText(),txtNumeroCuenta.getText());
     if(validacionCuenta.esValido) {
       try {
         control.controlarRetiro(txtNumeroCuenta.getText(),

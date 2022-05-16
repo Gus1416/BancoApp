@@ -41,8 +41,8 @@ public class ControladorDepositar {
     cuenta = devolverCuentaDeposito(pNumCuenta);
     double deposito = Double.parseDouble(pDeposito);
     int numOperaciones = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuenta);
-    cuenta.depositarColones(deposito,numOperaciones);
-    //cuentaCRUD.actualizarSaldo(cuenta);
+    cuenta.depositarDolares(deposito,numOperaciones);
+    cuentaCRUD.actualizarSaldo(cuenta);
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();
     Operacion operacion = operaciones.get(operaciones.size()-1);
     operacionCRUD.registrarOperacion(operacion, pNumCuenta);
@@ -62,8 +62,8 @@ public class ControladorDepositar {
     cuenta = devolverCuentaDeposito(pNumCuenta);
     double deposito = Double.parseDouble(pDeposito);
     int numOperaciones = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuenta);
-    cuenta.depositarDolares(deposito, numOperaciones);
-    //cuentaCRUD.actualizarSaldo(cuenta);
+    cuenta.depositarColones(deposito, numOperaciones);
+    cuentaCRUD.actualizarSaldo(cuenta);
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();
     Operacion operacion = operaciones.get(operaciones.size()-1);
     operacionCRUD.registrarOperacion(operacion, pNumCuenta);

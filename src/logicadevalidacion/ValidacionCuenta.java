@@ -17,12 +17,12 @@ import logicadenegocios.Cuenta;
 public class ValidacionCuenta extends Validacion {
   public CuentaCRUD cuentaCRUD;
   public String palabraSecreta;
+  private int fallaPin = 0;
+  private int fallaPalabra=0;
 
   public ValidacionCuenta() {
     cuentaCRUD = new CuentaCRUD ();
   }
-  
-  
   
   public void validarDatosCuenta (String pPin, String pNum) {
     validarPinCuenta (pPin);
@@ -31,36 +31,44 @@ public class ValidacionCuenta extends Validacion {
   
   public void validarCambioPin (String pPinActual, String pPinNuevo, String pNumCuenta) {
     validarNumeroCuenta (pNumCuenta);
+    validarEstatusNumeroCuenta (pNumCuenta);
     validarPinCuenta (pPinActual);
     validarPinCuenta (pPinNuevo);
     if(esValido) {
       validarPinIngresadoPinActual (pPinActual,pNumCuenta);
     }
+    esPinVulnerado (pNumCuenta);
   }
   
   public void validarDatosDeposito (String pNumCuenta, String pNum) {
     validarNumeroCuenta (pNumCuenta);
+    validarEstatusNumeroCuenta (pNumCuenta);
     validarNumeroEntero (pNum);
   }
   
   public void validarDatosPrevioRetiro (String pNumCuenta, String pPin) {
     validarNumeroCuenta (pNumCuenta);
+    validarEstatusNumeroCuenta (pNumCuenta);
     validarPinCuenta (pPin);
     if(esValido) {
       validarPinIngresadoPinActual (pPin,pNumCuenta);
     }
+    esPinVulnerado (pNumCuenta);
   }
   
-  public void validarDatosRetiro (String pSecreta, String pRetiro) {
+  public void validarDatosRetiro (String pSecreta, String pRetiro, String pNumCuenta) {
     validarPalabraSecreta (pSecreta);
     validarNumeroEntero (pRetiro);
+    esPalabraVulnerada (pNumCuenta);
   }
   
   public void validarDatosTransferencia (String pSecreta, String pRetiro, 
-          String pNumCuenta) {
+          String pNumCuentaD, String pNumCuentaO) {
     validarPalabraSecreta (pSecreta);
     validarNumeroEntero (pRetiro);
-    validarNumeroCuenta (pNumCuenta);
+    validarNumeroCuenta (pNumCuentaD);
+    validarEstatusNumeroCuenta (pNumCuentaD);
+    esPalabraVulnerada (pNumCuentaO);
   }
   
   public void validarPinIngresadoPinActual (String pPinActual, String pNumCuenta) {
@@ -68,9 +76,17 @@ public class ValidacionCuenta extends Validacion {
     if (!(cuenta.getPin().equals(pPinActual))) {
       esValido = false;
       resultado+= "El número de PIN ingresado no corresponde al de su cuenta. \n";
+      fallaPin++;
     }
   }
   
+  public void validarEstatusNumeroCuenta (String pNumCuenta) {
+    Cuenta cuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
+    if(!(cuenta.getEstatus().equals("activa"))) {
+      esValido = false;
+      resultado+= "La cuenta ingresada está bloqueda.\nNo puede realizar la operación";
+    }
+  }
   
   public void validarNumeroCuenta (String pNumCuenta) {
     ArrayList<Cuenta> cuentas = cuentaCRUD.consultarCuentas();
@@ -95,6 +111,7 @@ public class ValidacionCuenta extends Validacion {
     if(!(palabraSecreta.equals(pSecreta))) {
       esValido = false;
       resultado += "Debe ingresar la palabra secreta correspondiente \n";
+      fallaPalabra++;
     }
   }
   
@@ -104,6 +121,22 @@ public class ValidacionCuenta extends Validacion {
       resultado += "Debe ingresar un número entero\n";
     }
   } 
+  
+  public void esPalabraVulnerada (String pNumCuenta) {
+    if (fallaPalabra>=2) {
+      esValido = false;
+      resultado += "Ha ingresado su palabra secreta de forma incorrecta dos veces."
+              + "\nSu cuenta ha sido bloqueada\n";
+    }
+  }
+  
+  public void esPinVulnerado (String pNumCuenta) {
+    if (fallaPin>=2) {
+      esValido = false;
+      resultado += "Ha ingresado su PIN de forma incorrecta dos veces."
+              + "\nSu cuenta ha sido bloqueada\n";
+    }
+  }
   
   public boolean validarPIN (String pPIN ) {
     Pattern patron = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
@@ -124,6 +157,18 @@ public class ValidacionCuenta extends Validacion {
   public void setPalabraSecreta(String palabraSecreta) {
     this.palabraSecreta = palabraSecreta;
   }
+
+  public int getFallaPin() {
+    return fallaPin;
+  }
+
+  public int getFallaPalabra() {
+    return fallaPalabra;
+  }
+
+  
+  
+  
   
 }
   

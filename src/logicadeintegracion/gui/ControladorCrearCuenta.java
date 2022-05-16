@@ -33,10 +33,13 @@ public class ControladorCrearCuenta  {
     double deposito = Double.parseDouble(pNum);
     CuentaCRUD cuentaCRUD = new CuentaCRUD ();
     int numeroCuentas = cuentaCRUD.obtenerCantidadCuentas();
-    Cuenta cuenta = new Cuenta (pPin, deposito, numeroCuentas);
-    cuentaCRUD.registrarCuenta(cuenta, pIdentificacion);
     ClienteCRUD clienteCRUD = new ClienteCRUD ();
     Cliente clienteRegistrado = clienteCRUD.consultarCliente(pIdentificacion);
+    clienteRegistrado.crearCuenta(pPin, deposito, numeroCuentas);
+    int ultimo = clienteRegistrado.getCuentas().size();
+    Cuenta cuenta = (clienteRegistrado.getCuentas()).get(ultimo-1);
+    cuentaCRUD.registrarCuenta(cuenta, pIdentificacion);
+    
     System.out.println(clienteRegistrado.toString());
     String mensaje = "Se ha creado una nueva cuenta en el sistema, los datos de"
             + " la cuenta son:\n Número de cuenta: "+cuenta.getNumeroCuenta() 
@@ -45,9 +48,9 @@ public class ControladorCrearCuenta  {
             + "Nombre del dueño de la cuenta: "+clienteRegistrado.getNombre()
             + " "+ clienteRegistrado.getPrimerApellido()+ " " + 
             clienteRegistrado.getSegundoApellido() +"\n "
-            + "Número de teléfono asociado a la cuenta:" 
+            + "Número de teléfono asociado a la cuenta: " 
             +clienteRegistrado.getNumeroTelefono() + "\n "
-            + "Dirección de correo electrónico asociada a la cuenta:"
+            + "Dirección de correo electrónico asociada a la cuenta: "
             +clienteRegistrado.getCorreoElectronico();
     return mensaje;
   }
