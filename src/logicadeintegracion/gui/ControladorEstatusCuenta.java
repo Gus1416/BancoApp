@@ -11,8 +11,8 @@ import logicadenegocios.Cuenta;
  *
  * @author Alejandra Merino
  */
-public class ControladorEstatusCuenta {
-  private String mensaje;
+public class ControladorEstatusCuenta extends Controlador {
+  
   private Cuenta cuenta;
   private CuentaCRUD cuentaCRUD;
 
@@ -24,13 +24,11 @@ public class ControladorEstatusCuenta {
   
   public void controlarEstatusCuenta (String pNunCuenta) {
     cuenta = cuentaCRUD.consultarCuenta(pNunCuenta);
-    mensaje = "La cuenta número "+cuenta.getNumeroCuenta() +" tiene estatus "
+    super.mensaje = "La cuenta número "+cuenta.getNumeroCuenta() +" tiene estatus "
             + "de " + cuenta.getEstatus();
   }
 
-  public String getMensaje() {
-    return mensaje;
-  }
+  
   
   
 }

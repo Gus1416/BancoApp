@@ -11,8 +11,7 @@ import logicadenegocios.Cuenta;
  *
  * @author Alejandra Merino
  */
-public class ControladorEstadoCuenta {
-  private String mensaje;
+public class ControladorEstadoCuenta extends Controlador {
   private CuentaCRUD cuentaCRUD;
   private Cuenta cuenta;
 
@@ -23,12 +22,7 @@ public class ControladorEstadoCuenta {
   
   public void controlarEstadoCuenta(String pNumCuenta) {
     cuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
-    mensaje = cuenta.estadoCuentaColones();
+    super.mensaje = cuenta.estadoCuentaColones();
   }
-
-  public String getMensaje() {
-    return mensaje;
-  }
-  
   
 }

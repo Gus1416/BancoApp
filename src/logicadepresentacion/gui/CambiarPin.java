@@ -6,7 +6,6 @@ package logicadepresentacion.gui;
 
 import javax.swing.JOptionPane;
 import logicadeintegracion.gui.ControladorCambioPin;
-import logicadeintegracion.gui.ControladorInactivacionCuenta;
 import logicadevalidacion.ValidacionCuenta;
 
 /**
@@ -177,12 +176,10 @@ public class CambiarPin extends javax.swing.JPanel {
   private void btnCambiarPinLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarPinLabelMouseClicked
     validacionCuenta.setResultado("");
     validacionCuenta.setValido();
-    System.out.println("Cantidad de veces que falla antes: "+validacionCuenta.getFallaPin());
     validacionCuenta.validarCambioPin(txtPinActual.getText(), txtPinNuevo.getText(), txtNumCuenta.getText());
-    System.out.println("Cantidad de veces que falla: "+validacionCuenta.getFallaPin());
     if (validacionCuenta.esValido()) {
-      String mensaje = control.controlarCambioPin(txtNumCuenta.getText(), txtPinNuevo.getText());
-      validacionCuenta.setResultado(mensaje);
+      control.controlarCambioPin(txtNumCuenta.getText(), txtPinNuevo.getText());
+      validacionCuenta.setResultado(control.getMensaje());
     }
     JOptionPane.showMessageDialog(this, validacionCuenta.getResultado());
   }//GEN-LAST:event_btnCambiarPinLabelMouseClicked

@@ -11,10 +11,9 @@ import logicadenegocios.Cuenta;
  *
  * @author Alejandra Merino
  */
-public class ControladorSaldoActualDolares {
+public class ControladorSaldoActualDolares extends Controlador {
   private CuentaCRUD cuentaCRUD; 
   private Cuenta cuenta;
-  private String mensaje;
 
   public ControladorSaldoActualDolares() {
     cuentaCRUD = new CuentaCRUD ();
@@ -25,12 +24,8 @@ public class ControladorSaldoActualDolares {
   cuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
   double saldoDolares = cuenta.getSaldoDolares();
   double redondeo = Math.round(saldoDolares*100.0)/100.0;
-  mensaje = "Estimado usuario el saldo actual de su cuenta es: " 
+  super.mensaje = "Estimado usuario el saldo actual de su cuenta es: " 
           +redondeo + " dólares.";
-  }
-
-  public String getMensaje() {
-    return mensaje;
   }
   
 }

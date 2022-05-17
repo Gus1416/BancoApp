@@ -14,7 +14,7 @@ import logicadenegocios.Cuenta;
  *
  * @author Alejandra Merino
  */
-public class ControladorCrearCuenta  {
+public class ControladorCrearCuenta  extends Controlador {
  
   public ArrayList cargarClientes () {
     ClienteCRUD clienteCRUD = new ClienteCRUD ();
@@ -29,7 +29,7 @@ public class ControladorCrearCuenta  {
     return listaClientesP;
   }
   
-  public String controlarRegistroCuenta (String pPin, String pNum, String pIdentificacion) {
+  public void controlarRegistroCuenta (String pPin, String pNum, String pIdentificacion) {
     double deposito = Double.parseDouble(pNum);
     CuentaCRUD cuentaCRUD = new CuentaCRUD ();
     int numeroCuentas = cuentaCRUD.obtenerCantidadCuentas();
@@ -40,8 +40,8 @@ public class ControladorCrearCuenta  {
     Cuenta cuenta = (clienteRegistrado.getCuentas()).get(ultimo-1);
     cuentaCRUD.registrarCuenta(cuenta, pIdentificacion);
     
-    System.out.println(clienteRegistrado.toString());
-    String mensaje = "Se ha creado una nueva cuenta en el sistema, los datos de"
+    
+    super.mensaje = "Se ha creado una nueva cuenta en el sistema, los datos de"
             + " la cuenta son:\n Número de cuenta: "+cuenta.getNumeroCuenta() 
             + "\n Estatus de la cuenta: " + cuenta.getEstatus() + "\n"+
             "Saldo actual: "+cuenta.getSaldo()+"\n ---\n "
@@ -52,7 +52,7 @@ public class ControladorCrearCuenta  {
             +clienteRegistrado.getNumeroTelefono() + "\n "
             + "Dirección de correo electrónico asociada a la cuenta: "
             +clienteRegistrado.getCorreoElectronico();
-    return mensaje;
+    
   }
   
   

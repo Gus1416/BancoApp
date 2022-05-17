@@ -13,11 +13,11 @@ import logicadenegocios.Cliente;
  *
  * @author Alejandra Merino
  */
-public class ControladorRegistroCliente {
+public class ControladorRegistroCliente extends Controlador {
   
   //Conversiones
   //Construir los objetos y guardarlos en la BD
-  public String controlarRegistroCliente (String pIdentificacion, 
+  public void controlarRegistroCliente (String pIdentificacion, 
           String pPrimerApellido, String pSegundoApellido, String pNombre, 
           Date pFechaNacimiento, String pNumeroTelefono, 
           String pCorreoElectronico) {
@@ -29,12 +29,11 @@ public class ControladorRegistroCliente {
     
     clienteCRUD.registrarCliente(cliente);
     
-    String mensaje = "Se ha creado un nuevo cliente en el sistema, los datos que"
+    super.mensaje = "Se ha creado un nuevo cliente en el sistema, los datos que"
             + " fueron almacenados son: \nCodigo: "+cliente.getCodigoCliente() 
             +"\nNombre: "+cliente.getNombre()+"\nIdentificacion: "
             +cliente.getIdentificacion()+"\nFecha de Nacimiento: " 
             +pFechaNacimiento.toString()+"\nNumero telefonico: "+cliente.getNumeroTelefono();
-    return mensaje;
   }
   
   

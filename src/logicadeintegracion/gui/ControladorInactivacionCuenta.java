@@ -15,7 +15,7 @@ import serviciosexternos.Correo;
  * @author Alejandra Merino
  */
 public class ControladorInactivacionCuenta {
-  private String mensaje;
+  
   
   public void controlarInactivarCuenta (String pNumCuenta) {
     ClienteCRUD clienteCRUD = new ClienteCRUD ();
@@ -29,10 +29,6 @@ public class ControladorInactivacionCuenta {
           cliente.getNombre(), pNumCuenta)) {
       return;
     }
-  }
-
-  public String getMensaje() {
-    return mensaje;
   }
   
   

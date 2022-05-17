@@ -12,8 +12,7 @@ import logicadenegocios.Cuenta;
  *
  * @author Alejandra Merino
  */
-public class ControladorComisionGanada {
-  private String mensaje;
+public class ControladorComisionGanada extends Controlador {
   
   public void controlarComisionesGanadasTotal () {
     CuentaCRUD cuentaCRUD = new CuentaCRUD ();
@@ -27,14 +26,11 @@ public class ControladorComisionGanada {
       comisionDeposito+=cuenta.calcularTotalComisionesDepositos();
       comisionTotal+=cuenta.calcularTotalComisiones();
     }
-    mensaje="Comisiones de retiro: "+comisionRetiro +" \n"
+    super.mensaje="Comisiones de retiro: "+comisionRetiro +" \n"
             + "Comisiones de depositos: "+comisionDeposito +" \n"
             + "Comisiones totales: "+comisionTotal;
   }
 
-  public String getMensaje() {
-    return mensaje;
-  }
   
   
   

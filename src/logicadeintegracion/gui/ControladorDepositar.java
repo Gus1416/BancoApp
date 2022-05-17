@@ -15,14 +15,13 @@ import serviciosexternos.TipoCambio;
  *
  * @author Alejandra Merino
  */
-public class ControladorDepositar {
-  public String mensaje;
+public class ControladorDepositar extends Controlador{
+ 
   public CuentaCRUD cuentaCRUD;
   public OperacionCRUD operacionCRUD;
   public Cuenta cuenta;
 
   public ControladorDepositar() {
-    mensaje = "";
     cuentaCRUD = new CuentaCRUD();
     operacionCRUD = new OperacionCRUD ();
   }
@@ -52,7 +51,7 @@ public class ControladorDepositar {
     TipoCambio tc = new  TipoCambio ();
     double saldoEqui = tc.convertirAColones(deposito);
     double redondeo = Math.round(saldoEqui*100.0)/100.0;
-    mensaje = "Estimado usuario, se han recibido correctamente: "+deposito
+    super.mensaje = "Estimado usuario, se han recibido correctamente: "+deposito
             +" dólares\n[Según el BCCR, el tipo de cambio de compra del dólar de:"+ 
             tc.getFechaFinal()+ " es: "+tc.getCompra()+ "]\n[El monto equivalente"
             + " en colones es: " + redondeo + "]\n[El "
@@ -74,7 +73,7 @@ public class ControladorDepositar {
     Operacion operacion = operaciones.get(operaciones.size()-1);
     operacionCRUD.registrarOperacion(operacion, pNumCuenta);
     double montoReal = operacion.getMontoOperacion() - operacion.getMontoComision();
-    mensaje = "Estimado usuario, se han depositado correctamente: "+deposito
+    super.mensaje = "Estimado usuario, se han depositado correctamente: "+deposito
             +" colones\n[El monto real depositado a su cuenta: " +cuenta.getNumeroCuenta() 
             +" es de: "+montoReal+ " colones]\n[El monto cobrado por concepto de comisión"
             + " fue de: "+operacion.getMontoComision() +" colones, que fueron "
@@ -86,8 +85,5 @@ public class ControladorDepositar {
     return pCuenta;
   }
 
-  public String getMensaje() {
-    return mensaje;
-  }
   
 }

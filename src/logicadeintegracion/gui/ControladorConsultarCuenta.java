@@ -14,7 +14,7 @@ import logicadenegocios.Cuenta;
  *
  * @author Alejandra Merino
  */
-public class ControladorConsultarCuenta {
+public class ControladorConsultarCuenta extends Controlador {
  
 public ArrayList cargarCuentas () {
     CuentaCRUD cuentaCRUD = new CuentaCRUD ();
@@ -29,20 +29,18 @@ public ArrayList cargarCuentas () {
     return listaCuentasP;
   }
 
-public String cargarPropietarioCuenta (String pNumCuenta) {
+public void cargarPropietarioCuenta (String pNumCuenta) {
   ClienteCRUD clienteCRUD = new ClienteCRUD ();
   Cliente cliente = clienteCRUD.consultarPropietarioCuenta(pNumCuenta);
-  String mensaje = "" + cliente.getIdentificacion() + " " + 
+   super.mensaje = "" + cliente.getIdentificacion() + " " + 
           cliente.getPrimerApellido() + " "+ cliente.getSegundoApellido() + " "+
           cliente.getNombre();
-  return mensaje;
-  }
+    }
 
-public String cargarCuenta (String pNumCuenta) {
+public void cargarCuenta (String pNumCuenta) {
   CuentaCRUD cuentaCRUD = new CuentaCRUD ();
   Cuenta cuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
-  String mensaje = cuenta.estadoCuentaColones();
-  return mensaje;
+  super.mensaje = cuenta.estadoCuentaColones();
   }
   
 }

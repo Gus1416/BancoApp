@@ -176,9 +176,9 @@ private ControladorCrearCuenta control;
       String idCliente = (String) cbxCliente.getSelectedItem();
       idCliente = idCliente.trim();
       String[] listaCliente = idCliente.split(" ");
-      String mensaje = control.controlarRegistroCuenta(txtPin.getText(), 
+      control.controlarRegistroCuenta(txtPin.getText(), 
               txtDepositoInicial.getText(), listaCliente[listaCliente.length-1]);
-      validacionCuenta.setResultado(mensaje);
+      validacionCuenta.setResultado(control.getMensaje());
     } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
   }//GEN-LAST:event_btnCrearCuentaLabelMouseClicked
 

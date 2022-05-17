@@ -11,11 +11,11 @@ import logicadenegocios.Cliente;
  *
  * @author Alejandra Merino
  */
-public class ControladorConsultarCliente  {
+public class ControladorConsultarCliente extends Controlador {
   
-  public String controlarConsultaCliente (String pIdentificacion) {
+  public void controlarConsultaCliente (String pIdentificacion) {
   ClienteCRUD clienteCRUD = new ClienteCRUD ();
   Cliente cliente = clienteCRUD.consultarCliente(pIdentificacion);
-  return cliente.toString();
+  super.mensaje = cliente.toString();
   }
 }

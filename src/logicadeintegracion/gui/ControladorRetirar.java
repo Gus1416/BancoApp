@@ -20,9 +20,9 @@ import serviciosexternos.TipoCambio;
  *
  * @author Alejandra Merino
  */
-public class ControladorRetirar {
+public class ControladorRetirar extends Controlador {
   private ClienteCRUD clienteCRUD;
-  private String mensaje;
+  
   private String palabraSecreta;
   private Cuenta cuenta;
   private CuentaCRUD cuentaCRUD;
@@ -55,7 +55,7 @@ public class ControladorRetirar {
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();
     Operacion operacion = operaciones.get(operaciones.size()-1);
     operacionCRUD.registrarOperacion(operacion, pNumCuenta);
-    mensaje = "Estimado usuario, el monto de este retiro es "+retiro+" colones.\n" +
+    super.mensaje = "Estimado usuario, el monto de este retiro es "+retiro+" colones.\n" +
               "[El monto cobrado por concepto de comisión fue de :"+
             operacion.getMontoComision()+" colones, que \n" +
             "fueron rebajados automáticamente de su saldo actual]";
@@ -75,7 +75,7 @@ public class ControladorRetirar {
     TipoCambio tc = new  TipoCambio ();
     double saldoEqui = tc.convertirAColones(retiro);
     double redondeo = Math.round(saldoEqui*100.0)/100.0;
-    mensaje = "Estimado usuario, el monto de este retiro es: "+pRetiro+" dólares.\n" +
+    super.mensaje = "Estimado usuario, el monto de este retiro es: "+pRetiro+" dólares.\n" +
               "[Según el BCCR, el tipo de cambio de venta del dólar de hoy es: "+tc.getVenta()+"]\n" +
               "[El monto equivalente de su retiro es "+redondeo+" colones]\n" +
               "[El monto cobrado por concepto de comisión fue de "+operacion.getMontoComision()+" colones, que\n" +
@@ -88,7 +88,7 @@ public class ControladorRetirar {
   palabraSecreta = PalabraSecreta.generarPalabraSecreta();
   Sms mensajeTexto = new Sms();
   mensajeTexto.sms(palabraSecreta,cliente.getNumeroTelefono());
-  mensaje = "Estimado usuario se ha enviado una palabra por mensaje "
+  super.mensaje = "Estimado usuario se ha enviado una palabra por mensaje "
               + "de texto, por favor revise sus mensajes y proceda a digitar la"
               + " palabra enviada.";
   }
@@ -96,10 +96,6 @@ public class ControladorRetirar {
   public Cuenta devolverCuentaDeposito (String pNumCuenta) {
     Cuenta pCuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
     return pCuenta;
-  }
-
-  public String getMensaje() {
-    return mensaje;
   }
 
   public String getPalabraSecreta() {

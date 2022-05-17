@@ -11,16 +11,15 @@ import logicadenegocios.Cuenta;
  *
  * @author Alejandra Merino
  */
-public class ControladorCambioPin {
+public class ControladorCambioPin extends Controlador {
   
-  public String controlarCambioPin (String pNumCuenta, String pPinNuevo) {
+  public void controlarCambioPin (String pNumCuenta, String pPinNuevo) {
     CuentaCRUD cuentaCRUD = new CuentaCRUD ();
     Cuenta cuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
     cuenta.setPin(pPinNuevo);
     cuentaCRUD.cambiarPin(cuenta);
-    String mensaje = "Estimado usuario, se ha cambiado satisfactoriamente el "
+    super.mensaje = "Estimado usuario, se ha cambiado satisfactoriamente el "
             + "PIN de su cuenta: " + cuenta.getNumeroCuenta();
-    return mensaje;
   }
   
 }

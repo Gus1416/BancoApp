@@ -19,9 +19,8 @@ import serviciosexternos.Sms;
  *
  * @author Alejandra Merino
  */
-public class ControladorTransferencia {
+public class ControladorTransferencia extends Controlador {
   private ClienteCRUD clienteCRUD;
-  private String mensaje;
   private String palabraSecreta;
   private Cuenta cuenta;
   private CuentaCRUD cuentaCRUD;
@@ -56,7 +55,7 @@ public class ControladorTransferencia {
     ArrayList<Operacion> operacionesD = cuentaDestino.getOperaciones();
     Operacion operacionD = operacionesD.get(operacionesD.size()-1);
     operacionCRUD.registrarOperacion(operacionD, pNumCuentaD);
-    mensaje = "Estimado usuario, la transferencia de fondos se ejecutó "
+    super.mensaje = "Estimado usuario, la transferencia de fondos se ejecutó "
             + "satisfactoriamente.\n" + "El monto retirado de la cuenta origen y"
             + " depositado en la cuenta destino es: \n" +retiro+" colones.\n" +
             "[El monto cobrado por concepto de comisión a la cuenta origen fue "
@@ -70,7 +69,7 @@ public class ControladorTransferencia {
   palabraSecreta = PalabraSecreta.generarPalabraSecreta();
   Sms mensajeTexto = new Sms();
   mensajeTexto.sms(palabraSecreta,cliente.getNumeroTelefono());
-  mensaje = "Estimado usuario se ha enviado una palabra por mensaje "
+  super.mensaje = "Estimado usuario se ha enviado una palabra por mensaje "
               + "de texto, por favor revise sus mensajes y proceda a digitar la"
               + " palabra enviada.";
   }
@@ -80,14 +79,7 @@ public class ControladorTransferencia {
     return pCuenta;
   }
 
-  public String getMensaje() {
-    return mensaje;
-  }
-
   public String getPalabraSecreta() {
     return palabraSecreta;
   }
-  
-  
-  
 }

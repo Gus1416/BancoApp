@@ -10,8 +10,8 @@ import serviciosexternos.TipoCambio;
  *
  * @author Alejandra Merino
  */
-public class ControladorTipoCambio {
-  private String mensaje;
+public class ControladorTipoCambio extends Controlador {
+  
   private TipoCambio tc;
 
   public ControladorTipoCambio() {
@@ -20,16 +20,12 @@ public class ControladorTipoCambio {
           
   public void controlarTipoCambio (String pTipo) {
     if (pTipo.equals("Compra")) {
-      mensaje = "El tipo de cambio de compra del \ndólar para día " 
+      super.mensaje = "El tipo de cambio de compra del \ndólar para día " 
               +tc.getFechaFinal()+" es de: "+tc.getCompra();
     } else {
-      mensaje = "El tipo de cambio de venta del \ndólar para día " 
+      super.mensaje = "El tipo de cambio de venta del \ndólar para día " 
               +tc.getFechaFinal()+" es de: "+tc.getVenta();
     }
-  }
-
-  public String getMensaje() {
-    return mensaje;
   }
   
   

@@ -155,8 +155,8 @@ public class ConsultarCliente extends javax.swing.JPanel {
     String idCliente = (String) cbxListadoClientes.getSelectedItem();
     idCliente = idCliente.trim();
     String[] listaCliente = idCliente.split(" ");
-    String resultado = consulta.controlarConsultaCliente(listaCliente[listaCliente.length-1]);
-    txtMuestraConsultaCliente.setText(resultado);
+    consulta.controlarConsultaCliente(listaCliente[listaCliente.length-1]);
+    txtMuestraConsultaCliente.setText(consulta.getMensaje());
   }//GEN-LAST:event_btnConsultarClienteLabelMouseClicked
 
 
