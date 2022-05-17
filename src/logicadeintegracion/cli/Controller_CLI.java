@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package logicadeintegracion.cli;
 
 import java.text.ParseException;
@@ -147,8 +143,10 @@ public class Controller_CLI {
 			return null;
 		}
 	}
-
+	
 	public boolean verificarPIN(Cuenta cuentaActual) {
+		Cliente tempClient;
+
 		Scanner rd = new Scanner(System.in);
 		System.out.println("Ingrese el PIN de la cuenta: ");
 		String pAntiguo = rd.nextLine();
@@ -166,6 +164,8 @@ public class Controller_CLI {
 			} else {
 				System.out.println("La cuenta ha sido bloqueda por ingreso de pin incorrecto en dos ocasiones");
 				cuentaActual.inactivarCuenta();
+				tempClient = obtenerCliente_Cuenta(cuentaActual.getNumeroCuenta());
+				envioCorreo(tempClient.getCorreoElectronico(), tempClient.getNombre(), cuentaActual.getNumeroCuenta());
 				return false;
 			}
 		}
@@ -368,7 +368,7 @@ public class Controller_CLI {
 					System.out.println("Fecha Creación: " + accounts.get(j).getFechaCreacion());
 					System.out.println("Estatus de la cuenta: " + accounts.get(j).getEstatus());
 					System.out.println("Pin de la cuenta: " + accounts.get(j).getPin());
-					System.out.println("Cantidad de operaciones de la cuenta: " + accounts.get(j).getCantidadDepositosOperaciones());
+					System.out.println("Cantidad de operaciones de la cuenta: " + accounts.get(j).getCantidadDepositosRetiros());
 
 					/// Necesario meterse en cada operación ??????
 					/// Necesario poner toda la data del cliente ????
@@ -671,5 +671,7 @@ public class Controller_CLI {
 		return secretWord;
 	}
 // SERVICIOS EXTERNOS---------------
+
+	
 
 }

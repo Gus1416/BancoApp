@@ -1,6 +1,7 @@
 package logicadenegocios;
 
 import java.util.Date;
+import serviciosexternos.TipoCambio;
 
 /**
  *
@@ -28,6 +29,18 @@ public class Operacion {
 		this.idOperacion = ++cantidadOperaciones;
 	}
 
+	public Operacion(Date pFechaOperacion, String pTipoOperacion, double pMontoOperacion, boolean pSeCobraComision, double pMontoComision,
+					 String pMoneda, int pNum) {
+		this.cantidadOperaciones = pNum;
+		this.fechaOperacion = pFechaOperacion;
+		this.tipoOperacion = pTipoOperacion;
+		this.seCobraComision = pSeCobraComision;
+		this.montoOperacion = pMontoOperacion;
+		this.montoComision = pMontoComision;
+		this.moneda = pMoneda;
+		this.idOperacion = ++cantidadOperaciones;
+	}
+	
 	public Operacion(Date fechaOperacion, String tipoOperacion, boolean seCobraComision) {
 		this.fechaOperacion = fechaOperacion;
 		this.tipoOperacion = tipoOperacion;
@@ -47,11 +60,21 @@ public class Operacion {
 
 	@Override
 	public String toString() {
-		String mensaje = "Fecha de operacion: " + getFechaOperacion() +"\n"
-						+ "Tipo de operacion: " + tipoOperacion +"\n"+ "Cobro comision: "
-						+ isSeCobraComision() +"\n"+ "Monto de operacion: " + getMontoOperacion()+"\n"
-						+ "Monto de comision" + getMontoComision() +"\n"+ "Moneda: " + getMoneda()+"\n"
-						+ "Porcentaje de comision" + porcentajeComision+"\n";
+		String mensaje = "Fecha de operacion: " + getFechaOperacion() + "\n"
+						+ "Tipo de operacion: " + tipoOperacion + "\n" + "Cobro comision: "
+						+ isSeCobraComision() + "\n" + "Monto de operacion: " + getMontoOperacion() + "\n"
+						+ "Monto de comision" + getMontoComision() + "\n" + "Moneda: " + getMoneda() + "\n"
+						+ "Porcentaje de comision" + porcentajeComision + "\n";
+		return mensaje;
+	}
+
+	public String toStringDolar() {
+		TipoCambio tc = new TipoCambio();
+		String mensaje = "Fecha de operacion: " + getFechaOperacion()
+						+ "\nTipo de operacion: " + tipoOperacion + "\nCobro comision: "
+						+ isSeCobraComision() + "\nMonto de operacion: " + tc.convertirADolares(getMontoOperacion())
+						+ "\nMonto de comision" + tc.convertirADolares(montoComision) + "\nMoneda: " + getMoneda()
+						+ "\nPorcentaje de comision" + porcentajeComision;
 		return mensaje;
 	}
 

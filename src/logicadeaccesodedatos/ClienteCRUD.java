@@ -24,8 +24,8 @@ public class ClienteCRUD extends Conexion{
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, pCliente.getIdentificacion());
-			ps.setString(2, pCliente.getSegundoApellido());
-			ps.setString(3, pCliente.getPrimerApellido());
+			ps.setString(2, pCliente.getPrimerApellido());
+			ps.setString(3, pCliente.getSegundoApellido());
 			ps.setString(4, pCliente.getNombre());
 			ps.setDate(5, new Date(pCliente.getFechaNacimiento().getTime()));
 			ps.setString(6, pCliente.getCodigoCliente());
@@ -157,6 +157,28 @@ public class ClienteCRUD extends Conexion{
 		} catch (SQLException e) {
 			System.err.println(e);
 			return null;
+		}
+	}
+	
+	public int obtenerCantidadClientes() {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConexion();
+		int cantidad = 0;
+
+		String sql = "SELECT COUNT(*) AS cantidad FROM bd_bancoapp.cliente;";
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				cantidad = rs.getInt("cantidad");
+			}
+			return cantidad;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return 0;
 		}
 	}
 }

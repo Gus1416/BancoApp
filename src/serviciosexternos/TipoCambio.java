@@ -82,6 +82,7 @@ public class TipoCambio {
 		}
 	}
 
+	
 	private void setUrl() {
 		String params = "Indicador=" + indicador + "&FechaInicio=" + fechaInicial + "&FechaFinal=" + fechaFinal + "&Nombre=" + nombre + "&SubNiveles=" + subNiveles +"&CorreoElectronico="+ correoElectronico +"&Token=" + token;
 		this.url = HOST + "?" + params;
@@ -95,6 +96,10 @@ public class TipoCambio {
 		this.fechaFinal = fechaInicial;
 	}
 
+	public String getFechaFinal() {
+		return fechaFinal;
+	}
+	
 	private void setCompra() {
 		this.indicador = 317;
 	}

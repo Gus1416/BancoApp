@@ -18,20 +18,11 @@ public class Busqueda {
 		return pListaCuentas.get(0);
 	}
 
-//	public Cliente buscarCliente(String pCodigoCliente, ArrayList<Cliente> pListaClientes) {
-//		for (int i = 0; i < pListaClientes.size(); i++) {
-//			if (pListaClientes.get(i).getNumeroCuenta().equals(pCodigoCliente)) {
-//				return pListaClientes.get(i);
-//			}
-//		}
-//		return pListaClientes.get(0);
-//	}
-	
-	public static Cliente buscarCliente (String pIdentificacion, ArrayList<Cliente> pClientes){
+	public static Cliente buscarCliente(String pIdentificacion, ArrayList<Cliente> pClientes) {
 		Cliente clienteBuscado = null;
-		for (Cliente cliente : pClientes){
-			if (cliente.getIdentificacion().equals(pIdentificacion)){
-				clienteBuscado =  cliente;
+		for (Cliente cliente : pClientes) {
+			if (cliente.getIdentificacion().equals(pIdentificacion)) {
+				clienteBuscado = cliente;
 			}
 		}
 		return clienteBuscado;

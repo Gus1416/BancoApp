@@ -21,6 +21,14 @@ public class Cliente extends Persona{
 		codigoCliente = "CIF_" + ++cantidadClientes;
 	}
 
+	public Cliente(String pIdentificacion, String pPrimerApellido, String pSegundoApellido, String pNombre, Date pFechaNacimiento, String pNumeroTelefono, String pCorreoElectronico, int pNum) {
+		super(pIdentificacion, pPrimerApellido, pSegundoApellido, pNombre, pFechaNacimiento);
+		cantidadClientes = pNum;
+		numeroTelefono = pNumeroTelefono;
+		correoElectronico = pCorreoElectronico;
+		codigoCliente = "CIF_" + ++cantidadClientes;
+		//cuentas = new ArrayList<>();
+	}
 	
 	@Override
 	public String toString(){

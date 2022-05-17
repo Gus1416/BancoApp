@@ -222,4 +222,48 @@ public class CuentaCRUD extends Conexion{
 			return false;
 		}
 	}
+	
+	public int obtenerCantidadOperaciones() {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConexion();
+		int cantidad = 0;
+
+		String sql = "SELECT COUNT(*) AS cantidad FROM bd_bancoapp.cuenta_operacion;";
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				cantidad = rs.getInt("cantidad");
+			}
+			return cantidad;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return 0;
+		}
+	}
+	
+	public int obtenerCantidadCuentas() {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConexion();
+		int cantidad = 0;
+
+		String sql = "SELECT COUNT(*) AS cantidad FROM bd_bancoapp.cuenta;";
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				cantidad = rs.getInt("cantidad");
+			}
+			return cantidad;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return 0;
+		}
+	}
 }

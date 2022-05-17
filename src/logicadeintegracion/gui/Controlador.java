@@ -6,8 +6,19 @@ package logicadeintegracion.gui;
 
 /**
  *
- * @author Gustavo
+ * @author Alejandra Merino
  */
-public class NewClass {
-	
+public class Controlador {
+  protected String mensaje;
+
+  public Controlador() {
+    mensaje = "";
+  }
+
+  public String getMensaje() {
+    return mensaje;
+  }
+  
+  
+  
 }

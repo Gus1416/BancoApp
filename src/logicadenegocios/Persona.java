@@ -10,12 +10,12 @@ import logicadevalidacion.FondosInsuficientesExcepcion;
  */
 public class Persona implements Comparable {
 
-	private String primerApellido;
-	private String segundoApellido;
-	private String nombre;
-	private String identificacion;
-	private Date fechaNacimiento;
-	private ArrayList<Cuenta> cuentas;
+	protected String primerApellido;
+	protected String segundoApellido;
+	protected String nombre;
+	protected String identificacion;
+	protected Date fechaNacimiento;
+	protected ArrayList<Cuenta> cuentas;
 	
 	public Persona(){}
 
@@ -32,12 +32,12 @@ public class Persona implements Comparable {
 		Cuenta nuevaCuenta = new Cuenta(pPin, pMontoInicial);
 		getCuentas().add(nuevaCuenta);
 	}
-	
-//	public void transferirSaldoEntreCuentasPropias(String pNumeroCuentaOrigen, String pNumeroCuentaDestino, double pMontoTransferencia) throws FondosInsuficientesExcepcion {
-//		Busqueda.buscarCuenta(pNumeroCuentaDestino, cuentas).retirarColones(pMontoTransferencia);
-//		Busqueda.buscarCuenta(pNumeroCuentaOrigen, cuentas).recibirTransferencia(pMontoTransferencia);
-//	}
 
+	public void crearCuenta(String pPin, double pMontoInicial, int pNum) {
+		Cuenta nuevaCuenta = new Cuenta(pPin, pMontoInicial, pNum);
+		getCuentas().add(nuevaCuenta);
+	}
+	
 	@Override
 	public boolean comparar(Comparable b) {
 		return getNombre().compareTo(((Persona) b).getNombre()) <= 0;
@@ -46,12 +46,19 @@ public class Persona implements Comparable {
 	@Override
 	public String toString() {
 		String mensaje = "";
-		
 		mensaje += "Primer apellido: " + getPrimerApellido() + "\n";
 		mensaje += "Segundo apellido: " + getSegundoApellido() + "\n";
 		mensaje += "Nombre: " + getNombre() + "\n";
 		mensaje += "Identificación: " + getIdentificacion() + "\n";
 		mensaje += "Fecha de nacimiento: " + getFechaNacimiento() + "\n";
+		return mensaje;
+	}
+	
+	public String toStringCuentas() {
+		String mensaje = "Los numeros de cuenta son: \n";
+		for (Cuenta cuenta : cuentas) {
+			mensaje += cuenta.getNumeroCuenta() + "\n";
+		}
 		return mensaje;
 	}
 

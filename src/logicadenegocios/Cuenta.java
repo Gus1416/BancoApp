@@ -18,7 +18,7 @@ public class Cuenta implements IComisiones, Comparable {
 	private String estatus;
 	private String pin;
 	private ArrayList<Operacion> operaciones;
-	private int cantidadDepositosOperaciones = 0;
+	private int cantidadDepositosRetiros = 0;
 	private static int identificadorCuenta = 0;  
 
 	public Cuenta() {
@@ -32,30 +32,27 @@ public class Cuenta implements IComisiones, Comparable {
 		fechaCreacion = obtenerFechaSistema();
 		operaciones = new ArrayList<>();
 	}
+	
+	public Cuenta(String pPin, double pMontoInicial, int pNum) {
+		identificadorCuenta = pNum;
+		pin = pPin;
+		saldo = pMontoInicial;
+		estatus = "activa";   ////
+		numeroCuenta = "CTA_" + ++identificadorCuenta;  ///
+		fechaCreacion = obtenerFechaSistema();
+		operaciones = new ArrayList<>();
+	}
 
 	private Date obtenerFechaSistema() {
 		Date fecha = new Date();
 		return fecha;
 	}
 
-//	public void depositarColones(double pMontoDeposito){
-//		boolean seCobraComision = determinarCobroComision();
-//		double comision = 0.00;
-//		
-//		if (seCobraComision){
-//			comision = pMontoDeposito * 0.02;
-//		}	
-//			
-//		this.saldo += (pMontoDeposito + comision);	
-//		registrarOperacion("Depósito", pMontoDeposito, seCobraComision, comision, "Colones");
-//	}
-	
 	public void depositarColones(double pMontoDeposito, int cantidad) {
-		this.cantidadDepositosOperaciones = cantidad;
-
+		this.setCantidadDepositosRetiros(cantidad);
+		
 		boolean seCobraComision = determinarCobroComision();
 		double comision = 0.00;
-
 		double montoRealDeposito;
 
 		if (seCobraComision) {
@@ -65,7 +62,7 @@ public class Cuenta implements IComisiones, Comparable {
 		this.saldo += (pMontoDeposito - comision);
 		montoRealDeposito = pMontoDeposito - comision;
 
-		registrarOperacion("Depósito", pMontoDeposito, seCobraComision, comision, "Colones");
+		registrarOperacion("Depósito", pMontoDeposito, seCobraComision, comision, "Colones", cantidad);
 
 		System.out.println("Estimado usuario, se han depositado correctamente: " + String.format("%.2f", pMontoDeposito) + " colones");
 		System.out.println("[El monto real depositado a su cuenta " + this.getNumeroCuenta() + " es de: " + String.format("%.2f", montoRealDeposito) + " colones");
@@ -73,22 +70,8 @@ public class Cuenta implements IComisiones, Comparable {
 						+ "fueron rebajados automáticamente de su saldo actual]");
 	}
 	
-//	public void depositarDolares(double pMontoDepositoDolares) {
-//		TipoCambio tc = new TipoCambio();
-//		double depositoEnColones = tc.convertirAColones(pMontoDepositoDolares);
-//		boolean seCobraComision = determinarCobroComision();
-//		double comision = 0.00;
-//		
-//		if (seCobraComision){
-//			comision = depositoEnColones * 0.02;
-//		} 
-//		
-//		this.saldo += (depositoEnColones + comision);
-//		registrarOperacion("Depósito", pMontoDepositoDolares, seCobraComision, comision, "Dólares");
-//	}
-	
 	public void depositarDolares(double pMontoDepositoDolares, int cantidad) {
-		this.cantidadDepositosOperaciones = cantidad;
+		this.setCantidadDepositosRetiros(cantidad);
 		TipoCambio tc = new TipoCambio();
 		double depositoEnColones = tc.convertirAColones(pMontoDepositoDolares);
 		boolean seCobraComision = determinarCobroComision();
@@ -102,7 +85,7 @@ public class Cuenta implements IComisiones, Comparable {
 		this.saldo += (depositoEnColones - comision);
 		montoRealDeposito = depositoEnColones - comision;
 
-		registrarOperacion("Depósito", pMontoDepositoDolares, seCobraComision, comision, "Dólares");
+		registrarOperacion("Depósito", pMontoDepositoDolares, seCobraComision, comision, "Dólares", cantidad);
 
 		System.out.println("Estimado usuario, se han recibido correctamente " + String.format("%.2f", pMontoDepositoDolares) + " dólares");
 
@@ -117,29 +100,10 @@ public class Cuenta implements IComisiones, Comparable {
 		System.out.println("El monto cobrado por concepto de comisión fue de: " + String.format("%.2f", comision) + " colones, que \n"
 						+ "fueron rebajados automáticamente de su saldo actual");
 	}
-
-//	public void retirarColones(double pMontoRetiro) throws FondosInsuficientesExcepcion {
-//		boolean seCobraComision = determinarCobroComision();
-//		double comision = 0.00;
-//		double montoTotalRetiro = pMontoRetiro;
-//		
-//		if (seCobraComision){
-//			comision = pMontoRetiro * 0.02;
-//			montoTotalRetiro += comision;
-//		}
-//		
-//		if (validarRetiro(montoTotalRetiro)){
-//			this.saldo -= (montoTotalRetiro);
-//			registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Colones");
-//		} else {
-//			double saldoFaltante = montoTotalRetiro - this.getSaldo();
-//			throw new FondosInsuficientesExcepcion(saldoFaltante);
-//		}
-//	}
 	
 	public void retirarColones(double pMontoRetiro, int cantidad) throws FondosInsuficientesExcepcion {
 
-		this.cantidadDepositosOperaciones = cantidad;
+		this.setCantidadDepositosRetiros(cantidad);
 		boolean seCobraComision = determinarCobroComision();
 		double comision = 0.00;
 		double montoTotalRetiro = pMontoRetiro;
@@ -151,7 +115,7 @@ public class Cuenta implements IComisiones, Comparable {
 
 		if (validarRetiro(montoTotalRetiro)) {
 			this.saldo -= (montoTotalRetiro);
-			registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Colones");
+			registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Colones", cantidad);
 			System.out.println("Estimado usuario, el monto de este retiro es: " + String.format("%.2f", pMontoRetiro) + " colones");
 			System.out.println("El monto cobrado por concepto de comisión fue de: " + String.format("%.2f", comision) + " colones");
 			System.out.println("que fueron rebajados automáticamente de su saldo actual");
@@ -161,31 +125,9 @@ public class Cuenta implements IComisiones, Comparable {
 			throw new FondosInsuficientesExcepcion(saldoFaltante);
 		}
 	}
-
-//	public void retirarDolares(double pMontoRetiro) throws FondosInsuficientesExcepcion {
-//		boolean seCobraComision = determinarCobroComision();
-//		double comision = 0.00;
-//		
-//		TipoCambio tc = new TipoCambio();
-//		double montoTotalRetiro = tc.convertirAColones(pMontoRetiro);
-//		
-//		if (seCobraComision){
-//			comision = pMontoRetiro * 0.02;
-//			montoTotalRetiro += comision;
-//		}
-//		
-//		if (validarRetiro(montoTotalRetiro)){
-//			this.saldo -= montoTotalRetiro;
-//			registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Dólares");
-//			
-//		} else {
-//			double saldoFaltante = montoTotalRetiro - this.getSaldo();
-//			throw new FondosInsuficientesExcepcion(saldoFaltante);
-//		}
-//	}
 	
 	public void retirarDolares(double pMontoRetiro, int cantidad) throws FondosInsuficientesExcepcion {
-		this.cantidadDepositosOperaciones = cantidad;
+		this.setCantidadDepositosRetiros(cantidad);
 		boolean seCobraComision = determinarCobroComision();
 		double comision = 0.00;
 
@@ -199,7 +141,7 @@ public class Cuenta implements IComisiones, Comparable {
 
 		if (validarRetiro(montoTotalRetiro)) {
 			this.saldo -= montoTotalRetiro;
-			registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Dólares");
+			registrarOperacion("Retiro", pMontoRetiro, seCobraComision, comision, "Dólares", cantidad);
 			System.out.println("Estimado usuario el monto de este retiro es: " + pMontoRetiro);
 			System.out.println("Según el BCCR, el tipo de cambio de venta del dólar de hoy es: " + tc.getCompra());
 			System.out.println("El monto equivalente de este retiro es: " + String.format("%.2f", montoTotalRetiro) + " colones");
@@ -211,11 +153,12 @@ public class Cuenta implements IComisiones, Comparable {
 			throw new FondosInsuficientesExcepcion(saldoFaltante);
 		}
 	}
+
 	
-	public void recibirTransferencia(double pMontoRecibido){
-		this.saldo += pMontoRecibido;
-		registrarOperacion("Transferencia", pMontoRecibido, false, 0.00, "Colones");
-	}
+//	public void recibirTransferencia(double pMontoRecibido){
+//		this.saldo += pMontoRecibido;
+//		registrarOperacion("Transferencia", pMontoRecibido, false, 0.00, "Colones");
+//	}
 	
 	public double consultarSaldoActual(){
 		double saldoActual = getSaldo();
@@ -228,13 +171,21 @@ public class Cuenta implements IComisiones, Comparable {
 	}
 	
 	private boolean determinarCobroComision(){
-		return this.cantidadDepositosOperaciones > 3;
+		return this.cantidadDepositosRetiros > 3;
 	}
 	
-	private void registrarOperacion(String pTipoOperacion, double pMontoOperacion, boolean pSeCobraComision, double pMontoComision, String pMoneda) {
-		Operacion operacion = new Operacion(obtenerFechaSistema(), pTipoOperacion, pMontoOperacion, pSeCobraComision, pMontoComision, pMoneda);
-		getOperaciones().add(operacion);
-		this.cantidadDepositosOperaciones++;
+//	private void registrarOperacion(String pTipoOperacion, double pMontoOperacion, boolean pSeCobraComision, double pMontoComision, String pMoneda) {
+//		Operacion operacion = new Operacion(obtenerFechaSistema(), pTipoOperacion, pMontoOperacion, pSeCobraComision, pMontoComision, pMoneda);
+//		getOperaciones().add(operacion);
+//		this.cantidadDepositosRetiros++;
+//	}
+	
+	private void registrarOperacion(String pTipoOperacion, double pMontoOperacion,
+					boolean pSeCobraComision, double pMontoComision, String pMoneda, int pNum) {
+		Operacion operacion = new Operacion(obtenerFechaSistema(), pTipoOperacion, pMontoOperacion, pSeCobraComision, pMontoComision, pMoneda, pNum);
+		operaciones.add(operacion);
+		this.setCantidadDepositosRetiros(pNum);
+		this.cantidadDepositosRetiros++;
 	}
 	
 	private void registrarOperacion(){
@@ -300,17 +251,41 @@ public class Cuenta implements IComisiones, Comparable {
 		}
 		return mensaje;
 	}
+	
+	public String consultarDetallesOperacionesDolares() {
+		String mensaje = "Operaciones: \n";
+		for (Operacion elemento : operaciones) {
+			mensaje += elemento.toStringDolar();
+		}
+		return mensaje;
+	}
 
 	public String consultarEstatus() {
 		String mensaje = "La cuenta número XXXXXX tiene estatus de: " + getEstatus();
 		return mensaje;
 	}
 	
-	public String consultarEstadoCuenta(){
-		String estadoCuenta = "";
-		estadoCuenta += this.toString() + "\n";
-		estadoCuenta += this.consultarDetallesOperaciones() + "\n";
-		return estadoCuenta;
+//	public String consultarEstadoCuenta(){
+//		String estadoCuenta = "";
+//		estadoCuenta += this.toString() + "\n";
+//		estadoCuenta += this.consultarDetallesOperaciones() + "\n";
+//		return estadoCuenta;
+//	}
+	
+	public String estadoCuentaColones() {
+		String mensaje = "NumeroCuenta: " + numeroCuenta + "\n"
+						+ "FechaCreacion: " + fechaCreacion + "\nSaldo: " + saldo + "\n"
+						+ "Estatus: " + estatus + "\n" + consultarDetallesOperaciones();
+		return mensaje;
+	}
+
+	public String estadoCuentaDolares() {
+		double saldoDolares = getSaldoDolares();
+		double redondeo = Math.round(saldoDolares * 100.0) / 100.0;
+		String mensaje = "NumeroCuenta: " + numeroCuenta + "\n"
+						+ "FechaCreacion: " + fechaCreacion + "\nSaldo: " + redondeo + "\n"
+						+ "Estatus: " + estatus + consultarDetallesOperacionesDolares();
+		return mensaje;
 	}
 	
 	public void inactivarCuenta() {
@@ -318,7 +293,7 @@ public class Cuenta implements IComisiones, Comparable {
 	}
 
 	public void cambiarPin(String pNuevoPin) {
-		this.pin = pNuevoPin;
+		this.setPin(pNuevoPin);
 		registrarOperacion();
 	}
 
@@ -328,11 +303,23 @@ public class Cuenta implements IComisiones, Comparable {
 
 	@Override
 	public boolean comparar(Comparable b) {
-		return false;
+		return saldo < ((Cuenta) b).getSaldo();
+	}
+
+	@Override
+	public String toString() {
+		return "Cuenta{" + "numeroCuenta=" + getNumeroCuenta() + ", fechaCreacion=" + getFechaCreacion() + ", saldo=" + getSaldo() + ", estatus=" + getEstatus() + ", pin=" + getPin() + '}';
 	}
 
 	public String getNumeroCuenta() {
 		return numeroCuenta;
+	}
+
+	/**
+	 * @param numeroCuenta the numeroCuenta to set
+	 */
+	public void setNumeroCuenta(String numeroCuenta) {
+		this.numeroCuenta = numeroCuenta;
 	}
 	
 	public double getSaldo(){
@@ -342,11 +329,6 @@ public class Cuenta implements IComisiones, Comparable {
 	public double getSaldoDolares(){
 		TipoCambio tc = new TipoCambio();
 		return tc.convertirADolares(this.getSaldo());
-	}
-
-	@Override
-	public String toString() {
-		return "Cuenta{" + "numeroCuenta=" + getNumeroCuenta() + ", fechaCreacion=" + getFechaCreacion() + ", saldo=" + getSaldo() + ", estatus=" + getEstatus() + ", pin=" + getPin() + '}';
 	}
 
 	/**
@@ -362,21 +344,7 @@ public class Cuenta implements IComisiones, Comparable {
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
-
-	/**
-	 * @return the estatus
-	 */
-	public String getEstatus() {
-		return estatus;
-	}
-
-	/**
-	 * @param numeroCuenta the numeroCuenta to set
-	 */
-	public void setNumeroCuenta(String numeroCuenta) {
-		this.numeroCuenta = numeroCuenta;
-	}
-
+	
 	/**
 	 * @param fechaCreacion the fechaCreacion to set
 	 */
@@ -385,10 +353,24 @@ public class Cuenta implements IComisiones, Comparable {
 	}
 
 	/**
+	 * @return the estatus
+	 */
+	public String getEstatus() {
+		return estatus;
+	}
+	
+	/**
 	 * @param estatus the estatus to set
 	 */
 	public void setEstatus(String estatus) {
 		this.estatus = estatus;
+	}
+
+	/**
+	 * @return the operaciones
+	 */
+	public ArrayList<Operacion> getOperaciones() {
+		return operaciones;
 	}
 
 	/**
@@ -398,14 +380,21 @@ public class Cuenta implements IComisiones, Comparable {
 		this.operaciones = operaciones;
 	}
 
-	/**
-	 * @return the operaciones
-	 */
-	public ArrayList<Operacion> getOperaciones() {
-		return operaciones;
+	public int getCantidadDepositosRetiros() {
+		return cantidadDepositosRetiros;
 	}
-	
-	public int getCantidadDepositosOperaciones() {
-		return cantidadDepositosOperaciones;
+
+	/**
+	 * @param pin the pin to set
+	 */
+	public void setPin(String pin) {
+		this.pin = pin;
+	}
+
+	/**
+	 * @param cantidadDepositosRetiros the cantidadDepositosRetiros to set
+	 */
+	public void setCantidadDepositosRetiros(int cantidadDepositosRetiros) {
+		this.cantidadDepositosRetiros = cantidadDepositosRetiros;
 	}
 }
