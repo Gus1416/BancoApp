@@ -175,6 +175,8 @@ public class CambiarPin extends javax.swing.JPanel {
   }//GEN-LAST:event_txtNumCuentaActionPerformed
 
   private void btnCambiarPinLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarPinLabelMouseClicked
+    validacionCuenta.setResultado("");
+    validacionCuenta.setValido();
     System.out.println("Cantidad de veces que falla antes: "+validacionCuenta.getFallaPin());
     validacionCuenta.validarCambioPin(txtPinActual.getText(), txtPinNuevo.getText(), txtNumCuenta.getText());
     System.out.println("Cantidad de veces que falla: "+validacionCuenta.getFallaPin());
@@ -183,7 +185,6 @@ public class CambiarPin extends javax.swing.JPanel {
       validacionCuenta.setResultado(mensaje);
     }
     JOptionPane.showMessageDialog(this, validacionCuenta.getResultado());
-    validacionCuenta.setResultado("");
   }//GEN-LAST:event_btnCambiarPinLabelMouseClicked
 
 

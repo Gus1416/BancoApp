@@ -229,6 +229,8 @@ public class Transferir extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnValidarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidarLabelMouseClicked
+    validacionCuenta.setResultado("");
+    validacionCuenta.setValido();
     validacionCuenta.validarDatosPrevioRetiro(txtNumeroCuenta.getText(), 
             txtPinActual.getText());
     if(validacionCuenta.esValido) {

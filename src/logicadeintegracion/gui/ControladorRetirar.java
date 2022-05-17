@@ -48,7 +48,8 @@ public class ControladorRetirar {
     cuenta = devolverCuentaDeposito(pNumCuenta);
     double retiro = Double.parseDouble(pRetiro);
     int numOperaciones = cuentaCRUD.obtenerCantidadOperaciones();
-    System.out.println("\n"+numOperaciones);
+    int numOperacionesCuenta = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuenta);
+    cuenta.setCantidadDepositosOperaciones(numOperacionesCuenta);
     cuenta.retirarColones(retiro, numOperaciones);
     cuentaCRUD.actualizarSaldo(cuenta);
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();
@@ -64,15 +65,19 @@ public class ControladorRetirar {
     cuenta = devolverCuentaDeposito(pNumCuenta);
     double retiro = Double.parseDouble(pRetiro);
     int numOperaciones = cuentaCRUD.obtenerCantidadOperaciones();
+    int numOperacionesCuenta = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuenta);
+    cuenta.setCantidadDepositosOperaciones(numOperacionesCuenta);
     cuenta.retirarDolares(retiro, numOperaciones);
     cuentaCRUD.actualizarSaldo(cuenta);
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();
     Operacion operacion = operaciones.get(operaciones.size()-1);
     operacionCRUD.registrarOperacion(operacion, pNumCuenta);
     TipoCambio tc = new  TipoCambio ();
+    double saldoEqui = tc.convertirAColones(retiro);
+    double redondeo = Math.round(saldoEqui*100.0)/100.0;
     mensaje = "Estimado usuario, el monto de este retiro es: "+pRetiro+" dólares.\n" +
               "[Según el BCCR, el tipo de cambio de venta del dólar de hoy es: "+tc.getVenta()+"]\n" +
-              "[El monto equivalente de su retiro es "+operacion.getMontoOperacion()+" colones]\n" +
+              "[El monto equivalente de su retiro es "+redondeo+" colones]\n" +
               "[El monto cobrado por concepto de comisión fue de "+operacion.getMontoComision()+" colones, que\n" +
               "fueron rebajados automáticamente de su saldo actual]";
   }

@@ -30,6 +30,7 @@ public class ControladorTransferencia {
   public ControladorTransferencia() {
     clienteCRUD = new ClienteCRUD ();
     cuentaCRUD = new CuentaCRUD ();
+    operacionCRUD = new OperacionCRUD ();
   }
   
   public void controlarTransferencia (String pNumCuentaO, String pTransferencia,
@@ -37,6 +38,8 @@ public class ControladorTransferencia {
     cuenta = devolverCuentaDeposito(pNumCuentaO);
     double retiro = Double.parseDouble(pTransferencia);
     int numOperaciones = cuentaCRUD.obtenerCantidadOperaciones();
+    int numOperacionesCuenta = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuentaO);
+    cuenta.setCantidadDepositosOperaciones(numOperacionesCuenta);
     cuenta.retirarColones(retiro, numOperaciones);
     cuentaCRUD.actualizarSaldo(cuenta);
     ArrayList<Operacion> operaciones = cuenta.getOperaciones();
@@ -46,6 +49,8 @@ public class ControladorTransferencia {
     Cuenta cuentaDestino = new Cuenta ();
     cuentaDestino = devolverCuentaDeposito(pNumCuentaD);
     numOperaciones = cuentaCRUD.obtenerCantidadOperaciones();
+    int numOperacionesCuentaD = cuentaCRUD.obtenerCantidadOpeCuenta(pNumCuentaD);
+    cuentaDestino.setCantidadDepositosOperaciones(numOperacionesCuentaD);
     cuentaDestino.depositarColones(retiro, numOperaciones);
     cuentaCRUD.actualizarSaldo(cuentaDestino);
     ArrayList<Operacion> operacionesD = cuentaDestino.getOperaciones();

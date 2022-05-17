@@ -163,6 +163,8 @@ public class EstadoCuentaDolares extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnConsultarEstadoCuentaDolaresLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarEstadoCuentaDolaresLabelMouseClicked
+    validacionCuenta.setResultado("");
+    validacionCuenta.setValido();
     validacionCuenta.validarDatosPrevioRetiro(txtNumCuenta.getText(), 
             txtPinActual.getText());
     if (validacionCuenta.esValido()) {

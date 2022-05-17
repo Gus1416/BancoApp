@@ -198,7 +198,7 @@ public class Cuenta implements IComisiones, Comparable {
         Operacion operacion = new Operacion(obtenerFechaSistema(), pTipoOperacion,
                 pMontoOperacion, pSeCobraComision, pMontoComision, pMoneda, pNum);
         operaciones.add(operacion);
-        this.cantidadDepositosOperaciones = pNum;
+        //this.cantidadDepositosOperaciones = pNum;
         this.cantidadDepositosOperaciones++;
     }
 
@@ -377,6 +377,12 @@ public class Cuenta implements IComisiones, Comparable {
     public void setPin(String pin) {
       this.pin = pin;
     }
+
+  public void setCantidadDepositosOperaciones(int cantidadDepositosOperaciones) {
+    this.cantidadDepositosOperaciones = cantidadDepositosOperaciones;
+  }
+    
+    
      
     
     

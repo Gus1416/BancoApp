@@ -150,6 +150,8 @@ public class ConsultaSaldoActual extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnConsultarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarLabelMouseClicked
+    validacionCuenta.setResultado("");
+    validacionCuenta.setValido();
     validacionCuenta.validarDatosPrevioRetiro(txtNumCuenta.getText(), txtPinActual.getText());
     if(validacionCuenta.esValido) {
       control.controlarSaldoActual(txtNumCuenta.getText());

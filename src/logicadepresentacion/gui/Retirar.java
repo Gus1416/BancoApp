@@ -248,9 +248,13 @@ public class Retirar extends javax.swing.JPanel {
         validacionCuenta.setResultado(ex.toString());
       }
     } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+    validacionCuenta.setResultado("");
+    validacionCuenta.setValido();
   }//GEN-LAST:event_btnRetirarLabelMouseClicked
 
   private void btnValidarRetiroLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidarRetiroLabelMouseClicked
+    validacionCuenta.setResultado("");
+    validacionCuenta.setValido();
     validacionCuenta.validarDatosPrevioRetiro(txtNumeroCuenta.getText(), 
             txtPinActual.getText());
     if(validacionCuenta.esValido) {

@@ -24,6 +24,10 @@ public class Validacion {
     return esValido;
   }
   
+  public void setValido () {
+    this.esValido = true;
+  }
+  
   
   
 }

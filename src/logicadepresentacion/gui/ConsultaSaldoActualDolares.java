@@ -153,6 +153,8 @@ public class ConsultaSaldoActualDolares extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnConsultarDolaresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarDolaresMouseClicked
+    validacionCuenta.setResultado("");
+    validacionCuenta.setValido();
     validacionCuenta.validarDatosPrevioRetiro(txtNumCuenta.getText(), txtPinActual.getText());
     if(validacionCuenta.esValido()) {
       control.controlarSaldoActualDolares(txtNumCuenta.getText());
