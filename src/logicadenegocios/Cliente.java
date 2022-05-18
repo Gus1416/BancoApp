@@ -36,7 +36,7 @@ public class Cliente extends Persona {
           throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
         
-        
+     super. 
 	
 	@Override
 	public String toString(){
