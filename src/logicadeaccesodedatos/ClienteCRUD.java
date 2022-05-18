@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import logicadenegocios.Cliente;
 import logicadenegocios.Cuenta;
+import logicadenegocios.Encriptacion;
 
 /**
  * 
@@ -130,7 +131,7 @@ public class ClienteCRUD extends Conexion{
 		try {
 
 			ps = con.prepareStatement(sql);
-			ps.setString(1, pNumeroCuenta);
+			ps.setString(1, Encriptacion.encriptar(pNumeroCuenta));
 			rs = ps.executeQuery();
 
 			if (rs.next()) {

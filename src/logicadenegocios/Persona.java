@@ -40,7 +40,7 @@ public class Persona implements Comparable {
 	
 	@Override
 	public boolean comparar(Comparable b) {
-		return getNombre().compareTo(((Persona) b).getNombre()) <= 0;
+		return getPrimerApellido().compareTo(((Persona) b).getPrimerApellido()) <= 0;
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.util.ArrayList;
+import logicadenegocios.Encriptacion;
 import logicadenegocios.Operacion;
 
 /**
@@ -30,11 +31,11 @@ public class CuentaCRUD extends Conexion{
 		
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, pCuenta.getNumeroCuenta());
+			ps.setString(1, Encriptacion.encriptar(pCuenta.getNumeroCuenta()));
 			ps.setDate(2, new Date(pCuenta.getFechaCreacion().getTime()));
-			ps.setDouble(3, pCuenta.getSaldo());
+			ps.setString(3, Encriptacion.encriptar(Double.toString(pCuenta.getSaldo())));
 			ps.setString(4, pCuenta.getEstatus());
-			ps.setString(5, pCuenta.getPin());
+			ps.setString(5, Encriptacion.encriptar(pCuenta.getPin()));
 			ps.setString(6, pIdentificacionPersona);
 			ps.execute();
 			return true;
@@ -63,12 +64,13 @@ public class CuentaCRUD extends Conexion{
 			rs = ps.executeQuery();
 			
 			while (rs.next()){
-				String numeroCuenta = rs.getString("numero_cuenta");
+				String numeroCuenta = Encriptacion.desencriptar(rs.getString("numero_cuenta"));
 				java.util.Date fechaCreacion = rs.getDate("fecha_creacion");
-				double saldo = rs.getDouble("saldo");
+				double saldo = Double.parseDouble(Encriptacion.desencriptar(rs.getString("saldo")));
 				String estatus = rs.getString("estatus");
-				String pin = rs.getString("pin");
+				String pin = Encriptacion.desencriptar(rs.getString("pin"));
 				ArrayList<Operacion> operaciones = new OperacionCRUD().consultarOperacionesCuenta(numeroCuenta);
+				
 				Cuenta cuenta = new Cuenta(pin, saldo);
 				cuenta.setNumeroCuenta(numeroCuenta);
 				cuenta.setFechaCreacion(fechaCreacion);
@@ -104,11 +106,11 @@ public class CuentaCRUD extends Conexion{
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				String numeroCuenta = rs.getString("numero_cuenta");
+				String numeroCuenta = Encriptacion.desencriptar(rs.getString("numero_cuenta"));
 				java.util.Date fechaCreacion = rs.getDate("fecha_creacion");
-				double saldo = rs.getDouble("saldo");
+				double saldo = Double.parseDouble(Encriptacion.desencriptar(rs.getString("saldo")));
 				String estatus = rs.getString("estatus");
-				String pin = rs.getString("pin");
+				String pin = Encriptacion.desencriptar(rs.getString("pin"));
 				ArrayList<Operacion> operaciones = new OperacionCRUD().consultarOperacionesCuenta(numeroCuenta);
 				Cuenta cuenta = new Cuenta(pin, saldo);
 				cuenta.setNumeroCuenta(numeroCuenta);
@@ -138,18 +140,19 @@ public class CuentaCRUD extends Conexion{
 		Cuenta cuenta = null;
 
 		String sql = "CALL consultar_cuenta(?)";
+		System.out.println(Encriptacion.encriptar(pNumeroCuenta));
 
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, pNumeroCuenta);
+			ps.setString(1, Encriptacion.encriptar(pNumeroCuenta));
 			rs = ps.executeQuery();
 
 			if (rs.next()){				
-				String numeroCuenta = rs.getString("numero_cuenta");
+				String numeroCuenta = Encriptacion.desencriptar(rs.getString("numero_cuenta"));
 				java.util.Date fechaCreacion = rs.getDate("fecha_creacion");
-				double saldo = rs.getDouble("saldo");
+				double saldo = Double.parseDouble(Encriptacion.desencriptar(rs.getString("saldo")));
 				String estatus = rs.getString("estatus");
-				String pin = rs.getString("pin");
+				String pin = Encriptacion.desencriptar(rs.getString("pin"));
 				ArrayList<Operacion> operaciones = new OperacionCRUD().consultarOperacionesCuenta(pNumeroCuenta);
 				cuenta = new Cuenta(pin, saldo);
 				cuenta.setNumeroCuenta(numeroCuenta);
@@ -174,8 +177,8 @@ public class CuentaCRUD extends Conexion{
 
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, pCuenta.getPin());
-			ps.setString(2, pCuenta.getNumeroCuenta());
+			ps.setString(1, Encriptacion.encriptar(pCuenta.getPin()));
+			ps.setString(2, Encriptacion.encriptar(pCuenta.getNumeroCuenta()));
 			ps.execute();
 			return true;
 
@@ -194,7 +197,7 @@ public class CuentaCRUD extends Conexion{
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, pCuenta.getEstatus());
-			ps.setString(2, pCuenta.getNumeroCuenta());
+			ps.setString(2, Encriptacion.encriptar(pCuenta.getNumeroCuenta()));
 			ps.execute();
 			return true;
 
@@ -212,8 +215,8 @@ public class CuentaCRUD extends Conexion{
 
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setDouble(1, pCuenta.getSaldo());
-			ps.setString(2, pCuenta.getNumeroCuenta());
+			ps.setString(1, Encriptacion.encriptar(Double.toString(pCuenta.getSaldo())));
+			ps.setString(2, Encriptacion.encriptar(pCuenta.getNumeroCuenta()));
 			ps.execute();
 			return true;
 

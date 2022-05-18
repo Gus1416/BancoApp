@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import logicadenegocios.Encriptacion;
 
 /**
  *
@@ -36,7 +37,8 @@ public class OperacionCRUD extends Conexion{
 			ps.setDouble(5, pOperacion.getMontoOperacion());
 			ps.setDouble(6, pOperacion.getMontoComision());
 			ps.setString(7, pOperacion.getMoneda());
-			ps.setString(8, pNumeroCuenta);
+			System.out.println("DFSDFDFDSDDF" + Encriptacion.encriptar(pNumeroCuenta));
+			ps.setString(8, Encriptacion.encriptar(pNumeroCuenta));
 			ps.execute();
 			return true;
 
@@ -62,7 +64,7 @@ public class OperacionCRUD extends Conexion{
 
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, pNumeroCuenta);
+			ps.setString(1, Encriptacion.encriptar(pNumeroCuenta));
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -96,7 +98,7 @@ public class OperacionCRUD extends Conexion{
 
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, numCuenta);
+			ps.setString(1, Encriptacion.encriptar(numCuenta));
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
