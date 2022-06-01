@@ -187,6 +187,7 @@ public class ConsultarCuenta extends javax.swing.JPanel {
     String[] listaCuenta = idCuenta.split(" ");
     consulta.cargarPropietarioCuenta(listaCuenta[0]);
     txtDuenioCuenta.setText(consulta.getMensaje());
+		System.out.println(consulta.getMensaje());
   }//GEN-LAST:event_cbxListaCuentasMouseReleased
 
   private void btnConsultaCuentaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultaCuentaLabelMouseClicked

@@ -49,7 +49,7 @@ public class Operacion {
 
 	public Operacion() {
 	}
-
+	
 	public double getMontoComision() {
 		return this.montoComision;
 	}
@@ -74,7 +74,7 @@ public class Operacion {
 						+ "\nTipo de operacion: " + tipoOperacion + "\nCobro comision: "
 						+ isSeCobraComision() + "\nMonto de operacion: " + tc.convertirADolares(getMontoOperacion())
 						+ "\nMonto de comision" + tc.convertirADolares(montoComision) + "\nMoneda: " + getMoneda()
-						+ "\nPorcentaje de comision" + porcentajeComision;
+						+ "\nPorcentaje de comision" + porcentajeComision + "\n";
 		return mensaje;
 	}
 

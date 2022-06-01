@@ -37,7 +37,6 @@ public class OperacionCRUD extends Conexion{
 			ps.setDouble(5, pOperacion.getMontoOperacion());
 			ps.setDouble(6, pOperacion.getMontoComision());
 			ps.setString(7, pOperacion.getMoneda());
-			System.out.println("DFSDFDFDSDDF" + Encriptacion.encriptar(pNumeroCuenta));
 			ps.setString(8, Encriptacion.encriptar(pNumeroCuenta));
 			ps.execute();
 			return true;
@@ -68,7 +67,6 @@ public class OperacionCRUD extends Conexion{
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				System.out.println("Entra operaciones");
 				int idOperacion = rs.getInt("id_operacion");
 				java.util.Date fechaOperacion = rs.getDate("fecha_operacion");
 				String tipoOperacion = rs.getString("tipo_operacion");

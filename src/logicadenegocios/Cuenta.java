@@ -255,7 +255,7 @@ public class Cuenta implements IComisiones, Comparable {
 	public String consultarDetallesOperacionesDolares() {
 		String mensaje = "Operaciones: \n";
 		for (Operacion elemento : operaciones) {
-			mensaje += elemento.toStringDolar();
+			mensaje += elemento.toStringDolar() + "\n";
 		}
 		return mensaje;
 	}
@@ -284,7 +284,7 @@ public class Cuenta implements IComisiones, Comparable {
 		double redondeo = Math.round(saldoDolares * 100.0) / 100.0;
 		String mensaje = "NumeroCuenta: " + numeroCuenta + "\n"
 						+ "FechaCreacion: " + fechaCreacion + "\nSaldo: " + redondeo + "\n"
-						+ "Estatus: " + estatus + consultarDetallesOperacionesDolares();
+						+ "Estatus: " + estatus + "\n"  +consultarDetallesOperacionesDolares();
 		return mensaje;
 	}
 	
@@ -303,7 +303,7 @@ public class Cuenta implements IComisiones, Comparable {
 
 	@Override
 	public boolean comparar(Comparable b) {
-		return saldo < ((Cuenta) b).getSaldo();
+		return saldo > ((Cuenta) b).getSaldo();
 	}
 
 	@Override

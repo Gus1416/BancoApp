@@ -164,6 +164,9 @@ public class Controller_CLI {
 			} else {
 				System.out.println("La cuenta ha sido bloqueda por ingreso de pin incorrecto en dos ocasiones");
 				cuentaActual.inactivarCuenta();
+				System.out.println("f--------------------------------------" + cuentaActual.getEstatus());
+				CuentaCRUD cuentaCrud = new CuentaCRUD();
+				cuentaCrud.cambiarEstatus(cuentaActual);
 				tempClient = obtenerCliente_Cuenta(cuentaActual.getNumeroCuenta());
 				envioCorreo(tempClient.getCorreoElectronico(), tempClient.getNombre(), cuentaActual.getNumeroCuenta());
 				return false;
@@ -174,7 +177,8 @@ public class Controller_CLI {
 // VALIDACIONES / VERIFICACIONES ------------------------------------------------------------------------------------------ 
 // REGISTROS / CREACIONES --------------------------------------------------------------------------    
 	public static Cuenta crearCuentaCliente(Cliente clienteActual, String PinFinal, Double SaldoFinal) {
-		clienteActual.crearCuenta(PinFinal, SaldoFinal);
+		 int numeroCuentas = new CuentaCRUD().obtenerCantidadCuentas();
+		clienteActual.crearCuenta(PinFinal, SaldoFinal, numeroCuentas);
 
 		Cuenta cuentaTemp;
 		Busqueda obtenerCuenta = new Busqueda();
