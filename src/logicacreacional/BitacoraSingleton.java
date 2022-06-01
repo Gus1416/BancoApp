@@ -15,9 +15,9 @@ public class BitacoraSingleton {
 	public static Bitacora getInstance(){
 		if (instance == null){
 			instance = new Bitacora();
-			FormatoBitacoraObserver formatoBitacoraObserverCsv = new CsvObserver(instance);
-			FormatoBitacoraObserver formatoBitacoraObserverTxt = new TxtObserver(instance);
 		}
+		FormatoBitacoraObserver formatoBitacoraObserverCsv = new CsvObserver(instance);
+		FormatoBitacoraObserver formatoBitacoraObserverTxt = new TxtObserver(instance);
 		return instance;
 	}
 }
