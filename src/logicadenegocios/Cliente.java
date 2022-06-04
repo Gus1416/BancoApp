@@ -27,7 +27,6 @@ public class Cliente extends Persona{
 		numeroTelefono = pNumeroTelefono;
 		correoElectronico = pCorreoElectronico;
 		codigoCliente = "CIF_" + ++cantidadClientes;
-		//cuentas = new ArrayList<>();
 	}
 	
 	@Override

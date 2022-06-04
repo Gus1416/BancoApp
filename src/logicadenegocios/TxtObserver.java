@@ -9,10 +9,12 @@ import java.util.logging.Logger;
  * @author sebcor
  */
 public class TxtObserver extends FormatoBitacoraObserver {
-
+        
+    
 	public TxtObserver(Bitacora pBitacora) {
 		subject = pBitacora;
 		subject.attach(this);
+                
 	}
 
 	@Override
@@ -27,16 +29,17 @@ public class TxtObserver extends FormatoBitacoraObserver {
 
 		PosFormat = Fecha + Hora + Ope + Vista;
 
-		File file = new File("FormatoPosicional.txt");
+		File file = new File("C:\\Users\\Gustavo\\OneDrive\\Documentos\\NetBeansProjects\\BancoApp\\FormatoPosicional.txt");
+
 		FileWriter fw = null;
-		
+
 		try {
 			fw = new FileWriter(file, true);
 		} catch (IOException ex) {
 			Logger.getLogger(TxtObserver.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		PrintWriter pw = new PrintWriter(fw);
-
+		pw.flush();    // borrar la data existente en el file.
 		pw.println(PosFormat);
 		pw.close();
 	}

@@ -85,6 +85,113 @@ public class OperacionCRUD extends Conexion{
 			return operaciones;
 		}
 	}
+	
+	public boolean registrarEnBitacora(String[] pRegistro){
+		PreparedStatement ps = null;
+		Connection con = getConexion();
+
+		String sql = "CALL registrar_en_bitacora(?,?,?,?)";
+
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, pRegistro[0]);
+			ps.setString(2, pRegistro[1]);
+			ps.setString(3, pRegistro[2]);
+			ps.setString(4, pRegistro[3].toLowerCase());
+			ps.execute();
+			return true;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return false;
+		}
+	}
+	
+	public ArrayList<String[]> consultarBitacoraVista(String pVista){
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConexion();
+		ArrayList<String[]> registros = new ArrayList<>();
+
+		String sql = "CALL consultar_bitacora_vista(?)";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, pVista.toLowerCase());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				String fecha = rs.getString("fecha");
+				String hora = rs.getString("hora");
+				String accion = rs.getString("accion");
+				String vista = rs.getString("vista");
+				String[] registro = {fecha, hora, accion, vista};
+				registros.add(registro);
+			}
+			return registros;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return registros;
+		}
+	}
+	
+	public ArrayList<String[]> consultarBitacoraFecha(String pFecha){
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConexion();
+		ArrayList<String[]> registros = new ArrayList<>();
+
+		String sql = "CALL consultar_bitacora_fecha(?)";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, pFecha);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				String fecha = rs.getString("fecha");
+				String hora = rs.getString("hora");
+				String accion = rs.getString("accion");
+				String vista = rs.getString("vista");
+				String[] registro = {fecha, hora, accion, vista};
+				registros.add(registro);
+			}
+			return registros;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return registros;
+		}
+	}
+	
+	public ArrayList<String[]> consultarBitacora(){
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConexion();
+		ArrayList<String[]> registros = new ArrayList<>();
+
+		String sql = "SELECT * FROM bitacora";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				String fecha = rs.getString("fecha");
+				String hora = rs.getString("hora");
+				String accion = rs.getString("accion");
+				String vista = rs.getString("vista");
+				String[] registro = {fecha, hora, accion, vista};
+				registros.add(registro);
+			}
+			return registros;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return registros;
+		}
+	}
 
 	public int obtenerCantidadOpeCuenta(String numCuenta) {
 		PreparedStatement ps = null;

@@ -26,9 +26,13 @@ public class BancoApp {
 //		bitacora.setRegistro(registro2);
 //		bitacora.setRegistro(registro3);		
 
-		Date fecha = new Date(System.currentTimeMillis());
-		
-		registrarEnBitacora(fecha, "Consulta", "CLI");
+//		Date fecha = new Date(System.currentTimeMillis());
+//		
+//		registrarEnBitacora(fecha, "Consulta", "CLI");
+//		registrarEnBitacora(fecha, "Consulta", "CLI");
+//		registrarEnBitacora(fecha, "Consulta", "WEB");
+//		registrarEnBitacora(fecha, "Consulta", "GUI");
+//		registrarEnBitacora(fecha, "Consulta", "CLI");
 	}
 	
 	public static void registrarEnBitacora(Date pFechaHora, String pTipoOperacion, String pVista) {
@@ -37,6 +41,5 @@ public class BancoApp {
 		String[] registro1 = {formatterFecha.format(pFechaHora), formatterHora.format(pFechaHora), pTipoOperacion, pVista};
 		Bitacora bitacora = BitacoraSingleton.getInstance();
 		bitacora.setRegistro(registro1);
-	}
-					
+	}				
 }

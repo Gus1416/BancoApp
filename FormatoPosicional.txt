@@ -1,2 +1,3 @@
-     2022-05-3120:49:10 CST       Consulta    CLI
-     2022-05-31       20:50:16       Consulta    CLI
+     2022-06-03       15:13:14Obtener TC Venta    cli
+     2022-06-03       15:36:39Listar Clientes Ordenados    cli
+     2022-06-01       15:36:56Listar Cuentas Ordenadas    cli
