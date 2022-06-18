@@ -5,6 +5,7 @@
 package logicadepresentacion.gui;
 
 import javax.swing.JOptionPane;
+import logicacreacional.SimpleValidacionFactory;
 import logicadeintegracion.gui.ControladorRetirar;
 import logicadevalidacion.FondosInsuficientesExcepcion;
 import logicadevalidacion.ValidacionCuenta;
@@ -14,16 +15,22 @@ import logicadevalidacion.ValidacionCuenta;
  * @author Alejandra Merino
  */
 public class Retirar extends javax.swing.JPanel {
-  private ControladorRetirar control;
-  private ValidacionCuenta validacionCuenta;
+    private SimpleValidacionFactory factoryValidacion;
+    private ControladorRetirar control;
+    private ValidacionCuenta validacionCuenta;
   /**
    * Creates new form Retirar
    */
-  public Retirar() {
-    initComponents();
-    control = new ControladorRetirar ();
-    validacionCuenta = new ValidacionCuenta ();
-  }
+    public Retirar(SimpleValidacionFactory pFactoryValidacion) {
+      initComponents();
+      factoryValidacion = pFactoryValidacion;
+      control = new ControladorRetirar ();
+      try {
+            validacionCuenta = (ValidacionCuenta)(factoryValidacion.crearValidacion("ValidacionCuenta"));
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
   /**
    * This method is called from within the constructor to initialize the form.

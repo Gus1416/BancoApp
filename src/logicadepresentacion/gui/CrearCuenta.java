@@ -6,6 +6,7 @@ package logicadepresentacion.gui;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import logicacreacional.SimpleValidacionFactory;
 import logicadeintegracion.gui.ControladorCrearCuenta;
 import logicadevalidacion.ValidacionCuenta;
 
@@ -14,20 +15,21 @@ import logicadevalidacion.ValidacionCuenta;
  * @author Alejandra Merino
  */
 public class CrearCuenta extends javax.swing.JPanel {
-private ArrayList listaClientes;
-private ControladorCrearCuenta control;
+    private SimpleValidacionFactory factoryValidacion;
+    private ControladorCrearCuenta control;
 
   /**
    * Creates new form CrearCuenta
    */
-  public CrearCuenta() {
+  public CrearCuenta(SimpleValidacionFactory pFactoryValidacion) {
     initComponents();
+    factoryValidacion = pFactoryValidacion;
     control = new ControladorCrearCuenta ();
-    listaClientes = control.cargarClientes();
     cargarListaClientes();
   }
   
   private void cargarListaClientes() {
+    ArrayList listaClientes = control.cargarClientes();
     for (int i =0;i<listaClientes.size(); i++) {
       cbxCliente.addItem(listaClientes.get(i).toString());
     }
@@ -170,16 +172,20 @@ private ControladorCrearCuenta control;
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnCrearCuentaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaLabelMouseClicked
-    ValidacionCuenta validacionCuenta = new ValidacionCuenta ();
-    validacionCuenta.validarDatosCuenta(txtPin.getText(), txtDepositoInicial.getText());
-    if(validacionCuenta.esValido) {
-      String idCliente = (String) cbxCliente.getSelectedItem();
-      idCliente = idCliente.trim();
-      String[] listaCliente = idCliente.split(" ");
-      control.controlarRegistroCuenta(txtPin.getText(), 
-              txtDepositoInicial.getText(), listaCliente[listaCliente.length-1]);
-      validacionCuenta.setResultado(control.getMensaje());
-    } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+        try {
+            ValidacionCuenta validacionCuenta = (ValidacionCuenta)(factoryValidacion.crearValidacion("ValidacionCuenta"));
+            validacionCuenta.validarDatosCuenta(txtPin.getText(), txtDepositoInicial.getText());
+            if(validacionCuenta.esValido) {
+                String idCliente = (String) cbxCliente.getSelectedItem();
+                idCliente = idCliente.trim();
+                String[] listaCliente = idCliente.split(" ");
+                control.controlarRegistroCuenta(txtPin.getText(),
+                        txtDepositoInicial.getText(), listaCliente[listaCliente.length-1]);
+                validacionCuenta.setResultado(control.getMensaje());
+            } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            System.out.println(ex.getMessage());
+        }
   }//GEN-LAST:event_btnCrearCuentaLabelMouseClicked
 
 

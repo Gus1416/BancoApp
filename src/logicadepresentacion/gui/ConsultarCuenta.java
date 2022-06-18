@@ -14,20 +14,19 @@ import logicadenegocios.Ordenacion;
  */
 public class ConsultarCuenta extends javax.swing.JPanel {
   private ControladorConsultarCuenta consulta;
-  private ArrayList listaCuentas;
   /**
    * Creates new form ConsultarCuenta
    */
   public ConsultarCuenta() {
     initComponents();
     consulta = new ControladorConsultarCuenta ();
-    listaCuentas = consulta.cargarCuentas();
     cargarListaCuentas();
     //Ordenacion ordena = new Ordenacion ();
     //ordena.insercion(listaCuentas);
   }
   
   private void cargarListaCuentas() {
+    ArrayList listaCuentas = consulta.cargarCuentas();
     for (int i =0;i<listaCuentas.size(); i++) {
       cbxListaCuentas.addItem(listaCuentas.get(i).toString());
     }

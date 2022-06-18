@@ -5,6 +5,7 @@
 package logicadepresentacion.gui;
 
 import javax.swing.JOptionPane;
+import logicacreacional.SimpleValidacionFactory;
 import logicadeintegracion.gui.ControladorDepositar;
 import logicadevalidacion.ValidacionCuenta;
 
@@ -13,12 +14,14 @@ import logicadevalidacion.ValidacionCuenta;
  * @author Alejandra Merino
  */
 public class Depositar extends javax.swing.JPanel {
-  public ControladorDepositar control;
+    private SimpleValidacionFactory factoryValidacion;
+    public ControladorDepositar control;
   /**
    * Creates new form Depositar
    */
-  public Depositar() {
+  public Depositar(SimpleValidacionFactory pFactoryValidacion) {
     initComponents();
+    factoryValidacion = pFactoryValidacion;
     control = new ControladorDepositar ();
   }
 
@@ -156,14 +159,18 @@ public class Depositar extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnDepositarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDepositarLabelMouseClicked
-    ValidacionCuenta validacionCuenta = new ValidacionCuenta ();
-    validacionCuenta.validarDatosDeposito(txtNumeroCuenta.getText(), txtMontoDeposito.getText());
-    if(validacionCuenta.esValido) {
-      control.controlarDeposito(txtNumeroCuenta.getText(), 
-              txtMontoDeposito.getText(), (String) cbxMoneda.getSelectedItem());
-      validacionCuenta.setResultado(control.getMensaje());
-    }
-    JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+        try {
+            ValidacionCuenta validacionCuenta = (ValidacionCuenta)(factoryValidacion.crearValidacion("ValidacionCuenta"));
+            validacionCuenta.validarDatosDeposito(txtNumeroCuenta.getText(), txtMontoDeposito.getText());
+            if(validacionCuenta.esValido) {
+                control.controlarDeposito(txtNumeroCuenta.getText(),
+                        txtMontoDeposito.getText(), (String) cbxMoneda.getSelectedItem());
+                validacionCuenta.setResultado(control.getMensaje());
+            }
+            JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            System.out.println(ex.getMessage());
+        }
   }//GEN-LAST:event_btnDepositarLabelMouseClicked
 
 

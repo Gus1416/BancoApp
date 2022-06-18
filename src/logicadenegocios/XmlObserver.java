@@ -12,11 +12,11 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
@@ -39,30 +39,27 @@ public class XmlObserver extends FormatoBitacoraObserver {
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			System.out.println("Construye el doc");
-			try {
-				Document documento = builder.parse(new File("C:\\Users\\Gustavo\\OneDrive\\Documentos\\NetBeansProjects\\BancoApp\\Bitacoras.xml"));
-				System.out.println("Carga el archivo");
-				Element nuevaBitacora = agregarBitacora(pBitacora, documento);
-				documento.getDocumentElement().appendChild(nuevaBitacora);
-				System.out.println("agrega las bitacoras");
-				try {
-					Transformer transformer = TransformerFactory.newInstance().newTransformer();
-					Result output = new StreamResult(new File("Bitacoras.xml"));
-					Source input = new DOMSource(documento);
-					try {
-						transformer.transform(input, output);
-						System.out.println("Actualiza el archivo");
-					} catch (TransformerException ex) {
-						System.out.println(ex.getMessage());
-					}
-				} catch (TransformerConfigurationException ex) {
-					System.out.println(ex.getMessage());
-				}
-			} catch (SAXException | IOException ex) {
-				System.out.println(ex.getMessage());
+
+			Document documento = null;
+
+			if (new File("C:\\Users\\Gustavo\\OneDrive\\Documentos\\NetBeansProjects\\BancoApp\\Bitacoras.xml").exists()) {
+				documento = builder.parse(new File("C:\\Users\\Gustavo\\OneDrive\\Documentos\\NetBeansProjects\\BancoApp\\Bitacoras.xml"));
+
+			} else {
+				DOMImplementation implementation = builder.getDOMImplementation();
+				documento = implementation.createDocument(null, "Bitacoras.xml", null);
+				documento.setXmlVersion("1.0");
 			}
-		} catch (ParserConfigurationException ex) {
+
+			Element nuevaBitacora = agregarBitacora(pBitacora, documento);
+			documento.getDocumentElement().appendChild(nuevaBitacora);
+
+			Transformer transformer = TransformerFactory.newInstance().newTransformer();
+			Result output = new StreamResult(new File("C:\\Users\\Gustavo\\OneDrive\\Documentos\\NetBeansProjects\\BancoApp\\Bitacoras.xml"));
+			Source input = new DOMSource(documento);
+
+			transformer.transform(input, output);
+		} catch (TransformerException | SAXException | IOException | ParserConfigurationException ex) {
 			System.out.println(ex.getMessage());
 		}
 	}
@@ -91,5 +88,4 @@ public class XmlObserver extends FormatoBitacoraObserver {
 		bitacora.appendChild(vista);
 		return bitacora;
 	}
-
 }

@@ -4,7 +4,10 @@
  */
 package logicadepresentacion.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import logicacreacional.SimpleValidacionFactory;
 import logicadeintegracion.gui.ControladorEstatusCuenta;
 import logicadevalidacion.ValidacionCuenta;
 
@@ -13,14 +16,15 @@ import logicadevalidacion.ValidacionCuenta;
  * @author Alejandra Merino
  */
 public class EstatusCuenta extends javax.swing.JPanel {
-  private ValidacionCuenta validacionCuenta;
-  private ControladorEstatusCuenta control;
+    private SimpleValidacionFactory factoryValidacion;
+    private ValidacionCuenta validacionCuenta;
+    private ControladorEstatusCuenta control;
   /**
    * Creates new form EstatusCuenta
    */
-  public EstatusCuenta() {
+  public EstatusCuenta(SimpleValidacionFactory pFactoryValidacion) {
     initComponents();
-    validacionCuenta = new ValidacionCuenta ();
+    factoryValidacion = pFactoryValidacion;
     control = new ControladorEstatusCuenta ();
   }
 
@@ -133,11 +137,16 @@ public class EstatusCuenta extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnConsultarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarLabelMouseClicked
-    validacionCuenta.validarNumeroCuenta(txtNumCuenta.getText());
-    if(validacionCuenta.esValido()) {
-      control.controlarEstatusCuenta(txtNumCuenta.getText());
-      validacionCuenta.setResultado(control.getMensaje());
-    } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+        try {
+            ValidacionCuenta validacionCuenta = (ValidacionCuenta)(factoryValidacion.crearValidacion("ValidacionCuenta"));
+            validacionCuenta.validarNumeroCuenta(txtNumCuenta.getText());
+            if(validacionCuenta.esValido()) {
+                control.controlarEstatusCuenta(txtNumCuenta.getText());
+                validacionCuenta.setResultado(control.getMensaje());
+            } JOptionPane.showMessageDialog(this, validacionCuenta.resultado);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            System.out.println(ex.getMessage());
+        }
   }//GEN-LAST:event_btnConsultarLabelMouseClicked
 
 

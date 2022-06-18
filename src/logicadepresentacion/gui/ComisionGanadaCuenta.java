@@ -5,6 +5,7 @@
 package logicadepresentacion.gui;
 
 import javax.swing.JOptionPane;
+import logicacreacional.SimpleValidacionFactory;
 import logicadeintegracion.gui.ControladorComisionGanadaCuenta;
 import logicadevalidacion.ValidacionCuenta;
 
@@ -13,12 +14,13 @@ import logicadevalidacion.ValidacionCuenta;
  * @author Alejandra Merino
  */
 public class ComisionGanadaCuenta extends javax.swing.JPanel {
-
+    private SimpleValidacionFactory factoryValidacion;
   /**
    * Creates new form ComisionGanadaCuenta
    */
-  public ComisionGanadaCuenta() {
+  public ComisionGanadaCuenta(SimpleValidacionFactory pFactoryValidacion) {
     initComponents();
+    factoryValidacion = pFactoryValidacion;
   }
 
   /**
@@ -142,13 +144,18 @@ public class ComisionGanadaCuenta extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnConsultarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarLabelMouseClicked
-    ValidacionCuenta validacionCuenta = new ValidacionCuenta ();
-    validacionCuenta.validarNumeroCuenta(txtNumCuenta.getText());
-    if(validacionCuenta.esValido()) {
-    ControladorComisionGanadaCuenta control = new ControladorComisionGanadaCuenta ();
-    control.controlarComisionesGanadasCuenta(txtNumCuenta.getText());
-    txtComisionesTotales.setText(control.getMensaje());
-    } JOptionPane.showMessageDialog(this, validacionCuenta.getResultado());
+
+        try {
+            ValidacionCuenta validacionCuenta = (ValidacionCuenta)(factoryValidacion.crearValidacion("ValidacionCuenta"));
+            validacionCuenta.validarNumeroCuenta(txtNumCuenta.getText());
+        if(validacionCuenta.esValido()) {
+            ControladorComisionGanadaCuenta control = new ControladorComisionGanadaCuenta ();
+            control.controlarComisionesGanadasCuenta(txtNumCuenta.getText());
+            txtComisionesTotales.setText(control.getMensaje());
+        } JOptionPane.showMessageDialog(this, validacionCuenta.getResultado());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            System.out.println(ex.getMessage());
+        }
   }//GEN-LAST:event_btnConsultarLabelMouseClicked
 
 

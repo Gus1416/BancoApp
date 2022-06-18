@@ -18,16 +18,17 @@ import javax.mail.internet.MimeMultipart;
  * @author Gustavo
  * @version 09/10/2021
  */
-public class Correo {
+public class Correo implements ICorreo{
 	//Propiedades para la conexión con Gmail
 
 	private final String username = "iBancoApp@gmail.com";
-	private final String password = "DS2022*MAY";
+	//private final String password = "DS2022*MAY";
+	private final String password = "jkkwipmfqtrybixj";
 	private final String fromEmail = "iBancoApp@gmail.com";
 	private Properties prop;
+	private String mensaje;
 
-	public Correo() {
-
+	public Correo(String pNombreCliente, String pNumCuenta) {
 		//Establecimiento de las propiedades
 		this.prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -36,6 +37,8 @@ public class Correo {
 		prop.put("mail.smtp.starttls.enable", "true"); //TLS
 		prop.put("mail.smtp.ssl.protocols", "TLSv1.2");
 		prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+		
+		escribirMensaje(pNombreCliente, pNumCuenta);
 	}
 
 	/**
@@ -46,7 +49,8 @@ public class Correo {
 	 * @param pCita
 	 * @return Un booleano que indica si el envío fue exitoso.
 	 */
-	public boolean enviarCorreo(String pCorreoReceptor, String pNombreCliente, String pNumCuenta) {
+	@Override
+	public void enviarCorreo(String pCorreoReceptor) {
 		String toEmail = pCorreoReceptor;
 
 		//Creación de la sesión
@@ -68,7 +72,7 @@ public class Correo {
 
 			//Cuerpo del correo
 			MimeBodyPart textBodyPart = new MimeBodyPart();
-			textBodyPart.setText(crearCuerpoInactivacion(pNombreCliente, pNumCuenta));
+			textBodyPart.setText(this.mensaje);
 
 			emailContent.addBodyPart(textBodyPart);
 
@@ -76,18 +80,35 @@ public class Correo {
 
 			Transport.send(msg);
 			System.out.println("Sent message");
-			return true;
+			//return true;
 
 		} catch (MessagingException e) {
 			System.err.println(e.getMessage());
-			return false;
+			//return false;
 		}
 	}
-
-	private String crearCuerpoInactivacion(String pNombreCliente, String pNumCuenta) {
-		String cuerpo = "";
-		cuerpo += "Estimad@ usuario " + pNombreCliente + "\n";
-		cuerpo += "Le informamos que su cuenta número: " + pNumCuenta + " ha sido desactivada debido al ingreso de PIN incorrecto en múltiples ocasiones";
-		return cuerpo;
+	
+	private void escribirMensaje(String pNombreCliente, String pNumCuenta){
+		this.mensaje = "Estimado cliente " + pNombreCliente;
+		this.mensaje += "\n Lamentamos informarle que su cuenta número " + pNumCuenta + " ha sido desactivada"
+						+ "debido al ingreso erróneo del pin en el sistema BancoApp en dos ocasiones. Por esa razón no podrá "
+						+ "continuar realizando varias de las operaciones principales que se ofrecen al usuario.";
 	}
+	
+	@Override
+	public void setMensaje(String pMensaje){
+		this.mensaje = pMensaje;
+	}
+	
+	@Override
+	public String getMensaje(){
+		return this.mensaje;
+	}
+	
+//	public String crearCuerpoInactivacion(String pNombreCliente, String pNumCuenta) {
+//		String mensaje = "";
+//		mensaje += "Estimad@ usuario " + pNombreCliente + "\n";
+//		mensaje += "Le informamos que su cuenta número: " + pNumCuenta + " ha sido desactivada debido al ingreso de PIN incorrecto en múltiples ocasiones";
+//		return mensaje;
+//	}
 }

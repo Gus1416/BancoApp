@@ -5,6 +5,7 @@
 package logicadepresentacion.gui;
 
 import javax.swing.JOptionPane;
+import logicacreacional.SimpleValidacionFactory;
 import logicadeintegracion.gui.ControladorEstadoCuentaDolares;
 import logicadevalidacion.ValidacionCuenta;
 
@@ -13,14 +14,20 @@ import logicadevalidacion.ValidacionCuenta;
  * @author Alejandra Merino
  */
 public class EstadoCuentaDolares extends javax.swing.JPanel {
-  private ValidacionCuenta validacionCuenta;
-  private ControladorEstadoCuentaDolares control;
+    private SimpleValidacionFactory factoryValidacion;
+    private ValidacionCuenta validacionCuenta;
+    private ControladorEstadoCuentaDolares control;
   /**
    * Creates new form EstadoCuentaDolares
    */
-  public EstadoCuentaDolares() {
+  public EstadoCuentaDolares(SimpleValidacionFactory pFactoryValidacion) {
     initComponents();
-    validacionCuenta = new ValidacionCuenta ();
+    factoryValidacion = pFactoryValidacion;
+    try {
+            validacionCuenta = (ValidacionCuenta)(factoryValidacion.crearValidacion("ValidacionCuenta"));
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            System.out.println(ex.getMessage());
+        }
     control = new ControladorEstadoCuentaDolares ();
   }
 

@@ -15,6 +15,7 @@ public class ValidacionPersona extends Validacion {
 		validarApellido12(apellido2);
 		validarNombres(pNombre);
 		validarID(pID);
+		System.out.println();
 	}
 
 	public void validarApellido12(String pCadena) {

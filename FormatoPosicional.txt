@@ -1,3 +1,14 @@
-     2022-06-03       15:13:14Obtener TC Venta    cli
-     2022-06-03       15:36:39Listar Clientes Ordenados    cli
-     2022-06-01       15:36:56Listar Cuentas Ordenadas    cli
+     2022-06-03       15:36:49Obtener TC Compra    gui
+     2022-06-17       19:20:18Registro de Cliente    gui
+     2022-06-17       19:35:20  Cambio de PIN    gui
+     2022-06-17       19:35:54Creación de Cuenta Bancaria    gui
+     2022-06-17       19:36:25Depósito en Colones    gui
+     2022-06-17       19:36:33Depósito en Dólares    gui
+     2022-06-17       19:37:31Transferencia Bancaria (CRC)    gui
+     2022-06-17       19:37:45Obtener TC Compra    gui
+     2022-06-17       19:37:48Obtener TC Venta    gui
+     2022-06-17       19:38:01Consulta Estado de Cuenta (CRC)    gui
+     2022-06-17       19:38:12Consulta Ganancias Totales Comisión (General)    gui
+     2022-06-17       19:38:22Consulta Ganancias Totales Comisión (Específico)    gui
+     2022-06-17       20:23:47  Cambio de PIN    WEB
+     2022-06-17       20:24:05  Cambio de PIN    WEB

@@ -7,17 +7,19 @@ package logicadepresentacion.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
+import logicacreacional.SimpleValidacionFactory;
 
 /**
  *
  * @author Alejandra Merino
  */
 public class Menu extends javax.swing.JFrame {
-
+    
   /**
    * Creates new form Menu
    */
   public Menu() {
+    
     initComponents();
     
   }
@@ -864,7 +866,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnRegistrarClienteLabelMouseExited
 
   private void btnRegistrarClienteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarClienteLabelMouseClicked
-    RegistrarCliente ventanaRegistrarCliente= new RegistrarCliente ();
+    RegistrarCliente ventanaRegistrarCliente= new RegistrarCliente (new SimpleValidacionFactory());
     ShowPanel(ventanaRegistrarCliente);
   }//GEN-LAST:event_btnRegistrarClienteLabelMouseClicked
 
@@ -873,7 +875,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_principalMouseClicked
 
   private void btnCrearCuentaLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaLMouseClicked
-    CrearCuenta ventanaCrearCuenta = new CrearCuenta();
+    CrearCuenta ventanaCrearCuenta = new CrearCuenta(new SimpleValidacionFactory());
     ShowPanel(ventanaCrearCuenta);
   }//GEN-LAST:event_btnCrearCuentaLMouseClicked
 
@@ -920,7 +922,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnCambiarPinLabelMouseExited
 
   private void btnCambiarPinLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambiarPinLabelMouseClicked
-    CambiarPin ventanaCambiarPin = new CambiarPin ();
+    CambiarPin ventanaCambiarPin = new CambiarPin (new SimpleValidacionFactory ());
     ShowPanel(ventanaCambiarPin);
   }//GEN-LAST:event_btnCambiarPinLabelMouseClicked
 
@@ -933,7 +935,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnDepositarLabelMouseExited
 
   private void btnDepositarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDepositarLabelMouseClicked
-    Depositar ventanaDepositar = new Depositar ();
+    Depositar ventanaDepositar = new Depositar (new SimpleValidacionFactory());
     ShowPanel(ventanaDepositar);
   }//GEN-LAST:event_btnDepositarLabelMouseClicked
 
@@ -946,7 +948,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnRetirarLabelMouseExited
 
   private void btnRetirarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRetirarLabelMouseClicked
-    Retirar ventanaRetirar = new Retirar ();
+    Retirar ventanaRetirar = new Retirar (new SimpleValidacionFactory ());
     ShowPanel(ventanaRetirar);
   }//GEN-LAST:event_btnRetirarLabelMouseClicked
 
@@ -959,7 +961,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnTransferirLabelMouseExited
 
   private void btnTransferirLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTransferirLabelMouseClicked
-    Transferir ventanaTransferir = new Transferir ();
+    Transferir ventanaTransferir = new Transferir (new SimpleValidacionFactory ());
     ShowPanel(ventanaTransferir);
   }//GEN-LAST:event_btnTransferirLabelMouseClicked
 
@@ -985,7 +987,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnConsultarSaldoActualLabelMouseExited
 
   private void btnConsultarSaldoActualLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarSaldoActualLabelMouseClicked
-    ConsultaSaldoActual ventanaConsultaSaldoActual = new ConsultaSaldoActual();
+    ConsultaSaldoActual ventanaConsultaSaldoActual = new ConsultaSaldoActual(new SimpleValidacionFactory());
     ShowPanel(ventanaConsultaSaldoActual);
   }//GEN-LAST:event_btnConsultarSaldoActualLabelMouseClicked
 
@@ -998,7 +1000,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnConsultarSaldoDolaresLabelMouseExited
 
   private void btnConsultarSaldoDolaresLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarSaldoDolaresLabelMouseClicked
-    ConsultaSaldoActualDolares ventanaConsultaSaldoActualDolares = new ConsultaSaldoActualDolares ();
+    ConsultaSaldoActualDolares ventanaConsultaSaldoActualDolares = new ConsultaSaldoActualDolares (new SimpleValidacionFactory());
     ShowPanel(ventanaConsultaSaldoActualDolares);
   }//GEN-LAST:event_btnConsultarSaldoDolaresLabelMouseClicked
 
@@ -1011,7 +1013,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnEstadoCuentaLabelMouseExited
 
   private void btnEstadoCuentaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoCuentaLabelMouseClicked
-    EstadoCuenta ventanaEstadoCuenta = new EstadoCuenta ();
+    EstadoCuenta ventanaEstadoCuenta = new EstadoCuenta (new SimpleValidacionFactory());
     ShowPanel(ventanaEstadoCuenta);
   }//GEN-LAST:event_btnEstadoCuentaLabelMouseClicked
 
@@ -1024,7 +1026,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnEstadoCuentaDolarLabelMouseExited
 
   private void btnEstadoCuentaDolarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadoCuentaDolarLabelMouseClicked
-    EstadoCuentaDolares ventanaEstadoCuentaDolares = new EstadoCuentaDolares ();
+    EstadoCuentaDolares ventanaEstadoCuentaDolares = new EstadoCuentaDolares (new SimpleValidacionFactory());
     ShowPanel(ventanaEstadoCuentaDolares);
   }//GEN-LAST:event_btnEstadoCuentaDolarLabelMouseClicked
 
@@ -1037,7 +1039,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnEstatusLabelMouseExited
 
   private void btnEstatusLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstatusLabelMouseClicked
-    EstatusCuenta ventanaEstatusCuenta = new EstatusCuenta ();
+    EstatusCuenta ventanaEstatusCuenta = new EstatusCuenta (new SimpleValidacionFactory());
     ShowPanel(ventanaEstatusCuenta);
   }//GEN-LAST:event_btnEstatusLabelMouseClicked
 
@@ -1063,7 +1065,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnComisionCuentaLabelMouseExited
 
   private void btnComisionCuentaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComisionCuentaLabelMouseClicked
-    ComisionGanadaCuenta ventanaComisionGanadaCuenta = new ComisionGanadaCuenta ();
+    ComisionGanadaCuenta ventanaComisionGanadaCuenta = new ComisionGanadaCuenta (new SimpleValidacionFactory ());
     ShowPanel(ventanaComisionGanadaCuenta);
   }//GEN-LAST:event_btnComisionCuentaLabelMouseClicked
   

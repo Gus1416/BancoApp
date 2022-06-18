@@ -9,6 +9,8 @@ import logicadeaccesodedatos.CuentaCRUD;
 import logicadenegocios.Cliente;
 import logicadenegocios.Cuenta;
 import serviciosexternos.Correo;
+import serviciosexternos.CorreoLenguajeDecorator;
+import serviciosexternos.ICorreo;
 
 /**
  *
@@ -24,11 +26,9 @@ public class ControladorInactivacionCuenta {
     Cuenta cuenta = cuentaCRUD.consultarCuenta(pNumCuenta);
     cuenta.inactivarCuenta();
     cuentaCRUD.cambiarEstatus(cuenta);
-    Correo correo = new Correo ();
-    if (correo.enviarCorreo(cliente.getCorreoElectronico(), 
-          cliente.getNombre(), pNumCuenta)) {
-      return;
-    }
+		ICorreo correo = new CorreoLenguajeDecorator(new Correo(cliente.getNombre(), pNumCuenta));
+    //Correo correo = new Correo (cliente.getNombre(), pNumCuenta);
+	correo.enviarCorreo(cliente.getCorreoElectronico());
   }
   
   

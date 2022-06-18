@@ -14,27 +14,27 @@ import logicadenegocios.Cliente;
  * @author Alejandra Merino
  */
 public class ControladorRegistroCliente extends Controlador {
-  
-  //Conversiones
-  //Construir los objetos y guardarlos en la BD
-  public void controlarRegistroCliente (String pIdentificacion, 
-          String pPrimerApellido, String pSegundoApellido, String pNombre, 
-          Date pFechaNacimiento, String pNumeroTelefono, 
-          String pCorreoElectronico) {
-    ClienteCRUD clienteCRUD = new ClienteCRUD();
-    int cantidadClientes = clienteCRUD.obtenerCantidadClientes();
-    Cliente cliente = new Cliente(pIdentificacion, pPrimerApellido, 
-            pSegundoApellido, pNombre, pFechaNacimiento, pNumeroTelefono, 
-            pCorreoElectronico, cantidadClientes);
-    
-    clienteCRUD.registrarCliente(cliente);
-    
-    super.mensaje = "Se ha creado un nuevo cliente en el sistema, los datos que"
-            + " fueron almacenados son: \nCodigo: "+cliente.getCodigoCliente() 
-            +"\nNombre: "+cliente.getNombre()+"\nIdentificacion: "
-            +cliente.getIdentificacion()+"\nFecha de Nacimiento: " 
-            +pFechaNacimiento.toString()+"\nNumero telefonico: "+cliente.getNumeroTelefono();
-  }
-  
-  
+
+	//Conversiones
+	//Construir los objetos y guardarlos en la BD
+	public void controlarRegistroCliente(String pIdentificacion,
+					String pPrimerApellido, String pSegundoApellido, String pNombre,
+					Date pFechaNacimiento, String pNumeroTelefono,
+					String pCorreoElectronico) {
+		ClienteCRUD clienteCRUD = new ClienteCRUD();
+		int cantidadClientes = clienteCRUD.obtenerCantidadClientes();
+		Cliente cliente = new Cliente(pIdentificacion, pPrimerApellido,
+						pSegundoApellido, pNombre, pFechaNacimiento, pNumeroTelefono,
+						pCorreoElectronico, cantidadClientes);
+
+		clienteCRUD.registrarCliente(cliente);
+		registrarEnBitacora("Registro de Cliente", "gui");
+
+		super.mensaje = "Se ha creado un nuevo cliente en el sistema, los datos que"
+						+ " fueron almacenados son: \nCodigo: " + cliente.getCodigoCliente()
+						+ "\nNombre: " + cliente.getNombre() + "\nIdentificacion: "
+						+ cliente.getIdentificacion() + "\nFecha de Nacimiento: "
+						+ pFechaNacimiento.toString() + "\nNumero telefonico: " + cliente.getNumeroTelefono();
+	}
+
 }

@@ -15,23 +15,21 @@ import logicadenegocios.Ordenacion;
  * @author Alejandra Merino
  */
 public class ConsultarCliente extends javax.swing.JPanel {
-  private ArrayList listaClientes;
-  private ControladorCrearCuenta control;
   private ControladorConsultarCliente consulta;
   /**
    * Creates new form ConsultarCliente
    */
   public ConsultarCliente() {
     initComponents();
-    control = new ControladorCrearCuenta ();
     consulta = new ControladorConsultarCliente ();
-    listaClientes = control.cargarClientes();
     cargarListaClientes();
     //Ordenacion ordena = new Ordenacion ();
     //ordena.insercion(listaClientes);
   }
   
   private void cargarListaClientes() {
+    ControladorCrearCuenta control = new ControladorCrearCuenta ();
+    ArrayList listaClientes = control.cargarClientes();
     for (int i =0;i<listaClientes.size(); i++) {
       cbxListadoClientes.addItem(listaClientes.get(i).toString());
     }

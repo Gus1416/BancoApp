@@ -5,6 +5,7 @@
 package logicadepresentacion.gui;
 
 import javax.swing.JOptionPane;
+import logicacreacional.SimpleValidacionFactory;
 import logicadeintegracion.gui.ControladorCambioPin;
 import logicadevalidacion.ValidacionCuenta;
 
@@ -13,16 +14,22 @@ import logicadevalidacion.ValidacionCuenta;
  * @author Alejandra Merino
  */
 public class CambiarPin extends javax.swing.JPanel {
-  public ControladorCambioPin control;
-  private ValidacionCuenta validacionCuenta;
+    private SimpleValidacionFactory factoryValidacion;
+    public ControladorCambioPin control;
+    private ValidacionCuenta validacionCuenta;
   /**
    * Creates new form CambiarPin
    */
-  public CambiarPin() {
-    initComponents();
-    control = new ControladorCambioPin ();
-    validacionCuenta = new ValidacionCuenta ();
-  }
+    public CambiarPin(SimpleValidacionFactory pFactoryValidacion) {
+      initComponents();
+      factoryValidacion = pFactoryValidacion;
+      control = new ControladorCambioPin ();
+        try {
+            validacionCuenta = (ValidacionCuenta)(factoryValidacion.crearValidacion("ValidacionCuenta"));
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
   /**
    * This method is called from within the constructor to initialize the form.

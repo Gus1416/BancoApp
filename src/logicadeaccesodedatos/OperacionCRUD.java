@@ -23,6 +23,7 @@ public class OperacionCRUD extends Conexion{
 	 * @return Indicador del éxito de la operación
 	 */
 	public boolean registrarOperacion(Operacion pOperacion, String pNumeroCuenta) {
+		System.out.println("Entra ope");
 		PreparedStatement ps = null;
 		Connection con = getConexion();
 
@@ -83,6 +84,29 @@ public class OperacionCRUD extends Conexion{
 		} catch (SQLException e) {
 			System.err.println(e);
 			return operaciones;
+		}
+	}
+	
+	public int obtenerCantidadOperaciones() {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConexion();
+		int cantidad = 0;
+
+		String sql = "SELECT COUNT(*) AS cantidad from operacion";
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				cantidad = rs.getInt("cantidad");
+			}
+			return cantidad;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return 0;
 		}
 	}
 	
